@@ -1,7 +1,7 @@
 1. NAT là một kỹ thuật cho phép một hoặc nhiều địa chỉ IP nội miền chuyển đổi sang một hoặc nhiều địa chỉ IP ngoại miền
 2. Phân loại NAT
 
-- Hiện nay có 3 loại NAT phổ biến mà bạn cần biết đó là: Static NAT, Dynamic NAT và NAT Overload. Cụ thể các loại kỹ thuật NAT này như thế nào, hãy cùng tìm hiểu ngay sau đây:
+Hiện nay có 3 loại NAT phổ biến mà bạn cần biết đó là: Static NAT, Dynamic NAT và NAT Overload. Cụ thể các loại kỹ thuật NAT này như thế nào, hãy cùng tìm hiểu ngay sau đây:
 
 - Static NAT là gì?
 Static NAT là kỹ thuật dùng để thay đổi, biến một IP này thành một IP khác. Bằng cách sử dụng phương pháp cố định cụ thể từ địa chỉ IP cục bộ sang Public. Toàn bộ quá trình này được thực hiện và cài đặt thủ công.
