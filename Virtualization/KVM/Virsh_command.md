@@ -162,6 +162,7 @@ Migrate Live
 root@virsh02:~# virsh migrate --live --verbose centos7_01 qemu+ssh://virsh01/system
 Migration: [100 %]
 ```
+```
 Option: 
 --verbose: hien thi qua trinh migrate
 --live: migrate khi vm dang running 
@@ -171,3 +172,4 @@ Option:
 --direct: su dung de dieu huong truc tiep 
 --dname: doi ten vm sau khi migrate 
 --persistenta: giu vm o trang thai persistent tren host đích, cần su dung khi migrate offline.
+```
