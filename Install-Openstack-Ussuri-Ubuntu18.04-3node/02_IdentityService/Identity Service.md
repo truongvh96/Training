@@ -2,68 +2,87 @@ Identity Service
 OpenStack Identity service cung cấp điểm để quản lý xác thực, uỷ quyền user và danh mục dịch vụ. Có thể được tích hợp với LDAP. Đây là dịch vụ đầu tiên được sử dụng để tương tác với User.
 
 Install & Config
-1. Database cho Keystone
-
-Tạo DB
-MariaDB [(none)]> CREATE DATABASE keystone;
+## 1. Database cho Keystone
+Truy cập Mariadb:
+``` mysql -u root -p ```
+Tạo DB:
+```
+CREATE DATABASE keystone;
 Gán quyền truy cập
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' \
-IDENTIFIED BY 'Welcome123';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' \
-IDENTIFIED BY 'Welcome123';
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost'  IDENTIFIED BY 'Welcome123';
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'Welcome123';
+ FLUSH PRIVILEGES;
+```
 2. Cài đặt và cấu hình
 
 Cài đặt Package
+```
 apt install keystone
-Cấu hình sửa file /etc/keystone/keystone.conf thêm các dòng:
+```
+Cấu hình sửa file /etc/keystone/keystone.conf thêm các dòng: ``` nano /etc/keystone/keystone.conf  ```
+```
 [database]
-connection = mysql+pymysql://keystone:Welcome123@controller/keystone
+connection = mysql+pymysql://keystone:Welcome123@controller/keystone #Welcome123 là pass
 [token]
 provider = fernet
+```
 Insert vào DB có thể kiểm tra quá trình với file log keystone /var/log/keystone/keystone-manage.log
+```
 su -s /bin/sh -c "keystone-manage db_sync" keystone
+```
 3. Tạo Fernet key repository
-
+```
 # keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
 # keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
+```
 4. Bootstrap Identity service
-
+```
 keystone-manage bootstrap --bootstrap-password Welcome123 \
   --bootstrap-admin-url http://controller:5000/v3/ \
   --bootstrap-internal-url http://controller:5000/v3/ \
   --bootstrap-public-url http://controller:5000/v3/ \
   --bootstrap-region-id RegionOne
+```
 Welcome123: là password của user admin
 5. Cấu hình Apache
 
-Sửa file /etc/apache2/apache2.conf thêm dòng sau
-ServerName controller
-Restart Apache
+Sửa file ``` nano /etc/apache2/apache2.conf ``` thêm dòng sau: 
+```
+ServerName controller:
+```
+Restart Apache:
+```
 service apache2 restart
+```
 6. Cấu hình admin account
-
+```
 $ export OS_USERNAME=admin
-$ export OS_PASSWORD=Welcome123@
+$ export OS_PASSWORD=Welcome123@ #password
 $ export OS_PROJECT_NAME=admin
 $ export OS_USER_DOMAIN_NAME=Default
 $ export OS_PROJECT_DOMAIN_NAME=Default
 $ export OS_AUTH_URL=http://controller:5000/v3
 $ export OS_IDENTITY_API_VERSION=3
+```
 Tạo Script environment cho Admin
+```
 cat <<EOT >> admin-openrc
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=admin
 export OS_USERNAME=admin
-export OS_PASSWORD=Welcome123
+export OS_PASSWORD=Welcome123  #password
 export OS_AUTH_URL=http://controller:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 EOT
+```
 Sử dụng script xác thực
+```
 # source admin-openrc
-Check hoạt động
-root@controller:~# openstack token issue
+```
+Check hoạt động:
+``` # openstack token issue ```
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Field      | Value                                                                                                                                                                                   |
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -75,7 +94,7 @@ root@controller:~# openstack token issue
 7. Tạo Domain, Project, User & Role
 
 Create Domain new
-root@controller:~# openstack domain create --description "new" example
+``` # openstack domain create --description "new" example ```
 +-------------+----------------------------------+
 | Field       | Value                            |
 +-------------+----------------------------------+
@@ -86,8 +105,8 @@ root@controller:~# openstack domain create --description "new" example
 | options     | {}                               |
 | tags        | []                               |
 +-------------+----------------------------------+
-Tạo Project mới
-root@controller:~# openstack project create --domain default   --description "Demo Project" truongproject
+Tạo Project mới:
+``` # openstack project create --domain default   --description "Demo Project" truongproject ``` #truongproject name project
 +-------------+----------------------------------+
 | Field       | Value                            |
 +-------------+----------------------------------+
@@ -101,9 +120,12 @@ root@controller:~# openstack project create --domain default   --description "De
 | parent_id   | default                          |
 | tags        | []                               |
 +-------------+----------------------------------+
-Tạo user non-admin cho project mới tạo
-root@controller:~# openstack user create --domain default \
+Tạo user non-admin cho project mới tạo:
+```
+# openstack user create --domain default \
 >   --password-prompt truong
+```
+Yếu cầu nhập pass:
 User Password:
 Repeat User Password:
 +---------------------+----------------------------------+
@@ -116,8 +138,8 @@ Repeat User Password:
 | options             | {}                               |
 | password_expires_at | None                             |
 +---------------------+----------------------------------+
-Tạo Role
-root@controller:~# openstack role create truong
+Tạo Role:
+``` # openstack role create truong ```
 +-------------+----------------------------------+
 | Field       | Value                            |
 +-------------+----------------------------------+
@@ -129,13 +151,15 @@ root@controller:~# openstack role create truong
 +-------------+----------------------------------+
 
 Add role cho project truongproject và user truong
-root@controller:~# openstack role add --project truongproject --user truong truong
+``` # openstack role add --project truongproject --user truong truong ```
 8. Test
 
 User admin
+```
 root@controller:~# openstack --os-auth-url http://controller:5000/v3 \
 >   --os-project-domain-name Default --os-user-domain-name Default \
 >   --os-project-name admin --os-username admin token issue
+```
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Field      | Value                                                                                                                                                                                   |
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -145,9 +169,11 @@ root@controller:~# openstack --os-auth-url http://controller:5000/v3 \
 | user_id    | a29c10926d034ca48038b057f32f8eb2                                                                                                                                                        |
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 User truong
+```
 root@controller:~# openstack --os-auth-url http://controller:5000/v3 \
 >   --os-project-domain-name Default --os-user-domain-name Default \
 >   --os-project-name truongproject --os-username truong token issue
+```
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Field      | Value                                                                                                                                                                                   |
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
