@@ -3,8 +3,7 @@
 
 Hiện nay có 3 loại NAT phổ biến mà bạn cần biết đó là: Static NAT, Dynamic NAT và NAT Overload. Cụ thể các loại kỹ thuật NAT này như thế nào, hãy cùng tìm hiểu ngay sau đây:
 
-- Static NAT là gì?
-Static NAT là kỹ thuật dùng để thay đổi, biến một IP này thành một IP khác. Bằng cách sử dụng phương pháp cố định cụ thể từ địa chỉ IP cục bộ sang Public. Toàn bộ quá trình này được thực hiện và cài đặt thủ công.
+- Static NAT là kỹ thuật dùng để thay đổi, biến một IP này thành một IP khác. Bằng cách sử dụng phương pháp cố định cụ thể từ địa chỉ IP cục bộ sang Public. Toàn bộ quá trình này được thực hiện và cài đặt thủ công.
 
 Phương pháp Static NAT sẽ đặc biệt phát huy hiệu quả nếu các thiết bị có địa chỉ cố định để truy cập internet từ bên ngoài.
 
@@ -22,8 +21,7 @@ Xác định cổng kết nối với mạng bên ngoài:
 ```
 Router (config-if) # ip nat outside
 ```
-- Dynamic NAT là gì?
-Dynamic NAT là kỹ thuật dùng để ánh xạ một địa chỉ IP này sang một địa chỉ IP khác (one – to – one) bằng phương pháp tự động. Thông thường, Dynamic NAT sẽ chuyển đổi từ IP mạng cục bộ sang địa chỉ IP được đăng ký hợp lệ.
+- Dynamic NAT là kỹ thuật dùng để ánh xạ một địa chỉ IP này sang một địa chỉ IP khác (one – to – one) bằng phương pháp tự động. Thông thường, Dynamic NAT sẽ chuyển đổi từ IP mạng cục bộ sang địa chỉ IP được đăng ký hợp lệ.
 
 Cách cấu hình Dynamic NAT như sau:
 
@@ -47,8 +45,7 @@ Xác định cổng kết nối với mạng bên ngoài:
 ```
 Router (config-if) # ip nat outside
 ```
-- NAT Overload là gì?
-NAT Overload còn có tên gọi khác là PAT (Port Address Translation). Đây là một dạng biến thể khác của Dynamic NAT. Nó cũng thực hiện chuyển đổi địa chỉ IP một cách tự động. Tuy nhiên, kiểu chuyển dịch địa chỉ của NAT Overload là dạng many – to – one (ánh xạ nhiều địa chỉ IP thành 1 địa chỉ IP) và dùng các chỉ số cổng (port) khác nhau để phân biệt cho từng chuyển đổi.
+- NAT Overload còn có tên gọi khác là PAT (Port Address Translation). Đây là một dạng biến thể khác của Dynamic NAT. Nó cũng thực hiện chuyển đổi địa chỉ IP một cách tự động. Tuy nhiên, kiểu chuyển dịch địa chỉ của NAT Overload là dạng many – to – one (ánh xạ nhiều địa chỉ IP thành 1 địa chỉ IP) và dùng các chỉ số cổng (port) khác nhau để phân biệt cho từng chuyển đổi.
 
 Cách cấu hình NAT Overload như sau:
 
