@@ -19,7 +19,7 @@ Sytax: rsync options source destination Option:
 --exclude: loại trừ ra những dữ liệu không muốn truyền đi, nếu bạn cần loại ra nhiều file hoặc folder ở nhiều đường dẫn khác nhau thì mỗi cái bạn phải thêm --exclude tương ứng.
 4. Ví dụ
 Copy file và thư mục trên local: Copy file trên local rsync -zvh backup.tar /tmp/backups/ Copy thư mục trên local rsync -avzh /root/opt /tmp/backups/
-Copy file và thư mục giữa các server: Copy thư mục từ Local lên Remote Server rsync -avz rpmpkgs/ root@192.168.0.101:/home/ Copy thư mục từ Remote Server về Local rsync -avzh root@192.168.0.100:/home/namdp/opt /tmp/opt
+Copy file và thư mục giữa các server: Copy thư mục từ Local lên Remote Server rsync -avz rpmpkgs/ root@192.168.0.101:/home/ Copy thư mục từ Remote Server về Local rsync -avzh root@192.168.0.100:/home/truong/opt /tmp/opt
 Rsync qua SSH rsync -avzhe ssh root@192.168.0.100:/root/install.log /tmp/
 Hiển thị tiến trình trong khi transfer dữ liệu với rsync rsync -avzhe ssh --progress /home/rpmpkgs root@192.168.0.100:/root/rpmpkgs
 Chạy thử nghiệm Rsync rsync --dry-run --remove-source-files -zvh backup.tar /tmp/backups/
