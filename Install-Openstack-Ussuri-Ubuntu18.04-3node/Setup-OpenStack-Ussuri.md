@@ -1,20 +1,20 @@
-1. Cài đặt trên node controller
+#1. Cài đặt trên node controller
 
 Lưu ý:
 Đăng nhập với quyền root trên tất cả các bước cài đặt.
 Các thao tác sửa file trong hướng dẫn này sử dụng lệnh Nano
 Password thống nhất cho tất cả các dịch vụ là Welcome123
 
-1.1 Cài đặt các thành phần chung
+#1.1 Cài đặt các thành phần chung
 
-1.1.1 Thiết lập và cài đặt các gói cơ bản
+#1.1.1 Thiết lập và cài đặt các gói cơ bản
 Chạy lệnh để cập nhật các gói phần mềm
 
-# apt-get -y update
+apt-get -y update
 Thiết lập địa chỉ IP
 
 Cài đặt ifupdownn
-# apt update && apt install -y ifupdown
+apt update && apt install -y ifupdown
 
 Dùng lệnh nano để sửa file /etc/netplan/50-cloud-init.yaml với nội dung như sau.
 
@@ -33,14 +33,14 @@ network:
   
 Khởi động lại card mạng sau khi thiết lập IP tĩnh
 
-# netplan generate
-# netplan apply
+netplan generate
+netplan apply
 
 Đăng nhập lại máy Controller với quyền root và thực hiện kiểm tra kết nối.
 
 Kiểm tra kết nối tới gateway và internet sau khi thiết lập xong.
 
-# ping google.com
+ping google.com
 
 Cấu hình hostname
 
@@ -55,10 +55,10 @@ Cập nhật file /etc/hosts để phân giải từ IP sang hostname và ngư�
 > 10.10.10.39 block                                                                                                      
 > EOT
 
-2.1.2 Cài đặt NTP
+#2.1.2 Cài đặt NTP
 Cài gói chrony
 
-# apt-get -y install chrony
+apt-get -y install chrony
 Mở file /etc/chrony/chrony.conf và tìm các dòng dưới
 
  Pool 0.debian.pool.ntp.org offline minpoll 8
