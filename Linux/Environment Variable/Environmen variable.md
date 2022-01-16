@@ -50,7 +50,7 @@ VD: truong=1996
 5. Xóa biến
 ```
 unset VARIABLE
-VD: unset namdp
+VD: unset truong
 ```
 6. Set giá trị cho biến
 ``` export Variable=value ```
