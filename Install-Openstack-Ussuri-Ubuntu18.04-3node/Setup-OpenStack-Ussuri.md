@@ -57,6 +57,7 @@ Cập nhật file /etc/hosts để phân giải từ IP sang hostname và ngư�
 > 10.10.10.39 block                                                                                                      
 > EOT
 ```
+#### Các node còn lại tương tự
 ## 2.1.2 Cài đặt NTP
 Cài gói chrony
 ```
@@ -76,30 +77,34 @@ Thay bằng các dòng sau
  server 3.asia.pool.ntp.org iburst
  server 10.10.10.0/24 # tùy thuộc vào ip
 ```
-Khởi động lại dịch vụ NTP
+Khởi động lại dịch vụ NTP:
+``` service chrony restart  ```
+Kiểm tra lại hoạt động của NTP bằng lệnh dưới:
+``` 
+chronyc sources
 ```
-service chrony restart ```
-Kiểm tra lại hoạt động của NTP bằng lệnh dưới
-```
-#chronyc sources
-```
-# Cấu hình tương tự 2 node còn lại
+#### Cấu hình tương tự 2 node còn lại
   
 1.2. Cài đặt trên các node khác
 ```
-apt install chrony ```
+apt install chrony
+```
 Cấu hình:
 ```
-nano /etc/chrony/chrony.conf ```
+nano /etc/chrony/chrony.conf 
+```
 Thêm các dòng :
 ```
-server controller iburst  ```
+server controller iburst  
+```
 Restart NTP:
 ```
-systemctl restart chrony ```
+systemctl restart chrony 
+```
 1.3. Kiểm tra
 ```
-chronyc sources ```
+chronyc sources 
+```
 - Kết quả :
 210 Number of sources = 11
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
@@ -108,22 +113,27 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ## 2. Install OpenStack Package
 ### 2.1. Add Repo Openstack Ussuri for Ubuntu
 ``` 
-add-apt-repository cloud-archive:ussuri  ```
+add-apt-repository cloud-archive:ussuri  
+```
 ### 2.2. Cài đặt Client trên Node Controller
 ```
-apt install python3-openstackclient ```
+apt install python3-openstackclient 
+```
 ## 3. Install Database (MariaDB 10.3)
 Hầu hết các Service của Openstack đều sử dụng SQL Database để lưu thông tin. Database sẽ được cài đặt trên Controller Node. Việc sử dụng MariaDB hay MySQL tuỳ thuộc vào từng distro đang sử dụng
 
 ### 3.1. Install software-properties-common
 ```
-apt-get install software-properties-common ```
+apt-get install software-properties-common 
+```
 ### 3.2. Import MariaDB GPG Key
 ```
-apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8  ```
+apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8  
+```
 ### 3.3. Add apt repository
 ```
-add-apt-repository 'deb [arch=amd64] http://mirror.zol.co.zw/mariadb/repo/10.3/ubuntu bionic main'  ```
+add-apt-repository 'deb [arch=amd64] http://mirror.zol.co.zw/mariadb/repo/10.3/ubuntu bionic main'  
+```
 ### 3.4. Install MariaDB
 ```
 apt update
@@ -143,22 +153,27 @@ character-set-server = utf8
 ```
 ### 3.6. Restart MariaDB
 ```
- service mysql restart  ```
+ service mysql restart  
+```
 ## 4. Install Message Queue (RabbitMQ)
 Openstack sử dụng message queue để điều phối hoạt động và trạng thái giũa các Service. Messeage Queue service được chạy trên controller node. Hướng dẫn này sẽ sử dụng RabbitMQ
 
 4.1. Install the package
 ```
-apt install rabbitmq-server ```
+apt install rabbitmq-server 
+```
 4.2. Create User openstack
 ```
-rabbitmqctl add_user openstack Welcome123   ```
+rabbitmqctl add_user openstack Welcome123   
+```
 kết quả: 
 ```
-Creating user "openstack" ```
+Creating user "openstack" 
+```
 4.3. Gắn quyền write, read cho user openstack
 ```
-rabbitmqctl set_permissions openstack ".*" ".*" ".*" ```
+rabbitmqctl set_permissions openstack ".*" ".*" ".*" 
+```
 kết quả:
 Setting permissions for user "openstack" in vhost "/"
 5. Install Memcached
@@ -166,20 +181,23 @@ Dịch vụ Identity phục vụ việc xác thực sử dụng Memcahed để l
 
 5.1. Install Memcache Package
 ```
-apt install memcached python-memcache ```
+apt install memcached python-memcache 
+```
 5.2. Sửa file /etc/memcached.conf cho phép truy cập qua network managerment ``` nano /etc/memcached.conf ```
 ```
 -l 10.10.10.41
 ```
 5.3. Restart Memcached
 ```
- service memcached restart  ```
+ service memcached restart  
+```
 5. Install Etcd
 Các Service của openstack có thể sử dụng Etcd, để lưu trữ thông tin key locking, cấu hình, theo dõi hoạt động của các dịch vụ khác.
 
 5.1. Install the etcd package
 ```
-apt install etcd  ```
+apt install etcd  
+```
 5.2. Sửa file /etc/default/etcd set các giá trịETCD_INITIAL_CLUSTER, ETCD_INITIAL_ADVERTISE_PEER_URLS, ETCD_ADVERTISE_CLIENT_URLS, ETCD_LISTEN_CLIENT_URLS để có thể kết nối qua Network mgmt của controller node
 ```
 cat >> /etc/default/etcd << EOT
