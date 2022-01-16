@@ -66,11 +66,11 @@ root@virsh01:~# virsh domiflist centos7
 Interface  Type       Source     Model       MAC
 -------------------------------------------------------
 vnet0      bridge     virbr0     virtio      52:54:00:27:8a:34
-vnet1      bridge     nambr      virtio      52:54:00:4b:73:5f
+vnet1      bridge     truong      virtio      52:54:00:4b:73:5f
 ```
 Add NIC to VM
   ```
-# virsh attach-interface --domain centos7 --type bridge --source nambr --model virtio --mac 52:54:00:4b:73:5f --config --live
+# virsh attach-interface --domain centos7 --type bridge --source truong --model virtio --mac 52:54:00:4b:73:5f --config --live
   ```
 Remove NIC
   ```
