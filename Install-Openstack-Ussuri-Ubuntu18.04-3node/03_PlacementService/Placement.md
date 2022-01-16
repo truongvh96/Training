@@ -1,22 +1,27 @@
 1. Tạo DB và gán quyền
+2. Truy cập vào Mariadb:
+```
 # mysql -u root -p
-
+```
+Tạo DB:
+```
 MariaDB [(none)]> CREATE DATABASE placement;
 Query OK, 1 row affected (0.000 sec)
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' \
-    ->   IDENTIFIED BY 'Welcome123';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'localhost' IDENTIFIED BY 'Welcome123';
 Query OK, 0 rows affected (0.000 sec)
 
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
-    ->   IDENTIFIED BY 'Welcome123';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' IDENTIFIED BY 'Welcome123';
  FLUSH PRIVILEGES;
  exit;
+```
 Query OK, 0 rows affected (0.000 sec)
 2. Tạo User và Endpoint
 
 Tạo User
+```
 # openstack user create --domain default --password-prompt placement
+```
 User Password:
 Repeat User Password:
 +---------------------+----------------------------------+
@@ -30,12 +35,14 @@ Repeat User Password:
 | password_expires_at | None                             |
 +---------------------+----------------------------------+
 Add role cho user:
+```
 # openstack role add --project service --user placement admin
-
+```
 Tạo Placement API entry trong service catalog:
-
+```
 #  openstack service create --name placement \
 >   --description "Placement API" placement
+```
 +-------------+----------------------------------+
 | Field       | Value                            |
 +-------------+----------------------------------+
@@ -46,7 +53,9 @@ Tạo Placement API entry trong service catalog:
 | type        | placement                        |
 +-------------+----------------------------------+
 Tạo Placement API Service endpoint:
+```
 # openstack endpoint create --region RegionOne   placement public http://controller:8778
+```
 +--------------+----------------------------------+
 | Field        | Value                            |
 +--------------+----------------------------------+
@@ -60,8 +69,10 @@ Tạo Placement API Service endpoint:
 | service_type | placement                        |
 | url          | http://controller:8778           |
 +--------------+----------------------------------+
-root@controller:~# openstack endpoint create --region RegionOne \
+```
+# openstack endpoint create --region RegionOne \
 >   placement internal http://controller:8778
+```
 +--------------+----------------------------------+
 | Field        | Value                            |
 +--------------+----------------------------------+
@@ -75,8 +86,10 @@ root@controller:~# openstack endpoint create --region RegionOne \
 | service_type | placement                        |
 | url          | http://controller:8778           |
 +--------------+----------------------------------+
-root@controller:~# openstack endpoint create --region RegionOne \
+```
+# openstack endpoint create --region RegionOne \
 >   placement admin http://controller:8778
+```
 +--------------+----------------------------------+
 | Field        | Value                            |
 +--------------+----------------------------------+
@@ -92,9 +105,11 @@ root@controller:~# openstack endpoint create --region RegionOne \
 +--------------+----------------------------------+
 
 Cài đặt:
+```
 apt install placement-api
-
-Cấu hình file /etc/placement/placement.conf:
+```
+Cấu hình file ``` nano /etc/placement/placement.conf ```
+```
 [placement_database]
 connection = mysql+pymysql://placement:Welcome123@controller/placement
 
@@ -110,10 +125,11 @@ user_domain_name = Default
 project_name = service
 username = placement
 password = Welcome123
+```
 
 Lưu vào DB:
-
+```
 su -s /bin/sh -c "placement-manage db sync" placement
-
+```
 Restart apache:
-service apache2 restart
+``` service apache2 restart ```
