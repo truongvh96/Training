@@ -1,0 +1,197 @@
+Image Service (Glance)
+Service này cho phép user đăng ký, trích xuất Virtual Machine Images. Được cung cấp qua API cho phép truy vấn, trích xuất metadata image của VM.
+
+Các image service có thể được lưu trữ trong qua filesystem hoặc Object-Storage sử dụng OpenStack Object Storage.
+
+OPS Image Service là trung tâm của IaaS. Cho phép các API Request, và metadata defination. Nova Service sẽ cần có Image Service dể launch Instance.
+
+Các thành phần của Image Service
+glance-API: Dùng để gọi API cho việc discover, trích xuất và lưu trữ Image.
+glance-registry: Lưu trữ và trích xuất metadata của image có thể là size và type.
+database: lưu trữ metadata image.
+storage repo for image: Dùng để lưu trữ image có thể sử dụng nhiều loại như filesystem, Object Storage, RADOS Storage. VMware Datastore, HTTP. Nhưng một số loại sẽ chỉ support read-only
+metadata definition: Cung cấp API cho vendor, admin, service và user có thể customize metadata. metadata gồm những phần khác nhau (images, artifaces, volumes, flavors,
+Cài đặt và cấu hình
+1. Tạo DB và gán quyền truy cập
+``` mysql -u root -p ```
+```
+MariaDB [(none)]> CREATE DATABASE glance;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY 'Welcome123';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY 'Welcome123';
+Query OK, 0 rows affected (0.000 sec)
+FLUSH PRIVILEGES;
+exit;
+```
+2. Tạo Glance User, Service, API endpoint
+
+Sử dụng admin để gán quyền
+``` . admin-openrc  ```
+Tạo glance user
+``` openstack user create --domain default --password-prompt glance ```
+User Password:
+Repeat User Password:
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | 788811fde07c49e89679648dcd0dd0b3 |
+| name                | glance                           |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+Add Admin Role
+``` openstack role add --project service --user glance admin ```
+Tạo Glance Service
+``` 
+openstack service create --name glance \
+>   --description "OpenStack Image" image
+```
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | OpenStack Image                  |
+| enabled     | True                             |
+| id          | cd51d34e32fb4bfebc59be1494122b84 |
+| name        | glance                           |
+| type        | image                            |
++-------------+----------------------------------+
+
+Tạo API Endpoit cho Image Service
+```
+openstack endpoint create --region RegionOne \
+>   image public http://controller:9292
+```
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | 3f85bb64f07a4f6691a27ae49b4f3a29 |
+| interface    | public                           |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | cd51d34e32fb4bfebc59be1494122b84 |
+| service_name | glance                           |
+| service_type | image                            |
+| url          | http://controller:9292           |
++--------------+----------------------------------+
+```
+openstack endpoint create --region RegionOne \
+>   image internal http://controller:9292
+```
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | 5bd4e23f59bf4588b489e42f6c883d02 |
+| interface    | internal                         |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | cd51d34e32fb4bfebc59be1494122b84 |
+| service_name | glance                           |
+| service_type | image                            |
+| url          | http://controller:9292           |
++--------------+----------------------------------+
+```
+openstack endpoint create --region RegionOne \
+>   image admin http://controller:9292
+```
++--------------+----------------------------------+
+| Field        | Value                            |
++--------------+----------------------------------+
+| enabled      | True                             |
+| id           | c605a4443071479fadf5aadc62fa5a3a |
+| interface    | admin                            |
+| region       | RegionOne                        |
+| region_id    | RegionOne                        |
+| service_id   | cd51d34e32fb4bfebc59be1494122b84 |
+| service_name | glance                           |
+| service_type | image                            |
+| url          | http://controller:9292           |
++--------------+----------------------------------+
+
+Cài đặt Glance
+```
+apt install glance
+```
+Cấu hình file ``` nano /etc/glance/glance-api.conf ```
+```
+[database]
+connection = mysql+pymysql://glance:Welcome123@controller/glance
+
+[keystone_authtoken]
+www_authenticate_uri = http://controller:5000
+auth_url = http://controller:5000
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+project_name = service
+username = glance
+password = Welcome123
+
+[paste_deploy]
+flavor = keystone
+
+[glance_store]
+stores = file,http
+default_store = file
+filesystem_store_datadir = /var/lib/glance/images/
+```
+Đưa vào DB
+```
+su -s /bin/sh -c "glance-manage db_sync" glance
+```
+3. Restart Service
+```
+service glance-api restart
+```
+4. Kiểm tra hoạt động
+
+Download the source image:
+```
+$ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
+```
+Upload images vào image service sử dụng QCOW2 disk format, bare container format và public image cho tất cả project có thể truy cập.
+```
+glance image-create --name "cirros" \
+--file cirros-0.4.0-x86_64-disk.img  \
+--disk-format qcow2 \
+--container-format bare \
+--visibility=public
+```
++------------------+----------------------------------------------------------------------------------+  
+| Property         | Value                                                                            |   
++------------------+----------------------------------------------------------------------------------+  
+| checksum         | 443b7623e27ecf03dc9e01ee93f67afe                                                 |  
+| container_format | bare                                                                             |  
+| created_at       | 2021-07-01T09:32:14Z                                                             |  
+| disk_format      | qcow2                                                                            |  
+| id               | 530251c5-eda7-48cb-8040-c630de5e69c9                                             |  
+| min_disk         | 0                                                                                |  
+| min_ram          | 0                                                                                |  
+| name             | cirros                                                                           |  
+| os_hash_algo     | sha512                                                                           |  
+| os_hash_value    | 6513f21e44aa3da349f248188a44bc304a3653a04122d8fb4535423c8e1d14cd6a153f735bb0982e |  
+|                  | 2161b5b5186106570c17a9e58b64dd39390617cd5a350f78                                 |  
+| os_hidden        | False                                                                            |  
+| owner            | 4c0116afd59f49a8a40b3346b91d5ffc                                                 |  
+| protected        | False                                                                            |  
+| size             | 12716032                                                                         |  
+| status           | active                                                                           |  
+| tags             | []                                                                               |  
+| updated_at       | 2021-07-01T09:32:15Z                                                             | 
+| virtual_size     | Not available                                                                    | 
+| visibility       | public                                                                           | 
++------------------+----------------------------------------------------------------------------------+
+List image
+``` glance image-list ```
++--------------------------------------+--------+
+| ID                                   | Name   |
++--------------------------------------+--------+
+| 530251c5-eda7-48cb-8040-c630de5e69c9 | cirros |
++--------------------------------------+--------+
