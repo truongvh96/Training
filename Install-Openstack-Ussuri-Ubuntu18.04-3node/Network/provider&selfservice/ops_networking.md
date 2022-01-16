@@ -13,7 +13,7 @@ Các thành phần cần cài đặt trên Compute Node:
 neutron-linuxbridge-agent: Cấu hình kết nối layer2 và sercurity group.
 Mô hình
 
-https://github.com/truongvh96/Openstack/blob/main/Install-Openstack-Ussuri-Ubuntu18.04-3node/Network/provider%26selfservice/network1-connectivity.png
+https://github.com/truongvh96/Openstack/blob/main/Install-Openstack-Ussuri-Ubuntu18.04-3node/Network/provider&selfservice/network1-connectivity.png?raw=true
 
 Trên Controller Node (Network Node):
 
