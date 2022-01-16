@@ -188,7 +188,7 @@ Các Service của openstack có thể sử dụng Etcd, để lưu trữ thông
 # apt install etcd
 5.2. Sửa file /etc/default/etcd set các giá trịETCD_INITIAL_CLUSTER, ETCD_INITIAL_ADVERTISE_PEER_URLS, ETCD_ADVERTISE_CLIENT_URLS, ETCD_LISTEN_CLIENT_URLS để có thể kết nối qua Network mgmt của controller node
 
-root@controller:~# cat /etc/default/etcd
+cat /etc/default/etcd
 ETCD_NAME="controller"
 ETCD_DATA_DIR="/var/lib/etcd"
 ETCD_INITIAL_CLUSTER_STATE="new"
