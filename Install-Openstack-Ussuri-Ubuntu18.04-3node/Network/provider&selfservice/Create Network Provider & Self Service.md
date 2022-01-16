@@ -21,10 +21,10 @@ openstack subnet create --network provider \
   --dns-nameserver 8.8.4.4 --gateway 10.3.52.1 \
   --subnet-range 10.3.53.0/22 provider
 ```
---network provider tên network
---allocation-pool start=10.3.53.200,end=10.3.53.210 tương ứng dhcp pool
---dns-nameserver 8.8.4.4 --gateway 10.3.52.1 dns và gateway cho network
---subnet-range 10.3.53.0/22 provider subnet
+--network provider tên network.
+--allocation-pool start=10.3.53.200,end=10.3.53.210 tương ứng dhcp pool.
+--dns-nameserver 8.8.4.4 --gateway 10.3.52.1 dns và gateway cho network.
+--subnet-range 10.3.53.0/22 provider subnet.
 Create Self Service Network
 Tạo mạng Self-Service với user demo Cần tạo provider network trước khi tạo self service network
 
