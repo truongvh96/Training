@@ -9,8 +9,10 @@ $ openstack network create  --share --external \
   --provider-physical-network provider \
   --provider-network-type flat provider
 ```
---share option để cho phép tất cả project sử dụng virtual network
+--share option để cho phép tất cả project sử dụng virtual network.
+
 --external định nghĩa virtual network là mạng external (nếu sử dụng --internal là vùng mạng internal.
+
 -provider-physical-network provider và --provider-network-type flat option dùng kết nối viirtual dưới dạng flat (không sử dụng vlan/tag) ứng với interface được cấu hình provider trong neutron config linux brige agent.
 3. Tạo subnet
 ```
