@@ -4,8 +4,10 @@ Mỗi instance sẽ có 1 Private IP của dải mạng self service để các 
 Gắn hoặc xoá floating ip khỏi instance, mỗi instace có duy nhất 1 FLoating IP.
 Float IP sẽ được gỡ khi xoá instance và có thể được gắn vào instance khác.
 1. Xác thực quyền admin & list subnet
-```. admin-openrc  ```
-``` openstack subnet list ```
+```
+. admin-openrc
+openstack subnet list
+```
 +--------------------------------------+-------------+--------------------------------------+---------------+
 | ID                                   | Name        | Network                              | Subnet        |
 +--------------------------------------+-------------+--------------------------------------+---------------+
