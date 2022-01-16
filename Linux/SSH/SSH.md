@@ -23,7 +23,7 @@ Nhập Passpharse nếu sử dụng (và cần ghi nhớ password này ).
 Copy public key id_rsa.pub vào Server với đường dẫn $HOME/.ssh/authorized_keys có thể dùng lệnh ssh-copy-id
 ```
 truong@ansible_lab:~/.ssh$ cat authorized_keys 
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+vsRiHhMnYNkJ1BqJA80/uXMoC21cajGi/X5sgSJsUG5+hQDWd7mj/tujHXNMHK4WskwoDDO2MH6PEWeJ3HHzAlMr6hnKt645GnfhA9Y4CF5AzHNvVF+Aqrr+gpop7PYWwoOm46BrSuAV6oa5rzKKdXn4qCGgKFbiahHxD2NmG8+EzhBgc9xJQm8XBu5fZvZ8RA3qy1w9FUzKtLTrHJt9rAaWw+S4LrNzzhviTzqV/QrZGIsStx3ixdYXI8p5kHHuaDfj6RaxzzfrZZ/zE2OhV8t/a0HBOKJ7BizfmiWlpo6Wp9IR/CCapshbuu4yOhonkVdTFy6x6acMGjxnsYfj namdp@dell
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+vsRiHhMnYNkJ1BqJA80/uXMoC21cajGi/X5sgSJsUG5+hQDWd7mj/tujHXNMHK4WskwoDDO2MH6PEWeJ3HHzAlMr6hnKt645GnfhA9Y4CF5AzHNvVF+Aqrr+gpop7PYWwoOm46BrSuAV6oa5rzKKdXn4qCGgKFbiahHxD2NmG8+EzhBgc9xJQm8XBu5fZvZ8RA3qy1w9FUzKtLTrHJt9rAaWw+S4LrNzzhviTzqV/QrZGIsStx3ixdYXI8p5kHHuaDfj6RaxzzfrZZ/zE2OhV8t/a0HBOKJ7BizfmiWlpo6Wp9IR/CCapshbuu4yOhonkVdTFy6x6acMGjxnsYfj truong@dell
 ```
 Kiểm tra kết nối đến server ssh user@hostname Điền Passpharse và kết nối sẽ được khởi tạo.
 2. SSH Agent
