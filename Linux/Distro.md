@@ -1,17 +1,11 @@
-1. Linux Kernel là gì ?
-Đây là phần core của hệ điều hành, cho phép quản lý, điều khiển, giao tiếp với các phần cứng của máy tính. Kernel có chứa phần mềm cho phép người dùng sử dụng được ổ cứng, mạng, RAM hay các phần cứng khác. Hệ thống Linux dựa theo UNIX, gọi là GNU/Linux. Nhân Linux hiện nay được phát triển bởi cộng đồng nguồn mở dựa trên nhân Linux mới được phát triển bởi Linus Torvalds.
+1. Linux Kernel là phần core của hệ điều hành, cho phép quản lý, điều khiển, giao tiếp với các phần cứng của máy tính. Kernel có chứa phần mềm cho phép người dùng sử dụng được ổ cứng, mạng, RAM hay các phần cứng khác. Hệ thống Linux dựa theo UNIX, gọi là GNU/Linux. Nhân Linux hiện nay được phát triển bởi cộng đồng nguồn mở dựa trên nhân Linux mới được phát triển bởi Linus Torvalds.
 
-2. Distro Linux là gì ?
-Các bản phân phối Linux hay còn gọi là Distro Là tập hợp các ứng dụng, package, trình quản lý gói và các tính năng chạy trên Linux Kernel. 
-Linux Kernel dùng chung cho tất cả các Distro. Đôi khi với các bản phân phối nhất định Linux Kernel sẽ được customize lại theo mục đích riêng.
-
-2. Linux Kernel là gì ?
-Đây là phần core của hệ điều hành, cho phép quản lý, điều khiển, giao tiếp với các phần cứng của máy tính. Kernel có chứa phần mềm cho phép người dùng sử dụng được ổ cứng, mạng, RAM hay các phần cứng khác. Hệ thống Linux dựa theo UNIX, gọi là GNU/Linux. Nhân Linux hiện nay được phát triển bởi cộng đồng nguồn mở dựa trên nhân Linux mới được phát triển bởi Linus Torvalds.
+2. Distro Linux là gì ?Các bản phân phối Linux hay còn gọi là Distro Là tập hợp các ứng dụng, package, trình quản lý gói và các tính năng chạy trên Linux Kernel. Linux Kernel dùng chung cho tất cả các Distro. Đôi khi với các bản phân phối nhất định Linux Kernel sẽ được customize lại theo mục đích riêng.
 
 3. Chọn bản phân phối Linux
 Sử dụng Linux bạn có thể nghe thấy rất nhiều bản phân phối Linux khác nhau như Ubuntu, Debian, Fedora, Red Hat … (Xem danh sách hàng trăm Distro phổ biến nhất gần đây tại distrowatch) Điều này làm cho việc mới tiếp cận Linux có vẻ lúng túng không biết chọn bản phân phối nào. Mỗi bản phân phối có những đặc tính khác nhau, có thể phân chia để lựa chọn theo ba tiêu chí:
 
-Mục đích
+Mục đích:
 Cấu hình và gói ứng dụng
 Mô hình hỗ trợ Bản phân phối linux theo mục đích sử dụng: Mỗi distro được thiết kế cho các mục đích khác nhau, cung cấp trải nghiệm người dùng khác nhau. Một số distro dùng để làm server, một số lại dùng cho môi trường desktop, một số lại có mục đích đặc biệt như hệ thống nhúng. Bản phân phối linux theo cách cấu hình: Các bản phân phối còn có sự khác nhau chính đó là cách thức thiết lập cấu hình hệ thống của chúng khác nhau. Một số Distro giữ các cấu hình, thiết lập, các file cấu hình ở cùng một nơi (thư mục), một số khác lại lưu ở nhiều nơi trong cấu trúc thư mục. Tiếp theo là quá trình cài đặt, cập nhật các ứng dụng (các gói package) cũng khác nhau tùy vào distro, nhiều distro thực hiện điều này bằng các công cụ quản lý gói (package) như DPKG (debian), APT (ubuntu, debian), RPM (Red Hat), YUM … Do có nhiều trình quản lý gói kiểu này nên thật sự việc quản trị gây khó khi làm việc giữa nhiều distro, ở các bài sau sẽ nói về những công công cụ quản lý gói này. Bản phân phối linux theo mô hình hỗ trợ: Một số distro được bảo trì, hỗ trợ, đóng góp bởi cộng đồng (Debian, CentOS, Fedora) nhưng cũng có các distro được hỗ trợ bởi các công ty thương mại (RHEL, Ubuntu), dù phần mềm vẫn là nguồn mở nhưng bạn cần trả tiền cho các dịch vụ hỗ trợ.
 3. Các Distro Linux phổ biến nhất
