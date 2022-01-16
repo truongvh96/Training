@@ -1,7 +1,7 @@
 Cài đặt trên Controller Node 1. Tạo và cấu hình DB
 Truy cập Mariadb:
 ``` 
-mysql -u root -p
+# mysql -u root -p
 ```
 ```
 MariaDB [(none)]> CREATE DATABASE nova_api;
@@ -34,7 +34,7 @@ exit;
 2. Tạo User, Service và API - Tạo User Nova
 
 ``` 
-#openstack user create --domain default --password-prompt nova
+# openstack user create --domain default --password-prompt nova
 User Password:
 Repeat User Password:
 ```
@@ -52,12 +52,12 @@ Repeat User Password:
 
 - Add role cho user
 ```
-openstack role add --project service --user nova admin
+# openstack role add --project service --user nova admin
 ```
 - Tạo Service Nova
 
 ``` 
-openstack service create --name nova \
+# openstack service create --name nova \
 >   --description "OpenStack Compute" compute
 ```
 +-------------+----------------------------------+
