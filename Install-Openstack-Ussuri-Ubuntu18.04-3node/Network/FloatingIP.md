@@ -5,8 +5,8 @@ Gắn hoặc xoá floating ip khỏi instance, mỗi instace có duy nhất 1 FL
 Float IP sẽ được gỡ khi xoá instance và có thể được gắn vào instance khác.
 1. Xác thực quyền admin & list subnet
 ```
-. admin-openrc
-openstack subnet list
+# . admin-openrc
+# openstack subnet list
 ```
 +--------------------------------------+-------------+--------------------------------------+---------------+
 | ID                                   | Name        | Network                              | Subnet        |
