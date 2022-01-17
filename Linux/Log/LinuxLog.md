@@ -1,13 +1,13 @@
-1. Log trong linux:
-Mặc định các file log sẽ được ghi vào folder /var/log - /var/log/syslog (Debian) & /var/log/message (RHEL) lưu trữ toàn bộ hành vì trên hệ thống, bao gồm cả message khởi động. - /var/log/auth.log (Debian) & /var/log/secure (RHEL) lưu thông tin về sự kiện login trên hệ thống, hành động của user root, và các module plugin authentication (PAM) - /var/log/kern.log lưu kernel log, lỗi, warning, giúp troubleshoot các vấn đề với kernel. - /var/log/cron lưu thông tin về các cronjob trên hệ thống. - /var/log/appname lưu log của các ứng dụng như apache, mysql.
+#### 1. Log trong linux:
+Mặc định các file log sẽ được ghi vào folder ``` /var/log - /var/log/syslog (Debian) & /var/log/message (RHEL) ``` lưu trữ toàn bộ hành vì trên hệ thống, bao gồm cả message khởi động. ``` - /var/log/auth.log (Debian) & /var/log/secure (RHEL) ``` lưu thông tin về sự kiện login trên hệ thống, hành động của user root, và các module plugin authentication (PAM) ``` - /var/log/kern.log ``` lưu kernel log, lỗi, warning, giúp troubleshoot các vấn đề với kernel. ``` - /var/log/cron ``` lưu thông tin về các cronjob trên hệ thống. ``` - /var/log/appname ``` lưu log của các ứng dụng như apache, mysql.
 
-2. Syslog là gì?:
+#### 2. Syslog là gì?:
 Đây là 1 tiêu chuẩn để tạo và truyền log. Giao thức syslog sử dụng (RFC 514). Hoạt động ở tầng transport, truyền log qua network, dữ liệu được địch dnag theo các cấu trúc. Sử dụng port 514 (UDP) , 6514 (TCP) với message log được mã hóa.
 Nó lắng nghe các sự kiến bằng việc tạo một socket located tại /dev/log, nơi ứng dụng có thể được ghi. Các log này có thể được forward tới một remote server (VD: ELK stack).
 Một syslog message có định dạng header và content Syslog Format & Field:
 Header: Phần header của syslog chứa một số trường: timestamp, hostname, application name, location & priority. VD :
 Format của syslog có thể customize trên trong file cấu hình
-3. Logrotate
+#### 3. Logrotate
 Công cụ giúp quản lý được việc sử dụng tài nguyên từ những file log
 File cấu hình logrotate nằm ở đường dẫn /etc/logrotate.conf
 ```
