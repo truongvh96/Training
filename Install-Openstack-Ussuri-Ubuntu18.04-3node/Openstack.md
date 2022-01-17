@@ -1,12 +1,12 @@
-### 1./ Openstack là gì?
+#### 1./ Openstack là gì?
 là một hệ thống mã nguồn mở ảo hay còn gọi là một hệ điều hành ảo cho phép người dùng có thể nghiên cứu, chỉnh sửa, quản lý thông tin của mình một cách phù hợp, hiệu quả theo nhu cầu của họ.
 
-### 2./ Các thành phần bên trong Openstack
+#### 2./ Các thành phần bên trong Openstack
 - Compute Infrastructure: bao gồm các loại nova như: nova compute, nova network, nova schedule, nova api và nova volume. Khi đó No- Schedule có nhiệm vụ lọc ra các thông tin cụ thể từ số lượng thông tin khổng lồ để cung cấp một cách kịp thời, no-compute sẽ chạy các máy ảo, No-network thực hiện việc cấu hình lại các mạng ảo cho máy ảo. Cuối cùng là No-Volume với nhiệm vụ tiếp nhận công việc xử lý, tạo xóa thêm hoặc bớt các volume vào instance.
 - Storage Infrastructure (Swift): bao gồm Proxy node và Storage nodes. Đầu tiên các proxy nodes sẽ tiếp nhận yêu cầu xử lý và gửi về cho storage nodes, sau đó thực hiện sao lưu các mục yêu cầu dưới một account, khu lưu trữ (container) hoặc vùng đối tượng (các object). Mặt khác, thông tin thêm các container sẽ thuộc sở hữu của một account (không giới hạn số lượng) và các object sẽ là các tập con bên trong container. Chính vì vậy, điều bắt buộc là phải có ít nhất một container bên trong account để tiến hành các thao tác update. Tóm lại, Swift sẽ thực hiện các công việc như ghi chép lại các thông tin dữ liệu.
 - Imaging service (Glance): có chức năng xử lý những file ảnh của máy chủ ảo. Đồng thời, thực hiện được một số công việc quản trị khác như cập nhật thêm các tính năng virtual disk images, cài đặt các chế độ quyền riêng tư cho các hình ảnh, dễ dàng tùy biến việc chỉnh sửa hoặc xoá ảnh.
 
-### 3./ Nguyên lý hoạt động của Openstack
+#### 3./ Nguyên lý hoạt động của Openstack
 - Glance: tạo Image của OS (ubuntu, window, …), tác dụng lưu trữ và quản lý việc xóa, sửa các metadata của Image.
 - Neutron: tạo network group (nghĩa là tạo một các tên cho các network trong project), sau đó trong network group ta tạo nhiều subnet kèm theo nhiều policy đi kèm, để các VM kết nối vào subnet.
 - Cinder: tạo các volume block storage nhằm cung cấp cho việc tạo VM. Bởi cấu tạo của VM bắt buộc phải sử dụng block storage, vì ít nhất VM phải cần có chỗ lưu OS với nguyên tắc OS phải lưu trên block storage để VM có thể boot.
