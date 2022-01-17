@@ -36,6 +36,10 @@ Repeat User Password:
 | password_expires_at | None                             |
 +---------------------+----------------------------------+
 ```
+Tạo Project mới:
+```
+# openstack project create --domain default --description "Service Project" Service
+```
 Add role cho user:
 ```
 # openstack role add --project service --user placement admin
