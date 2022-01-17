@@ -1,4 +1,4 @@
-1. Phân quyền (Permission)
+### 1. Phân quyền (Permission)
 Các quyền có trên linux:
 
 ``` r ``` Read với File.
@@ -36,7 +36,7 @@ chmod 664 myfile.txt Phân quyền sử dụng octal
 
 Thứ tự set quyền cho file & folder là: Owner -- Group -- Other
 
-2. Owership & Group
+### 2. Owership & Group
 ``` chown user:group filename: ``` Thay đổi owner của 1 file hoặc folder
 
 ``` chgrp group_name filename: ``` Chỉ thay đổi group của 1 file hoặc folder.
