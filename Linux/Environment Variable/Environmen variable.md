@@ -1,11 +1,10 @@
-Environment Variable Linux
-1. Biến (variable) là gì?
+#### 1. Biến (variable) là gì?
 Trong khoa học máy tính, biến là nơi lưu giữa các giá trị như filename, text, number hoặc bất kỳ loại dữ liệu nào khác. Các giá trị trong biến có thể được hiển thị, xóa, sửa, và lưu lại.
 
-2. Biến môi trường (Environment Variable) là gì ?
+#### 2. Biến môi trường (Environment Variable) là gì ?
 Biến môi trường là các giá trị động có ảnh hưởng đến tiến trình hoặc chương trình chạy trên máy. VD: $LANG là biến lưu trữ giá trị của ngôn ngữ trên hệ thống.
 
-3. Một số biến môi trường phổ biến:
+#### 3. Một số biến môi trường phổ biến:
 Truy cập biến môi trường: ``` # echo $VARIABLE ```
 
 Một số biến môi trường cần thiết trên Linux
@@ -41,20 +40,20 @@ Hiển thị toàn bộ biến môi trường có trên hệ thống
 or
 # printenv | less
 ```
-4. Tạo mới một biến môi trường
+#### 4. Tạo mới một biến môi trường
 ```
 VARIABLE_NAME= variable_value 
 ```
 VD: truong=1996
 
-5. Xóa biến
+#### 5. Xóa biến
 ```
 unset VARIABLE
 VD: unset truong
 ```
-6. Set giá trị cho biến
+#### 6. Set giá trị cho biến
 ``` export Variable=value ```
 
-7. Biến Local & Global trong Shell Script
-Global: Là biên toàn cục có giá trị trong toàn bộ shell script.
-Local: Biến cục bộ này chỉ có giá trị trong hàm khởi tạo.
+#### 7. Biến Local & Global trong Shell Script
+``` Global: ``` Là biên toàn cục có giá trị trong toàn bộ shell script.
+``` Local: ``` Biến cục bộ này chỉ có giá trị trong hàm khởi tạo.
