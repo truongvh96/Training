@@ -1,19 +1,21 @@
 ##### 1. pwd command
 Command pwd được dùng để tìm đường dẫn của thư mục hiện tại (folder) mà bạn đang ở trong đó. Command này sẽ trả về đường dẫn hoàn chỉnh (đầy đủ), bắt đầu bằng dấu gạch chéo (/). Ví dụ một đường dẫn hoàn chỉnh là /home/username.
 
+``` # pwd ```
 ##### 2. Command cd
 Để chuyển hướng trong hệ thống tập tin Linux, bạn có thể sử dụng command cd. Nó sẽ cần nhập đường dẫn đầy đủ hoặc tên thư mục bạn muốn chuyển tới.
 
 Nếu bạn đang ở trong /home/username/Documents và muốn đến Photos, thư mục con của Documents, chỉ cần gõ cd Photos.
 
 Trường hợp khác là nếu bạn muốn chuyển sang danh mục hoàn toàn mới, như /home/username/Movies. Lúc này, bạn phải gõ cd theo danh mục đường dẫn hoàn chỉnh như sau:
-
+```
 cd /home/username/Movies
+```
 Có nhiều cách di chuyển nhanh bằng cd như sau:
 
-cd .. (với 2 chấm) để chuyển lên 1 cấp thư mục trên
-cd để tới thẳng thư mục home
-cd- (với dấu gạch ngang) để chuyển tới thư mục bạn đã ở trước đó
+- cd .. (với 2 chấm) để chuyển lên 1 cấp thư mục trên
+- cd để tới thẳng thư mục home
+- cd- (với dấu gạch ngang) để chuyển tới thư mục bạn đã ở trước đó
 Mặt khác, shell của Linux phân biệt chữ hoa chữ thường nên bạn phải gõ tên danh mục thật chính xác.
 
 ##### 3. Command ls
@@ -23,9 +25,9 @@ Nếu bạn muốn xem nội dung thư mục khác, hãy nhập ls và sau đó 
 
 Có nhiều phiên bản để dùng với lệnh ls như sau:
 
-ls -R liệt kê các file bao gồm cả các thư mục phụ bên trong
-ls -a liệt kê những file ẩn
-ls -al liệt kê tất cả file và thư mục với thông tin chi tiết như phân quyền, kích thước, chủ sở hữu, vân vân.
+- ls -R liệt kê các file bao gồm cả các thư mục phụ bên trong
+- ls -a liệt kê những file ẩn
+- ls -al liệt kê tất cả file và thư mục với thông tin chi tiết như phân quyền, kích thước, chủ sở hữu, vân vân.
 ##### 4. Command cat
 cat là một trong các lệnh cơ bản trong Linux được sử dụng thường xuyên nhất trong Linux. Nó được dùng để xem nội dung file trên output tiêu chuẩn (sdout). Để chạy lệnh này, gõ cat theo sau là tên file và phần mở rộng. Ví dụ: cat file.txt.
 
@@ -35,22 +37,22 @@ cat > filename tạo ra file mới
 cat filename1 filename2>filename3 nhập 2 files (1 và 2) để lưu kết quả vào file (3)
 để chuyển một file từ in thường tới in hoa hoặc ngược lại, cat filename | tr a-z A-Z >output.txt
 ##### 5. Command cp
-Sử dụng command cp để sao chép files từ thư mục hiện tại. Chẳng hạn, command cp scenery.jpg /home/username/Pictures sẽ tạo bản copy của scenery.jpg vào danh mục Pictures.
+Sử dụng command cp để sao chép files từ thư mục hiện tại. Chẳng hạn, command ``` cp scenery.jpg /home/username/Pictures ``` sẽ tạo bản copy của scenery.jpg vào danh mục Pictures.
 
 ##### 6. Command mv
 Công dụng chính của command mv là di chuyển files, dù nó cũng có thể được dùng để đổi tên files.
 
-Arguments trong command này tương tự như command cp. Bạn cần nhập mv, tên file và điểm đến của thư mục. Ví dụ: mv file.txt /home/username/Documents.
+Arguments trong command này tương tự như command cp. Bạn cần nhập mv, tên file và điểm đến của thư mục. Ví dụ: ``` mv file.txt /home/username/Documents ```
 
-Để đổi tên files, cú pháp là mv oldname.ext newname.ext
+Để đổi tên files, cú pháp là ``` mv oldname.ext newname.ext ```
 
 ##### 7. Command mkdir
 Command mkdir đượ dùng để tạo thư mục mới – giống như mkdir Music sẽ tạo thư mục mới gọi là Music.
 
 Một số cách dùng cộng thêm của lệnh mkdir:
 
-Để tạo một thư mục mới bên trong thư mục khác, sử dụng lệnh Linux cơ bảnsau: mkdir Music/Newfile
-sử dụng p (parents) option để tạo thư mục giữa 2 thư mục đã tồn tại. Ví dụ, mkdir -p Music/2020/Newfile sẽ tạo thư mục “2020”
+Để tạo một thư mục mới bên trong thư mục khác, sử dụng lệnh Linux cơ bảnsau: ``` mkdir Music/Newfile ```
+sử dụng p (parents) option để tạo thư mục giữa 2 thư mục đã tồn tại. Ví dụ: ``` mkdir -p Music/2020/Newfile ``` sẽ tạo thư mục “2020”
 ##### 8. Command rmdir
 Nếu bạn cần xóa thư mục, sử dụng command rmdir. Tuy nhiên, rmdir chỉ cho phép bạn xóa các thư mục trống.
 
