@@ -1,5 +1,5 @@
-1. Tạo DB và gán quyền
-2. Truy cập vào Mariadb:
+#### 1. Tạo DB và gán quyền
+Truy cập vào Mariadb:
 ```
 # mysql -u root -p
 ```
@@ -16,7 +16,7 @@ MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' IDENTIF
  exit;
 ```
 Query OK, 0 rows affected (0.000 sec)
-2. Tạo User và Endpoint
+#### 2. Tạo User và Endpoint
 
 Tạo User
 ```
@@ -24,6 +24,7 @@ Tạo User
 ```
 User Password:
 Repeat User Password:
+```
 +---------------------+----------------------------------+
 | Field               | Value                            |
 +---------------------+----------------------------------+
@@ -34,6 +35,7 @@ Repeat User Password:
 | options             | {}                               |
 | password_expires_at | None                             |
 +---------------------+----------------------------------+
+```
 Add role cho user:
 ```
 # openstack role add --project service --user placement admin
@@ -42,6 +44,7 @@ Tạo Placement API entry trong service catalog:
 ```
 #  openstack service create --name placement \
 >   --description "Placement API" placement
+```
 ```
 +-------------+----------------------------------+
 | Field       | Value                            |
@@ -52,9 +55,11 @@ Tạo Placement API entry trong service catalog:
 | name        | placement                        |
 | type        | placement                        |
 +-------------+----------------------------------+
+```
 Tạo Placement API Service endpoint:
 ```
 # openstack endpoint create --region RegionOne   placement public http://controller:8778
+```
 ```
 +--------------+----------------------------------+
 | Field        | Value                            |
@@ -70,8 +75,10 @@ Tạo Placement API Service endpoint:
 | url          | http://controller:8778           |
 +--------------+----------------------------------+
 ```
+```
 # openstack endpoint create --region RegionOne \
 >   placement internal http://controller:8778
+```
 ```
 +--------------+----------------------------------+
 | Field        | Value                            |
@@ -87,8 +94,10 @@ Tạo Placement API Service endpoint:
 | url          | http://controller:8778           |
 +--------------+----------------------------------+
 ```
+```
 # openstack endpoint create --region RegionOne \
 >   placement admin http://controller:8778
+```
 ```
 +--------------+----------------------------------+
 | Field        | Value                            |
@@ -103,7 +112,7 @@ Tạo Placement API Service endpoint:
 | service_type | placement                        |
 | url          | http://controller:8778           |
 +--------------+----------------------------------+
-
+```
 Cài đặt:
 ```
 apt install placement-api
