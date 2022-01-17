@@ -1,8 +1,7 @@
 Identity Service
 OpenStack Identity service cung cấp điểm để quản lý xác thực, uỷ quyền user và danh mục dịch vụ. Có thể được tích hợp với LDAP. Đây là dịch vụ đầu tiên được sử dụng để tương tác với User.
 
-Install & Config
-## 1. Database cho Keystone
+#### 1. Database cho Keystone
 Truy cập Mariadb:
 ``` mysql -u root -p ```
 Tạo DB:
@@ -13,7 +12,7 @@ GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost'  IDENTIFIED BY 'Wel
 GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'Welcome123';
  FLUSH PRIVILEGES;
 ```
-2. Cài đặt và cấu hình
+#### 2. Cài đặt và cấu hình
 
 Cài đặt Package
 ```
@@ -30,12 +29,12 @@ Insert vào DB có thể kiểm tra quá trình với file log keystone /var/log
 ```
 su -s /bin/sh -c "keystone-manage db_sync" keystone
 ```
-3. Tạo Fernet key repository
+#### 3. Tạo Fernet key repository
 ```
 # keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
 # keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
 ```
-4. Bootstrap Identity service
+#### 4. Bootstrap Identity service
 ```
 keystone-manage bootstrap --bootstrap-password Welcome123 \
   --bootstrap-admin-url http://controller:5000/v3/ \
@@ -44,7 +43,8 @@ keystone-manage bootstrap --bootstrap-password Welcome123 \
   --bootstrap-region-id RegionOne
 ```
 Welcome123: là password của user admin
-5. Cấu hình Apache
+
+#### 5. Cấu hình Apache
 
 Sửa file ``` nano /etc/apache2/apache2.conf ``` thêm dòng sau: 
 ```
@@ -54,7 +54,7 @@ Restart Apache:
 ```
 service apache2 restart
 ```
-6. Cấu hình admin account
+#### 6. Cấu hình admin account
 ```
 $ export OS_USERNAME=admin
 $ export OS_PASSWORD=Welcome123@ #password
@@ -91,7 +91,7 @@ Check hoạt động:
 | project_id | 4c0116afd59f49a8a40b3346b91d5ffc                                                                                                                                                        |
 | user_id    | a29c10926d034ca48038b057f32f8eb2                                                                                                                                                        |
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-7. Tạo Domain, Project, User & Role
+#### 7. Tạo Domain, Project, User & Role
 
 Create Domain new
 ``` # openstack domain create --description "new" example ```
@@ -152,7 +152,7 @@ Tạo Role:
 
 Add role cho project truongproject và user truong
 ``` # openstack role add --project truongproject --user truong truong ```
-8. Test
+#### 8. Test
 
 User admin
 ```
