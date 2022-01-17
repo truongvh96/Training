@@ -39,7 +39,7 @@ VD:
 iptables -t filter -A INPUT -s 172.16.6.250 -j REJECT
 ```
 Lệnh trên sẽ block tất cả các gói tin từ IP 172.16.6.250 bằng cách thêm rule INPUT sử dụng filter table.
-- ``` -t ``` chỉ định ra table sử dụng (vì filter là table mặc định nên có thể bỏ phần này iptables -A INPUT -s 192.168.254.250 -j REJECT
+- ``` -t ``` chỉ định ra table sử dụng (vì filter là table mặc định nên có thể bỏ phần này iptables -A INPUT -s 172.16.6.250 -j REJECT
 - ``` -A ``` nối thêm vào danh sách các rule INPUT (cho biết chiều lọc là ingoing)
 - ``` -s ``` chỉ ra source IP
 - ``` -j ``` chỉ định việc sử dụng target nào, cụ thể ở ví dụ trên là REJECT.
@@ -51,7 +51,7 @@ num  target     prot opt source               destination
 2    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain
 3    ACCEPT     udp  --  anywhere             anywhere             udp dpt:bootps
 4    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:bootps
-5    REJECT     all  --  192.168.254.250      anywhere             reject-with icmp-port-unreachable
+5    REJECT     all  --  172.16.6.250      anywhere             reject-with icmp-port-unreachable
 ```
 Block với 1 dải mạng:
 ```
@@ -73,8 +73,8 @@ num  target     prot opt source               destination
 
 Chain FORWARD (policy ACCEPT)
 num  target     prot opt source               destination         
-1    ACCEPT     all  --  anywhere             192.168.122.0/24     ctstate RELATED,ESTABLISHED
-2    ACCEPT     all  --  192.168.122.0/24     anywhere            
+1    ACCEPT     all  --  anywhere             172.16.6.0/24     ctstate RELATED,ESTABLISHED
+2    ACCEPT     all  --  172.16.6.0/24     anywhere            
 3    ACCEPT     all  --  anywhere             anywhere            
 4    REJECT     all  --  anywhere             anywhere             reject-with icmp-port-unreachable
 5    REJECT     all  --  anywhere             anywhere             reject-with icmp-port-unreachable
@@ -149,7 +149,7 @@ iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
 ##### 4.7. Thay đổi default policy
 
 Policy mặc định có 3 rule:
-``
+```
 Chain INPUT (policy ACCEPT)
 ...
 Chain FORWARD (policy ACCEPT)
