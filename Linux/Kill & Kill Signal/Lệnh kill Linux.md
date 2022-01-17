@@ -1,23 +1,33 @@
 Lệnh kill trong Linux Để kiểm tra PID các process và show các process có thể sử dụng lệnh ps với option và có thể kết hợp pipeline dữ liệu để tìm kiếm nhanh hơn
 
 VD:
-
-# ps aux | grep mysql
-1. Kill process với PID
+```
+# ps aux | grep java
+```
+#### 1. Kill process với PID
 
 Cú pháp :
-
+```
 kill SIGNAL PID
-2. Các SIGNAL trong Linux
+```
+```
+VD:
+kill 63772
+```
+Ở đây 63772 là pid của process bạn muốn hủy. Vì không có signal nào gán cho nó nên đây sẽ là SIGTERM signal. Đôi khi nó sẽ không dùng được mà bạn phải “buộc” tắt tiến trình.
 
-kill -l
-
-0	SIGNULL (NULL)	Null	Kiểm tra quyền truy cập vào PID
-1	SIGHUP (HUP)	Hangup	Chấm dứt process, có thể bị kẹt
-2	SIGINT (INT)	Interrupt	Chấm dứt process, có thể bị kẹt
-3	SIGQUIT (QUIT)	Quit	Chấm dứt bằng core dump, có thể bị mắc kẹt
-9	SIGKILL (KILL)	Kill	Buộc chấm dứt process, Signal Kill mạnh nhất
-15	SIGTERM (TERM)	Terminate	Giống với SIGNAL 1,2
-24	SIGSTOP (STOP)	Stop	Dừng Process
-25	SIGTSTP (STP)	Terminal	Dừng Process, có thể bị kẹt
-26	SIGCONT (CONT)	Continue	Chạy lại một Process bị Pause
+Trong nhiều trường hợp, lệnh kill command sẽ như sau:
+```
+kill [Signal_or_Option] pid
+```
+Bên dưới là ví dụ một lệnh để buộc kill process:
+```
+kill SIGKILL 63772
+```
+Tương tự, để kill process bằng cách ngắn gọn hơn thì ta dùng:
+```
+kill -9 63772
+```
+Thay số 63772 bằng pid tương ứng của process.
+#### 2. Tài liệu tham khảo thêm
+https://www.hostinger.vn/huong-dan/cach-kill-proccess-linux
