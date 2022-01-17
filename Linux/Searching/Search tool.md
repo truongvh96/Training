@@ -53,3 +53,6 @@ Lệnh này sử dụng tương tự where nhưng sẽ trả về binary loation
 #### 5. type
 
 Tương tự lệnh which và sẽ tìm thêm phần alias.
+
+### Tài liệu tham khảo thêm 1 số lệnh
+https://freetuts.net/lenh-find-trong-linux-3288.html
