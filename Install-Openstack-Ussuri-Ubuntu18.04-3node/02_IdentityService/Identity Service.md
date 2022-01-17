@@ -48,7 +48,9 @@ Welcome123: là password của user admin
 
 Sửa file ``` nano /etc/apache2/apache2.conf ``` thêm dòng sau: 
 ```
-ServerName controller:
+cat >> /etc/apache2/apache2.conf << EOT
+> ServerName controller
+> EOT
 ```
 Restart Apache:
 ```
