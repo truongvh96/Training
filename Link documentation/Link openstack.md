@@ -13,3 +13,5 @@ https://github.com/congto/OpenStack-Mitaka-Scripts/blob/master/DOCS-OPS-Mitaka/C
 Setup Openstack Train:
 
 https://sandeeprao.net/openstack-installation-prepare-nodes/
+
+tài liệu nên tham khảo: https://lamth.github.io/tailieu-Openstack/
