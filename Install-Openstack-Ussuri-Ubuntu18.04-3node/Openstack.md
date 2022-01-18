@@ -13,3 +13,6 @@ là một hệ thống mã nguồn mở ảo hay còn gọi là một hệ đi�
 - Keystone: là service chứng thực chính, người dùng yêu cầu đến tất cả các service đều phải cần chứng thực để sử dụng. Người dùng gửi yêu cầu lấy thông báo từ keystone sau đó keystone trả về người dùng một thông báo và gửi đến service 1 bản sao thông báo trên, người dùng lại yêu cầu đến server thông qua thông báo nhận được cho đến khi service chấp nhận yêu cầu khi khớp với thông báo.
 - Swift: cung cấp object storage- dịch vụ lưu trữ có thể hoạt động riêng biệt (như google drive, dropbox, …) hoặc cũng có thể tích hợp vào VM để cung cấp nơi lưu trữ.
 - Nova: nhận yêu cầu liên quan đến việc quản lý VM từ người dùng (tạo, xóa , sửa,…), thu gom các tài nguyên liên quan như RAM, CPU từ bản thân service nó quản lý và các tài nguyên từ các service khác trả bao gồm Network, Volume, Image,… để tạo nên máy ảo cũng như giám sát các tài nguyên đó.
+
+#### Link tham khảo thêm
+https://phuquoccuong.wordpress.com/2019/03/04/vai-tro-va-cac-thanh-phan-cua-cac-project-trong-openstack/
