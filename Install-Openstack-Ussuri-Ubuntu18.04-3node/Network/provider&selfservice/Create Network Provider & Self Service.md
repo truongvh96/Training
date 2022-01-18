@@ -1,4 +1,4 @@
-Create provider network
+#### Create provider network
 1. Acces Admin account
 ```
 $ . admin-openrc
@@ -25,7 +25,9 @@ openstack subnet create --network provider \
 --allocation-pool start=10.3.53.200,end=10.3.53.210 tương ứng dhcp pool.
 --dns-nameserver 8.8.4.4 --gateway 10.3.52.1 dns và gateway cho network.
 --subnet-range 10.3.53.0/22 provider subnet.
-Create Self Service Network
+
+#### Create Self Service Network
+
 Tạo mạng Self-Service với user demo Cần tạo provider network trước khi tạo self service network
 
 1. Gain access
@@ -70,6 +72,7 @@ qdhcp-727276b4-2f8b-49f1-a230-b518231d2aac (id: 0)
 ```
 root@controller:~# ip netns exec qrouter-95bc08f8-a37a-47ea-9b06-d2c230486384 ip a
 ```
+```
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -91,7 +94,9 @@ root@controller:~# ip netns exec qrouter-95bc08f8-a37a-47ea-9b06-d2c230486384 ip
     inet6 fe80::f816:3eff:feff:daf6/64 scope link 
        valid_lft forever preferred_lft forever
 ```
+```
 root@controller:~# ip netns exec qdhcp-5e87b8c7-d233-4aaa-9fb3-b9817ff54df1 ip a
+```
 ```
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -108,7 +113,9 @@ root@controller:~# ip netns exec qdhcp-5e87b8c7-d233-4aaa-9fb3-b9817ff54df1 ip a
     inet6 fe80::f816:3eff:fe48:b933/64 scope link 
        valid_lft forever preferred_lft forever
 ```
+```
 root@controller:~# ip netns exec qdhcp-727276b4-2f8b-49f1-a230-b518231d2aac ip a
+```
 ```
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -124,7 +131,7 @@ root@controller:~# ip netns exec qdhcp-727276b4-2f8b-49f1-a230-b518231d2aac ip a
        valid_lft forever preferred_lft forever
     inet6 fe80::f816:3eff:fe00:13a2/64 scope link 
        valid_lft forever preferred_lft forever
-
+```
 4. List port router
 ```
 root@controller:~# openstack port list --router router
