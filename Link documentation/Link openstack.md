@@ -9,3 +9,7 @@ https://github.com/nhanhoadocs/tutorial-ceph/tree/master/docs
 https://github.com/uncelvel/tutorial-openstack/#c%C3%A0i-%C4%91%E1%BA%B7t-openstack
 
 https://github.com/congto/OpenStack-Mitaka-Scripts/blob/master/DOCS-OPS-Mitaka/Caidat-OpenStack-Mitaka.md
+
+Setup Openstack Train:
+
+https://sandeeprao.net/openstack-installation-prepare-nodes/
