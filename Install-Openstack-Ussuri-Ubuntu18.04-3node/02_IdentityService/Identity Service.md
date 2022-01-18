@@ -97,8 +97,10 @@ Check hoạt động:
 ```
 #### 7. Tạo Domain, Project, User & Role
 
+Tạo domain để quản lý giới hạn khả năng thực hiện Project, user, group.
+
 Create Domain new
-``` # openstack domain create --description "new" example ```
+``` # openstack domain create --description "demo" demo ```
 ```
 +-------------+----------------------------------+
 | Field       | Value                            |
