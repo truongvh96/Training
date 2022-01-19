@@ -1,7 +1,5 @@
 # Luồng làm việc của Keystone
 
-![image](https://user-images.githubusercontent.com/97424062/149960787-45e8f0df-f17a-48e9-ab20-e5fcec58e29c.png)
-
 #### 1. User muốn truy cập server vào hệ thống:
 **User** gửi thông tin đăng nhập gồm **username/Password** tới **Keystone**
 **Keystone** kiểm tra thông tin đăng nhập. Đúng sẽ gửi lại một **Temporary Token** (được sinh ra từ thông tin đăng nhập của User) và **Generic catalog** (danh mục chung) cho User
