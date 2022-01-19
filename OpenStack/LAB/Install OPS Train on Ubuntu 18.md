@@ -2,17 +2,33 @@
 #### 1) Cài đặt ban đầu trên cả 2 node
 B1 : Update các gói phần mềm và các package cơ bản:
 ``` apt update -y ```
+B2: Cấu hình ip
+```
+# nano /etc/netplan/00-cloud-init.yaml
 
-B2 : Thiết lập hostname :
+network:
+  ethernets:
+    eth1:
+      addresses:
+        - 10.10.10.41/24
+    eth0:
+      addresses:
+        - 172.16.6.71/24
+      gateway4: 172.16.6.1
+      nameservers:
+        addresses: [ 172.16.6.0, 8.8.8.8 ]
+  version: 2
+ ```
+B3 : Thiết lập hostname :
 ``` nano /etc/hosts ```
 
-B3 : Khai báo file /etc/hosts :
+B4 : Khai báo file /etc/hosts :
 ```
 10.10.10.41 controller
 10.10.10.40 compute
 ```
-B4 : Thiết lập phân hoạch IP cho node controller
-B5 : Disable firewalld và SELinux :
+B5 : Thiết lập phân hoạch IP cho node controller
+B6 : Disable firewalld và SELinux :
 ```
 # systemctl disable ufw
 # systemctl stop ufw
