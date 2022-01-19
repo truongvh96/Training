@@ -903,7 +903,6 @@ OPENSTACK_API_VERSIONS = {
     "volume": 3,
 }
 
-WEBROOT = "/dashboard/"
 ```
 B4 : Chỉnh sửa file /etc/httpd/conf.d/openstack-dashboard.conf :
 ```
@@ -919,4 +918,4 @@ B5 : Khởi động lại dịch vụ :
 ```
 B6 : Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản admin/ Passw0rd123 vừa tạo ở trên:
 
-http://IP_CONTROLLER/dashboard
+http://IP_CONTROLLER/horizon
