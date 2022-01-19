@@ -1,7 +1,9 @@
 ### Các bước cài đặt
 #### 1) Cài đặt ban đầu trên cả 2 node
 B1 : Update các gói phần mềm và các package cơ bản:
-``` apt update -y ```
+```
+apt update -y
+```
 B2: Cấu hình ip
 ```
 # nano /etc/netplan/00-cloud-init.yaml
@@ -20,8 +22,9 @@ network:
   version: 2
  ```
 B3 : Thiết lập hostname :
-``` nano /etc/hosts ```
-
+```
+nano /etc/hosts
+```
 B4 : Khai báo file /etc/hosts :
 ```
 10.10.10.41 controller
