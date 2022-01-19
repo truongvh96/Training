@@ -45,7 +45,7 @@ Thực hiện các lệnh để cài đặt OpenStack :
 # add-apt-repository cloud-archive:train
 # apt -y upgrade -y
 # apt -y install crudini
-# apt -y install python-openstackclient python3-openstackclient
+# apt -y install python3-openstackclient
 ```
 #### 2.2) Cài đặt NTP
 ##### 2.2.1) Cài đặt NTP trên node controller
