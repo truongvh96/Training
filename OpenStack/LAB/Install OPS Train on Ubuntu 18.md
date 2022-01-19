@@ -850,25 +850,32 @@ B10 : Khởi động lại dịch vụ openstack-nova-compute :
 ```
 # service nova-compute restart
 ```
-2.12) Cài đặt và cấu hình Horizon trên node controller
+#### 2.12) Cài đặt và cấu hình Horizon trên node controller
 B1 : Cài đặt openstack-dashboard :
-
+```
 # apt install -y openstack-dashboard
+```
 B2 : Sao lưu file /etc/openstack-dashboard/local_settings :
-
+```
 # cp /etc/openstack-dashboard/local_settings /etc/openstack-dashboard/local_settings.bak
+```
 B3 : Chỉnh sửa file /etc/openstack-dashboard/local_settings :
 
 Chỉnh sửa 1 số dòng sau :
+```
 ALLOWED_HOSTS = ['*']
+
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': 'controller:11211',
     }
 }
+
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
 OPENSTACK_HOST = "controller"
+
 OPENSTACK_NEUTRON_NETWORK = {
     ...
     'enable_distributed_router': False,
@@ -878,8 +885,11 @@ OPENSTACK_NEUTRON_NETWORK = {
     'enable_router': False,
     ...
 }
+
 TIME_ZONE = "Asia/Ho_Chi_Minh"
+
 Thêm các dòng sau vào cuối file :
+
 OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
 OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "default"
 OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
@@ -888,15 +898,21 @@ OPENSTACK_API_VERSIONS = {
     "image": 2,
     "volume": 3,
 }
+
 WEBROOT = "/dashboard/"
+```
 B4 : Chỉnh sửa file /etc/httpd/conf.d/openstack-dashboard.conf :
-
-# vi /etc/httpd/conf.d/openstack-dashboard.conf
+```
+# nano /etc/httpd/conf.d/openstack-dashboard.conf
+```
 Thêm vào cuối file dòng sau :
+```
 WSGIApplicationGroup %{GLOBAL}
+```
 B5 : Khởi động lại dịch vụ :
-
+```
 # service httpd memcached restart
+```
 B6 : Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản admin/ Passw0rd123 vừa tạo ở trên:
 
 http://IP_CONTROLLER/dashboard
