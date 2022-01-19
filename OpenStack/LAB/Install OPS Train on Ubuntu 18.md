@@ -904,9 +904,9 @@ OPENSTACK_API_VERSIONS = {
 }
 
 ```
-B4 : Chỉnh sửa file /etc/httpd/conf.d/openstack-dashboard.conf :
+B4 : Chỉnh sửa file /etc/apache2/conf-available/openstack-dashboard.conf :
 ```
-# nano /etc/httpd/conf.d/openstack-dashboard.conf
+# nano /etc/apache2/conf-available/openstack-dashboard.conf
 ```
 Thêm vào cuối file dòng sau :
 ```
@@ -914,7 +914,7 @@ WSGIApplicationGroup %{GLOBAL}
 ```
 B5 : Khởi động lại dịch vụ :
 ```
-# service httpd memcached restart
+# systemctl reload apache2.service
 ```
 B6 : Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản admin/ Passw0rd123 vừa tạo ở trên:
 
