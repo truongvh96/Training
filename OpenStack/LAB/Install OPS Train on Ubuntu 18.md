@@ -220,12 +220,16 @@ user: openstack
 pass: Welcome123
 ```
 #### 2.6) Cài đặt và cấu hình Etcd trên node controller
-ETCD là một ứng dụng lưu trữ dữ liệu phân tán theo theo kiểu key-value, nó được các services trong OpenStack sử dụng lưu trữ cấu hình, theo dõi các trạng thái dịch vụ và các tình huống khác.
+**ETCD** là một ứng dụng lưu trữ dữ liệu phân tán theo theo kiểu **key-value**, nó được các services trong OpenStack sử dụng lưu trữ cấu hình, theo dõi các trạng thái dịch vụ và các tình huống khác.
+
 B1 : Cài đặt etcd :
 ```
 # apt -y install etcd
 ```
-B2 : Chỉnh sửa file cấu hình của etcd. Lưu ý thay đúng IP MGNT (10.10.230.10) và hostname controller đã được thiết lập trước đó .
+B2 : Chỉnh sửa file cấu hình của etcd. Lưu ý thay đúng IP MGNT (10.10.10.41) và hostname controller đã được thiết lập trước đó .
+```
+nano /etc/default/etcd 
+```
 ```
 # ETCD_NAME="controller"
 # ETCD_DATA_DIR="/var/lib/etcd"
