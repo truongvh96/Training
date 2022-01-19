@@ -311,20 +311,20 @@ B12 : Kiểm tra lại trạng thái dịch vụ :
 ```
 B13 : Tạo file biến môi trường cho Keystone :
 ```
-# nano /root/admin-openrc
-Thêm vào đoạn sau :
-export OS_USERNAME=admin
-export OS_PASSWORD=Welcome123
+cat <<EOT >> admin-openrc
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=admin
-export OS_USER_DOMAIN_NAME=default
-export OS_PROJECT_DOMAIN_NAME=default
+export OS_USERNAME=admin
+export OS_PASSWORD=Welcome123  #password
 export OS_AUTH_URL=http://controller:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
+EOT
 ```
 B14 : Thực thi biến môi trường để sử dụng được CLI của OpenStack:
 ```
-# source /root/admin-openrc
+# source admin-openrc
 ```
 B15 : Kiểm tra lại hoạt động của Keystone :
 ```
