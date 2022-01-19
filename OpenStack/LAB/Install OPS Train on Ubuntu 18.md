@@ -314,7 +314,7 @@ B13 : Tạo file biến môi trường cho Keystone :
 # nano /root/admin-openrc
 Thêm vào đoạn sau :
 export OS_USERNAME=admin
-export OS_PASSWORD=Password123
+export OS_PASSWORD=Welcome123
 export OS_PROJECT_NAME=admin
 export OS_USER_DOMAIN_NAME=default
 export OS_PROJECT_DOMAIN_NAME=default
@@ -383,7 +383,7 @@ B5 : Sao lưu file cấu hình Glance :
 ```
 B6 : Cấu hình Glance :
 ```
-# crudini --set /etc/glance/glance-api.conf database connection mysql+pymysql://glance:Password123@controller/glance
+# crudini --set /etc/glance/glance-api.conf database connection mysql+pymysql://glance:Welcome123@controller/glance
 # crudini --set /etc/glance/glance-api.conf keystone_authtoken www_authenticate_uri http://controller:5000
 # crudini --set /etc/glance/glance-api.conf keystone_authtoken auth_url http://controller:5000
 # crudini --set /etc/glance/glance-api.conf keystone_authtoken memcached_servers controller:11211
@@ -392,7 +392,7 @@ B6 : Cấu hình Glance :
 # crudini --set /etc/glance/glance-api.conf keystone_authtoken user_domain_name default
 # crudini --set /etc/glance/glance-api.conf keystone_authtoken project_name service
 # crudini --set /etc/glance/glance-api.conf keystone_authtoken username glance
-# crudini --set /etc/glance/glance-api.conf keystone_authtoken password Password123
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken password Welcome123
 # crudini --set /etc/glance/glance-api.conf paste_deploy flavor keystone
 # crudini --set /etc/glance/glance-api.conf glance_store stores file,http
 # crudini --set /etc/glance/glance-api.conf glance_store default_store file
