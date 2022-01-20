@@ -253,15 +253,15 @@ B2 : Chỉnh sửa file cấu hình của etcd. Lưu ý thay đúng IP MGNT (10.
 nano /etc/default/etcd 
 ```
 ```
-# ETCD_NAME="controller"
-# ETCD_DATA_DIR="/var/lib/etcd"
-# ETCD_INITIAL_CLUSTER_STATE="new"
-# ETCD_INITIAL_CLUSTER_TOKEN="controller"
-# ETCD_INITIAL_CLUSTER="controller=http://10.10.10.41:2380"
-# ETCD_INITIAL_ADVERTISE_PEER_URLS="http://10.10.10.41:2380"
-# ETCD_ADVERTISE_CLIENT_URLS="http://10.10.10.41:2379"
-# ETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"
-# ETCD_LISTEN_CLIENT_URLS="http://10.10.10.41:2379"
+ETCD_NAME="controller"
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_INITIAL_CLUSTER_STATE="new"
+ETCD_INITIAL_CLUSTER_TOKEN="controller"
+ETCD_INITIAL_CLUSTER="controller=http://10.10.10.41:2380"
+ETCD_INITIAL_ADVERTISE_PEER_URLS="http://10.10.10.41:2380"
+ETCD_ADVERTISE_CLIENT_URLS="http://10.10.10.41:2379"
+ETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"
+ETCD_LISTEN_CLIENT_URLS="http://10.10.10.41:2379"
 ```
 B3 : Khởi động dịch vụ etcd :
 ```
