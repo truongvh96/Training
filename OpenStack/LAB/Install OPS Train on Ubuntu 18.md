@@ -38,7 +38,7 @@ B6 : Disable firewalld và SELinux :
 # reboot
 ```
 ### 2) Cài đặt OpenStack
-#### 2.1) Cài đặt package OpenStack trên cả 3 node
+#### 2.1) Cài đặt package OpenStack trên cả 2 node
 Thực hiện các lệnh để cài đặt OpenStack :
 ```
 # apt-get install -y software-properties-common
@@ -48,7 +48,7 @@ Thực hiện các lệnh để cài đặt OpenStack :
 # apt -y install python3-openstackclient
 ```
 #### 2.2) Cài đặt NTP
-##### 2.2.1) Cài đặt NTP trên node controller
+##### 2.2.1) Cài đặt NTP trên node CONTROLLER
 B1 : Cài đặt chrony sử dụng làm NTP :
 ```
 # apt -y install chrony
@@ -63,7 +63,10 @@ B3 : Set timezone :
 ```
 B4 : Sửa file cấu hình ``` nano /etc/chrony/chrony.conf ```:
 ```
-# server 0.vn.pool.ntp.org iburst
+server 3.vn.pool.ntp.org
+server 3.asia.pool.ntp.org
+server 0.asia.pool.ntp.org
+
 ```
 Node controller sẽ cập nhật thời gian từ internet hoặc máy chủ NTP. Các máy compute còn lại sẽ đồng bộ thời gian từ controller. Trong bài lab này sẽ sử dụng địa chỉ NTP của NIST là 128.138.140.44 (có thể thay thế bằng IP của NTP Server trong mạng).
 
@@ -90,7 +93,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^* time.cloudflare.com           3   8   377    81   -325us[ -323us] +/-   78ms
 ```
-##### 2.2.2) Cài đặt NTP trên các node compute
+##### 2.2.2) Cài đặt NTP trên các node COMPUTE
 B1 : Cài đặt chrony sử dụng làm NTP :
 ```
 # apt -y install chrony
@@ -108,7 +111,7 @@ B4 : Sửa file cấu hình :
 # server 0.vn.pool.ntp.org iburst
 # server controller iburst
 ```
-2 node compute sẽ đồng bộ thời gian về từ controller
+node compute sẽ đồng bộ thời gian về từ controller
 
 B6 : Khởi động lại chrony sau khi sửa file cấu hình :
 ```
@@ -131,7 +134,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ^* controller                    4   6    17    49    -15us[  -98us] +/-   78ms
 ```
 
-#### 2.3) Cài đặt và cấu hình memcached trên node controller
+#### 2.3) Cài đặt và cấu hình Memcached trên node CONTROLLER
 Cơ chế xác thực cho các dịch vụ sử dụng memcached để cache các token
 Memcached thường chạy trên node controller
 B1 : Cài đặt memcached :
@@ -158,7 +161,7 @@ B5 : Kiểm tra trạng thái dịch vụ :
 ```
 # service memcached status
 ```
-#### 2.4) Cài đặt và cấu hình MariaDB trên node controller
+#### 2.4) Cài đặt và cấu hình MariaDB trên node CONTROLLER
 Hầu hết các dịch vụ của OpenStack sử dụng cơ sở dữ liệu SQL để lưu thông tin. DB thường sẽ chạy trên node controller. Các dịch vụ OpenStack cũng hỗ trợ các cơ sở dữ liệu SQL khác bao gồm PostgreSQL.
 
 B1 : Cài đặt MariaDB :
@@ -194,7 +197,7 @@ B5 : Bảo mật dịch vụ SQL bằng lệnh :
 ```
 Trong bước này, set password cho user root (VD : 'Welcome123)
 
-#### 2.5) Cài đặt và cấu hình RabbitMQ trên node controller
+#### 2.5) Cài đặt và cấu hình RabbitMQ trên node CONTROLLER
 - OpenStack sử dụng hàng đợi tin nhắn (Message queue) để phối hợp các hoạt động và thông tin trạng thái giữa các dịch vụ.
 
 - Message queue thường chạy trên node controller. OpenStack hỗ trợ một số dịch vụ Message queue như là: RabbitMQ, Qpid, và ZeroMQ.
@@ -238,7 +241,7 @@ http://172.16.6.71:15672
 user: openstack
 pass: Welcome123
 ```
-#### 2.6) Cài đặt và cấu hình Etcd trên node controller
+#### 2.6) Cài đặt và cấu hình Etcd trên node CONTROLLER
 **ETCD** là một ứng dụng lưu trữ dữ liệu phân tán theo theo kiểu **key-value**, nó được các services trong OpenStack sử dụng lưu trữ cấu hình, theo dõi các trạng thái dịch vụ và các tình huống khác.
 
 B1 : Cài đặt etcd :
