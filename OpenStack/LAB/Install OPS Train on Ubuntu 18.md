@@ -381,7 +381,7 @@ B1 : Tạo Database, user và phân quyền cho glance :
 ```
 B2 : Thực thi biến môi trường :
 ```
-# source /root/admin-openrc
+# source admin-openrc
 ```
 B3 : Tạo user, project cho glance :
 ```
@@ -455,7 +455,7 @@ B1 : Tạo Database, user và phân quyền cho placement :
 ```
 B2 : Thực thi biến môi trường để sử dụng được CLI của OpenStack:
 ```
-# source /root/admin-openrc
+# source admin-openrc
 ```
 B3 : Tạo service, gán quyền, endpoint cho placement :
 ```
@@ -514,7 +514,7 @@ B1 : Tạo các database, user, mật khẩu cho service nova :
 ```
 B2 : Thực thi biến môi trường để sử dụng được CLI của OpenStack :
 ```
-# source /root/admin-openrc
+# source admin-openrc
 ```
 B3 : Tạo endpoint cho nova :
 ```
@@ -668,7 +668,7 @@ B4 : Khởi động Nova :
 #### 2.10.3) Thêm các node compute vào hệ thống (trên node controller)
 B1 : Kiểm tra các node compute đã up hay chưa :
 ```
-# source /root/admin-openrc
+# source admin-openrc
 # openstack compute service list --service nova-compute
 ```
 ```
@@ -696,7 +696,7 @@ B1 : Tạo database cho Neutron :
 ```
 B2 : Tạo project, user, endpoint cho Neutron :
 ```
-# source /root/admin-openrc
+# source admin-openrc
 # openstack user create neutron --domain default --password Welcome123
 # openstack role add --project service --user neutron admin
 # openstack service create --name neutron --description "OpenStack Networking" network
