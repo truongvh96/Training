@@ -794,9 +794,10 @@ B12 : Kiểm tra lại trạng thái dịch vụ :
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
 | ID                                   | Agent Type         | Host       | Availability Zone | Alive | State | Binary                    |
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
-| 03cbf9f3-8515-4534-a52a-d7e8aad5c0e3 | Linux bridge agent | controller | None              | :-)   | UP    | neutron-linuxbridge-agent |
-| 500a3f18-b197-41f2-bd98-8e373a9c24db | Metadata agent     | controller | None              | :-)   | UP    | neutron-metadata-agent    |
-| 62b90f60-3475-4acf-a8c5-e31289892b0a | DHCP agent         | controller | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 336e383e-28f4-4769-b034-f1f7bbab5962 | Metadata agent     | controller | None              | XXX   | UP    | neutron-metadata-agent    |
+| 838c4e1f-5e01-4459-a2a4-fc7697ee1a59 | Linux bridge agent | controller | None              | XXX   | UP    | neutron-linuxbridge-agent |
+| a93bc8e6-98d9-4b59-b7e9-df240a537531 | Linux bridge agent | compute    | None              | XXX   | UP    | neutron-linuxbridge-agent |
+| cd5a2085-87df-4661-ab81-f66a7467ec5c | DHCP agent         | controller | nova              | XXX   | UP    | neutron-dhcp-agent        |
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
 ```
 #### 2.11.2) Cài đặt Neutron trên các node compute
