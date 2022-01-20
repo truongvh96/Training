@@ -61,7 +61,7 @@ B3 : Set timezone :
 ```
 # timedatectl set-timezone Asia/Ho_Chi_Minh
 ```
-B4 : Sửa file cấu hình :
+B4 : Sửa file cấu hình ``` nano /etc/chrony/chrony.conf ```:
 ```
 # server 0.vn.pool.ntp.org iburst
 ```
