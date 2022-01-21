@@ -939,6 +939,6 @@ B5 : Khởi động lại dịch vụ :
 ```
 # systemctl reload apache2.service
 ```
-B6 : Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản admin/ Passw0rd123 vừa tạo ở trên:
+B6 : Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản admin/ Welcome123 vừa tạo ở trên:
 
 http://IP_CONTROLLER/horizon
