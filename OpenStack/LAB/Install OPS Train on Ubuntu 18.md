@@ -166,7 +166,10 @@ Hầu hết các dịch vụ của OpenStack sử dụng cơ sở dữ liệu SQ
 
 B1 : Cài đặt MariaDB :
 ```
-# apt -y install mariadb-server python-pymysql
+# apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+# add-apt-repository 'deb [arch=amd64] http://mirror.zol.co.zw/mariadb/repo/10.3/ubuntu bionic main'
+# apt update
+# apt -y install mariadb-server mariadb-client
 ```
 B2 : Tạo và chỉnh sửa file cấu hình của OpenStack :
 ```
