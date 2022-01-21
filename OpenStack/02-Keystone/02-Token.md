@@ -9,6 +9,7 @@ Vì những hạn chế của PKI, các nhà phát triển đã cố gắng sử
 Với tất cả các hạn chế trên, buộc Keystone team phải đưa ra một loại mới là Fernet Token. Fernet Token khá nhỏ (255 ký tự) tuy nhiên nó lại chưa đủ thông tin để ủy quyền. Bên cạnh đó, việc nó chứa đủ thông tin cũng không khiến token database phải lưu dữ liệu token nữa. Các nhà vận hành thường phải dọn dẹp Keystone token database để hệ thống của họ hoạt động ổn định. Mặc dù vậy, Fernet token có nhược điểm đó là symmetric keys được dùng để tạo ra token cần được phân phối và xoay vòng. Các nhà vận hành cần phải giải quyết vấn đề này, tuy nhiên họ có vẻ thích thú với việc này hơn là sử dụng những loại token khác.
 
 ### Tìm hiểu về Fernet Token
+
 - Là loại token mới nhất, được tạo ra để khắc phục những hạn chế của các loại token trước đó. Thứ nhất, nó khá nhỏ với khoảng 255 ký tự, lớn hơn UUID nhưng nhỏ hơn rất nhiều với PKI. Token này cũng chứa vừa đủ thông tin để cho phép nó không cần phải được lưu trên database .
 
 - Fernet token chứa một lượng nhỏ dữ liệu ví dụ như thông tin để nhận diện người dùng, project, thời gian hết hiệu lực,... Nó được sign bởi symmetric key để ngăn ngừa việc giả mạo. Cơ chế hoạt động của loại token này giống với UUID vì thế nó cũng phải được validate bởi Keystone .
@@ -31,19 +32,20 @@ Với tất cả các hạn chế trên, buộc Keystone team phải đưa ra m�
 
 **Ưu điểm :**
 
-Nhẹ hơn PKI và PKIz
-Không cần lưu trữ trong DB
-Trong token mang thông tin
-Hỗ trợ Multi OpenStack
+- Nhẹ hơn PKI và PKIz
+- Không cần lưu trữ trong DB
+- Trong token mang thông tin
+- Hỗ trợ Multi OpenStack
 
 **Nhược điểm :**
 
 Quá trình xác thực tăng hoạt động thu hồi
 VD về 1 đoạn Fernet token :
-
+```
 gAAAAABU7roWGiCuOvgFcckec-0ytpGnMZDBLG9hA7Hr9qfvdZDHjsak39YN98HXxoYLIqVm19Egku5YR
 3wyI7heVrOmPNEtmr-fIM1rtahudEdEAPM4HCiMrBmiA1Lw6SU8jc2rPLC7FK7nBCia_BGhG17NVHuQu0
 S7waA306jyKNhHwUnpsBQ%3D
+```
 Các file key trong thư mục /etc/keystone/fernet-keys :
 0 1 2 3 4
 
