@@ -4,7 +4,7 @@
 
 - **Horizon Dashboard** hoặc **Openstack CLI** lấy thông tin đăng nhập và chứng thực của người dùng cùng với định danh service thông qua REST API để xác thực với **Keystone** sinh ra token.
 - Sau khi xác thực thành công, client sẽ gửi request khởi chạy máy ảo tới **`nova-api`**.
-- **`nova-api`** xác thực lại thông token với **Keystone** và nhận header với roles và permission
+- **`nova-api`** xác thực lại thông t token với **Keystone** và nhận header với roles và permission
 - **`nova-api`** gửi lệnh tới **`nova-conductor`** kiểm tra trong database conflicts hay không để khởi tạo một entry mới.
 - **`nova-api`** gửi RPC tới **`nova-scheduler`** service để lập lịch tạo instance
 - **`nova-scheduler`** lấy request từ message queue
