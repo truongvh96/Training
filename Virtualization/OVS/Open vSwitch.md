@@ -1,5 +1,4 @@
 # 1.Tổng quan
-<img src="img/1.png" />
 
 \- Open vSwitch là một soft-switch, một trong ba công nghệ cung cấp switch ảo trong hệ thống Linux (bên cạnh macvlan và Linux bridge), giải quyết vấn đề ảo hóa network bên trong các máy vật lý.  
 \- Open vSwitch là phần mềm mã nguồn mở , giấy phép của Apache2.  
@@ -8,7 +7,6 @@
 
 
 # 2. OVS Architechture
-<img src="img/2.png" />
 
 \- Các thành phần chính: 
 - `ovs-vswitchd` đây là thành phần daemon thực hiện các chức năng chuyển mạch kết hợp Linux kernel module phục vụ cho flow-based switching.
@@ -20,8 +18,6 @@
 - `ovs-ofctl:` tool dùng cho việc querying và controlling OpenFlow switches và controllers.
 - `ovs-pki:` tool dùng để tạo và quản lý public-key infrastructure cho OpenFlow switches.
 - `ovs-testcontroller:` cung cấp OpenFlow controller
-
-<img src="img/3.png" />
 
 # 3. Cài đặt openvswitch trên Ubuntu Server 16.04
 ```
@@ -100,6 +96,7 @@ ovs-vsctl add-port ovs1 vxlan1 -- set interface vxlan1 type=vxlan option:remote_
 	- Thiết lập bridge priority để chọn root bridge/switch 
 	- VD: `ovs-vsctl set Bridge br0 other_config:stp-priority=0x7800`
 - `ovs-vsctl set Port <vswitch> other_config:stp-path-cost=<prio>`
+
 Link tham khảo : http://manpages.ubuntu.com/manpages/xenial/man8/ovs-vsctl.8.html
 
 # 5.Note quan trọng với Open vSwitch technology
