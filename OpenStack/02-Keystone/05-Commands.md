@@ -26,7 +26,14 @@
     ```
     # openstack token issue
     ```
-    <img src=https://i.imgur.com/QDZeRZG.png>
+```
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| expires    | 2022-01-22T02:52:04+0000                                                                                                                                                                |
+| id         | gAAAAABh62NEzzr0K8AZoiYEz2StqCOCS78GMPXh36BS5H0v-JUbCodu2H8sL9tVtZaul2TnqBgZtP6OtFfKWDm1NKSPXaei-DgRrLewzJDH_Rj0HfNCaP53B9n1oyshptCsXL1GKi4DuDKQm18QUBcJ4A8Mpu592RjNQJAlygOEDYXCrYJXCYc |
+| project_id | 69a1f7b2edf64556a214fd979305a879                                                                                                                                                        |
+| user_id    | c015cc4f9d15407b9bf65cd4ca753f80                                                                                                                                                        |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```
 
 ## **2) Các lệnh làm việc với user, project, groups, roles, domain**
 ### **2.1) User**
@@ -35,7 +42,19 @@
     ```
     # openstack user list
     ```
-    <img src=https://i.imgur.com/pWqPg8N.png>
+```
++----------------------------------+-----------+
+| ID                               | Name      |
++----------------------------------+-----------+
+| c015cc4f9d15407b9bf65cd4ca753f80 | admin     |
+| d64faa5a75fe479cae569d42b2911709 | demo      |
+| 67075019b42f4f2bbce9992d35e08b0d | glance    |
+| 801ea925cbc74b128209b74b0038323d | placement |
+| 31bad07fe64448a8946289bb1e6ec51f | nova      |
+| 737a687acab1472a9f034eef390b9594 | neutron   |
+| bf5e292749e042f4965af3ae1e42f4f5 | truongvh  |
++----------------------------------+-----------+
+```
 
 - List user trong group cụ thể :
     ```
@@ -74,7 +93,18 @@
     ```
     # openstack user show <username>
     ```
-    <img src=https://i.imgur.com/xm0bdiW.png>
+```
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | c015cc4f9d15407b9bf65cd4ca753f80 |
+| name                | admin                            |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+```
 
 - Vô hiệu hóa user tạm thời :
     ```
@@ -88,7 +118,20 @@
     ```
     # openstack user set <username> --name <username-new>
     ```
-    <img src=https://i.imgur.com/S1Hff6a.png>
+```
+root@controller:~# openstack user set truongvh --name truong
+root@controller:~# openstack user show truong
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | bf5e292749e042f4965af3ae1e42f4f5 |
+| name                | truong                           |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+```
 
 **Xóa user**
 - Xóa user :
@@ -101,7 +144,15 @@
     ```
     # openstack project list
     ```
-    <img src=https://i.imgur.com/QG5iAmV.png>
+```
++----------------------------------+---------+
+| ID                               | Name    |
++----------------------------------+---------+
+| 677782f15ba44d35a42d9a6dad35ca11 | service |
+| 69a1f7b2edf64556a214fd979305a879 | admin   |
+| e17d6b5bc6434f7693050fdde0d294c9 | demo    |
++----------------------------------+---------+
+```
 #### **Tạo project**
 - Tạo một project :
     ```
@@ -125,7 +176,21 @@
     ```
     # openstack project show <PROJECT_ID || project_name>
     ```
-    <img src=https://i.imgur.com/wdR6fvm.png>
+```
++-------------+-----------------------------------------------+
+| Field       | Value                                         |
++-------------+-----------------------------------------------+
+| description | Bootstrap project for initializing the cloud. |
+| domain_id   | default                                       |
+| enabled     | True                                          |
+| id          | 69a1f7b2edf64556a214fd979305a879              |
+| is_domain   | False                                         |
+| name        | admin                                         |
+| options     | {}                                            |
+| parent_id   | default                                       |
+| tags        | []                                            |
++-------------+-----------------------------------------------+
+```
 #### **Xóa project**
 - Xóa một project :
     ```
