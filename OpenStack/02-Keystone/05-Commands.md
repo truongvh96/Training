@@ -12,11 +12,11 @@
         export OS_PROJECT_NAME=admin
         export OS_USER_DOMAIN_NAME=Default
         export OS_PROJECT_DOMAIN_NAME=Default
-        export OS_AUTH_URL=http://10.10.230.10:5000/v3
+        export OS_AUTH_URL=http://10.10.10.41:5000/v3
         export OS_IDENTITY_API_VERSION=3
         export OS_IMAGE_API_VERSION=2
         ```
-        > Với `10.10.230.10` là IP MGNT của node `controller`
+        > Với `10.10.10.41` là IP MGNT của node `controller`
 - Khởi chạy môi trường :
     ```
     # source <path_to_file>/admin-openrc
@@ -59,7 +59,7 @@
     ```
     # openstack user create <username> --password <password>
     ```
-    - **VD :** Tạo user `cuongnq` :
+    - **VD :** Tạo user `truongvh` :
         
         <img src=https://i.imgur.com/Ec75B3p.png>
 
