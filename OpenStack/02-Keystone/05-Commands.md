@@ -21,11 +21,6 @@
     ```
     # source <path_to_file>/admin-openrc
     ```
-- Kiểm tra biến môi trường :
-    ```
-    # env | grep OS
-    ```
-    <img src=https://i.imgur.com/Io0KBHW.png>
 
 - Lấy token :
     ```
