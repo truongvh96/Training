@@ -8,16 +8,16 @@
 2. OVS Architechture
 
 - Các thành phần chính:
-```
-ovs-vswitchd đây là thành phần daemon thực hiện các chức năng chuyển mạch kết hợp Linux kernel module phục vụ cho flow-based switching.
-ovsdb-server: lightweight database server mà ovs-vswitchd truy vấn tới để lấy cấu hình.
-ovs-dpctl: tool dùng cấu hình switch kernel module.
-ovs-vsctl: tiện ích để querying và updating cấu hình của ovs-vswitchd
-ovs-appctl: tiện ích gửi commands để running Open vSwitch daemons. - Các tool được cung cấp thêm :
-ovs-ofctl: tool dùng cho việc querying và controlling OpenFlow switches và controllers.
-ovs-pki: tool dùng để tạo và quản lý public-key infrastructure cho OpenFlow switches.
-ovs-testcontroller: cung cấp OpenFlow controller
-```
+
+  - ovs-vswitchd đây là thành phần daemon thực hiện các chức năng chuyển mạch kết hợp Linux kernel module phục vụ cho flow-based switching.
+  - ovsdb-server: lightweight database server mà ovs-vswitchd truy vấn tới để lấy cấu hình.
+  - ovs-dpctl: tool dùng cấu hình switch kernel module.
+  - ovs-vsctl: tiện ích để querying và updating cấu hình của ovs-vswitchd
+  - ovs-appctl: tiện ích gửi commands để running Open vSwitch daemons. - Các tool được cung cấp thêm :
+  - ovs-ofctl: tool dùng cho việc querying và controlling OpenFlow switches và controllers.
+  - ovs-pki: tool dùng để tạo và quản lý public-key infrastructure cho OpenFlow switches.
+  - ovs-testcontroller: cung cấp OpenFlow controller
+
 
 3. Cài đặt openvswitch trên Ubuntu Server 16.04
 ```
