@@ -207,7 +207,16 @@ root@controller:~# openstack user show truong
     ```
     # openstack group create [--domain <domain>] [--description <description>] [--or-show] <group-name>
     ```
-    <img src=https://i.imgur.com/Fbad1aT.png>
+```
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | group admin                      |
+| domain_id   | default                          |
+| id          | 1787edb94a7b4938922a672ee535224c |
+| name        | sysadmin                         |
++-------------+----------------------------------+
+```
 
 #### **Add user vào group**
 - Thêm một hoặc nhiều user vào group :
@@ -223,7 +232,6 @@ root@controller:~# openstack user show truong
     ```
     # openstack group contains user [--group-domain <group-domain>] [--user-domain <user-domain>] <group_name> <username>
     ```
-    <img src=https://i.imgur.com/FDXQ7j0.png>
 #### **Xóa user khỏi group**
 - Xóa một hoặc nhiều user khỏi một group :
     ```
@@ -239,14 +247,33 @@ root@controller:~# openstack user show truong
     ```
     # openstack group show [--domain <domain>] <group_name>
     ```
-    <img src=https://i.imgur.com/RJN5uo9.png>
+```
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | group admin                      |
+| domain_id   | default                          |
+| id          | 1787edb94a7b4938922a672ee535224c |
+| name        | sysadmin                         |
++-------------+----------------------------------+
+```
+
 ### **2.4) Role**
 #### **List các roles**
 - Liệt kê các role đang có :
     ```
     # openstack role list
     ```
-    <img src=https://i.imgur.com/7FEWpWa.png>
+```
++----------------------------------+--------+
+| ID                               | Name   |
++----------------------------------+--------+
+| 037a4d08056a4c538d689df0a0414462 | user   |
+| 76f57a6529c94f618c047147419139e2 | reader |
+| df472480d91841a2a9dd2ecf46ba6bd6 | member |
+| f09914c0731044d5996fe094662969a5 | admin  |
++----------------------------------+--------+
+```
 #### **Tạo một role mới**
 - Để gán người dùng cho nhiều project, hay xác định vai role cho user với các project :
     ```
@@ -259,18 +286,47 @@ root@controller:~# openstack user show truong
     ```
     # openstack user list
     ```
-    <img src=https://i.imgur.com/9Ev5o2d.png>
+ ```
++----------------------------------+-----------+
+| ID                               | Name      |
++----------------------------------+-----------+
+| c015cc4f9d15407b9bf65cd4ca753f80 | admin     |
+| d64faa5a75fe479cae569d42b2911709 | demo      |
+| 67075019b42f4f2bbce9992d35e08b0d | glance    |
+| 801ea925cbc74b128209b74b0038323d | placement |
+| 31bad07fe64448a8946289bb1e6ec51f | nova      |
+| 737a687acab1472a9f034eef390b9594 | neutron   |
+| bf5e292749e042f4965af3ae1e42f4f5 | truong    |
++----------------------------------+-----------+
+```
 
 - **B2 :** List các Role để lấy roleID :
     ```
     # openstack role list
     ```
-    <img src=https://i.imgur.com/8jUJ4AC.png>
+```
++----------------------------------+--------+
+| ID                               | Name   |
++----------------------------------+--------+
+| 037a4d08056a4c538d689df0a0414462 | user   |
+| 76f57a6529c94f618c047147419139e2 | reader |
+| df472480d91841a2a9dd2ecf46ba6bd6 | member |
+| f09914c0731044d5996fe094662969a5 | admin  |
++----------------------------------+--------+
+```
 - **B3 :** List các project để lấy projectID :
     ```
     # openstack project list
     ```
-    <img src=https://i.imgur.com/7F0urmc.png>
+```
++----------------------------------+---------+
+| ID                               | Name    |
++----------------------------------+---------+
+| 677782f15ba44d35a42d9a6dad35ca11 | service |
+| 69a1f7b2edf64556a214fd979305a879 | admin   |
+| e17d6b5bc6434f7693050fdde0d294c9 | demo    |
++----------------------------------+---------+
+```
 - **B4 :** Gán role :
     ```
     # openstack role add --user <username> --project <project_name> <role_name>
@@ -279,15 +335,11 @@ root@controller:~# openstack user show truong
     ```
     # openstack role assignment list --user <username> --project <project_id> --names
     ```
-    - **VD :**
-
-        <img src=https://i.imgur.com/5yYGRZm.png>
 #### **Xem thông tin chi tiết role**
 - Show thông tin chi tiết role :
     ```
     # openstack role show <role_name>
     ```
-    <img src=https://i.imgur.com/vpZn4pm.png>
 #### **Xóa role**
 - **B1 :** Xóa role :
     ```
