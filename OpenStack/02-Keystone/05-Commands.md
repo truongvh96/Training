@@ -55,8 +55,18 @@
     # openstack user create <username> --password <password>
     ```
     - **VD :** Tạo user `truongvh` :
-        
-        <img src=https://i.imgur.com/Ec75B3p.png>
+ ```
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| domain_id           | default                          |
+| enabled             | True                             |
+| id                  | bf5e292749e042f4965af3ae1e42f4f5 |
+| name                | truongvh                         |
+| options             | {}                               |
+| password_expires_at | None                             |
++---------------------+----------------------------------+
+```
 
 #### **Update thông tin user**
 > Có thể cập nhật tên, email, và enable status cho user
