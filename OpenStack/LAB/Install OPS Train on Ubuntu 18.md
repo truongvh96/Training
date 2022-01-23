@@ -724,7 +724,8 @@ B4 : Sao lưu các file cấu hình của Neutron :
 B5 : Cấu hình file /etc/neutron/neutron.conf :
 ```
 # crudini --set /etc/neutron/neutron.conf DEFAULT core_plugin ml2
-# crudini --set /etc/neutron/neutron.conf DEFAULT service_plugins
+# crudini --set /etc/neutron/neutron.conf DEFAULT service_plugins router
+# crudini --set /etc/neutron/neutron.conf DEFAULT allow_overlapping_ips true
 # crudini --set /etc/neutron/neutron.conf DEFAULT transport_url rabbit://openstack:Welcome123@controller
 # crudini --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone
 # crudini --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_status_changes True
@@ -753,17 +754,19 @@ B6 : Sửa file cấu hình /etc/neutron/plugins/ml2/ml2_conf.ini :
 ```
 # crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 type_drivers flat,vlan,vxlan
 # crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 tenant_network_types vxlan
-# crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 mechanism_drivers linuxbridge
+# crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 mechanism_drivers linuxbridge,l2population
 # crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 extension_drivers port_security
 # crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2_type_flat flat_networks provider
 # crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2_type_vxlan vni_ranges 1:1000
 # crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini securitygroup enable_ipset True
+# crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini securitygroup enable_security_group True
+# crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini securitygroup firewall_driver None
 ```
 B7 : Sửa file cấu hình /etc/neutron/plugins/ml2/linuxbridge_agent.ini :
 ```
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini linux_bridge physical_interface_mappings provider:eth0
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan enable_vxlan True
-# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan local_ip $(ip addr show dev eth2 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
+# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan local_ip $(ip addr show dev eth1 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini securitygroup enable_security_group True
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
