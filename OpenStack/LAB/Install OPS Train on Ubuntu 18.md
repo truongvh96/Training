@@ -63,9 +63,9 @@ B3 : Set timezone :
 ```
 B4 : Sửa file cấu hình ``` nano /etc/chrony/chrony.conf ```:
 ```
-server 3.vn.pool.ntp.org
-server 3.asia.pool.ntp.org
-server 0.asia.pool.ntp.org
+server 3.vn.pool.ntp.org iburst
+server 3.asia.pool.ntp.org iburst
+server 0.asia.pool.ntp.org iburst
 
 ```
 Node controller sẽ cập nhật thời gian từ internet hoặc máy chủ NTP. Các máy compute còn lại sẽ đồng bộ thời gian từ controller. Trong bài lab này sẽ sử dụng địa chỉ NTP của NIST là 128.138.140.44 (có thể thay thế bằng IP của NTP Server trong mạng).
