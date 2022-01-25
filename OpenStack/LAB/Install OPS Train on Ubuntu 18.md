@@ -566,13 +566,10 @@ enabled_apis = osapi_compute,metadata
 transport_url = rabbit://openstack:Welcome123@controller:5672/
 
 [api_database]
-api_database = connection mysql+pymysql://nova:Welcome123@controller/nova_api
+connection = mysql+pymysql://nova:Welcome123@controller/nova_api
 
 [database]
 connection = mysql+pymysql://nova:Welcome123@controller/nova
-
-[placement_database]
-connection = mysql+pymysql://placement:Welcome123@controller/placement
 
 [api]
 auth_strategy = keystone
@@ -608,19 +605,21 @@ auth_url = http://controller:5000/v3
 username = placement
 password = Welcome123
 
+[scheduler]
+discover_hosts_in_cells_interval = 300
 
-# crudini --set /etc/nova/nova.conf scheduler discover_hosts_in_cells_interval 300
-# crudini --set /etc/nova/nova.conf neutron url http://controller:9696
-# crudini --set /etc/nova/nova.conf neutron auth_url http://controller:5000
-# crudini --set /etc/nova/nova.conf neutron region_name RegionOne
-# crudini --set /etc/nova/nova.conf neutron auth_type password
-# crudini --set /etc/nova/nova.conf neutron project_domain_name default
-# crudini --set /etc/nova/nova.conf neutron user_domain_name default
-# crudini --set /etc/nova/nova.conf neutron project_name service
-# crudini --set /etc/nova/nova.conf neutron username neutron
-# crudini --set /etc/nova/nova.conf neutron password Welcome123
-# crudini --set /etc/nova/nova.conf neutron service_metadata_proxy True
-# crudini --set /etc/nova/nova.conf neutron metadata_proxy_shared_secret Welcome123
+[neutron]
+url = http://controller:9696
+auth_url = http://controller:5000
+region_name = RegionOne
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = neutron
+password = Welcome123
+service_metadata_proxy = True
+metadata_proxy_shared_secret = Welcome123
 ```
 B7 : Thực hiện lệnh để sinh bảng cho Nova :
 ```
@@ -644,7 +643,6 @@ B8 : Kiểm tra lại xem cell0 đã được đăng ký chưa :
 B9 : Kích hoạt và khởi động các dịch vụ của Nova :
 ```
 # service nova-api restart
-# service nova-consoleauth restart
 # service nova-scheduler restart
 # service nova-conductor restart
 # service nova-novncproxy restart
