@@ -726,7 +726,7 @@ discover_hosts_in_cells_interval = 300
 ```
 B4 : Khởi động Nova :
 ```
-# service start nova-compute
+# service nova-compute start
 ```
 #### 2.10.3) Thêm các node compute vào hệ thống (trên node controller)
 B1 : Kiểm tra các node compute đã up hay chưa :
@@ -965,6 +965,7 @@ B6 : Sửa file cấu hình /etc/neutron/plugins/ml2/linuxbridge_agent.ini :
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini linux_bridge physical_interface_mappings provider:eth0
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan enable_vxlan True
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan local_ip $(ip addr show dev eth1 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
+# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan l2_population True
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini securitygroup enable_security_group True
 # crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
