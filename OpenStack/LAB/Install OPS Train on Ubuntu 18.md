@@ -820,31 +820,21 @@ lock_path = /var/lib/neutron/tmp
 ```
 B6 : Sửa file cấu hình /etc/neutron/plugins/ml2/ml2_conf.ini :
 ```
-[ml2]
-type_drivers = flat,vlan,vxlan
-tenant_network_types = vxlan
-mechanism_drivers = linuxbridge,l2population
-extension_drivers = port_security
-
-[ml2_type_flat]
-flat_networks = provider
-
-[securitygroup]
-enable_ipset = true
+crudini --set /etc/neutron/metadata_agent.ini ml2 type_drivers flat,vlan,vxlan
+crudini --set /etc/neutron/metadata_agent.ini ml2 tenant_network_types vxlan
+crudini --set /etc/neutron/metadata_agent.ini ml2 mechanism_drivers linuxbridge,l2population
+crudini --set /etc/neutron/metadata_agent.ini ml2 extension_drivers port_security
+crudini --set /etc/neutron/metadata_agent.ini ml2_type_flat flat_networks provider
+crudini --set /etc/neutron/metadata_agent.ini securitygroup enable_ipset true
 ```
 B7 : Sửa file cấu hình /etc/neutron/plugins/ml2/linuxbridge_agent.ini :
 ```
-[linux_bridge]
-physical_interface_mappings = provider:eth0
-
-[vxlan]
-enable_vxlan = true
-local_ip = 10.10.10.41
-l2_population = true
-
-[securitygroup]
-enable_security_group = true
-firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+crudini --set /etc/neutron/metadata_agent.ini linux_bridge physical_interface_mappings provider:eth0
+crudini --set /etc/neutron/metadata_agent.ini vxlan enable_vxlan true
+crudini --set /etc/neutron/metadata_agent.ini vxlan local_ip 10.10.10.41
+crudini --set /etc/neutron/metadata_agent.ini vxlan l2_population true
+crudini --set /etc/neutron/metadata_agent.ini securitygroup enable_security_group true
+crudini --set /etc/neutron/metadata_agent.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
 B8 : Khai báo sysctl :
 ```
@@ -859,28 +849,14 @@ Sửa file cấu hình /etc/neutron/l3_agent.ini :
 ```
 Sửa file cấu hình /etc/neutron/dhcp_agent.ini :
 ```
-interface_driver = linuxbridge
-dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
-enable_isolated_metadata = true
+crudini --set /etc/neutron/metadata_agent.ini DEFAULT interface_driver linuxbridge
+crudini --set /etc/neutron/metadata_agent.ini DEFAULT dhcp_driver neutron.agent.linux.dhcp.Dnsmasq
+crudini --set /etc/neutron/metadata_agent.ini DEFAULT enable_isolated_metadata true
 ```
 Sửa file cấu hình /etc/neutron/metadata_agent.ini :
 ```
-nova_metadata_host = controller
-metadata_proxy_shared_secret = Welcome123
-```
-Sửa file cấu hình /etc/nova/nova.conf :
-```
-url = http://controller:9696
-auth_url = http://controller:5000
-auth_type = password
-project_domain_name = default
-user_domain_name = default
-region_name = RegionOne
-project_name = service
-username = neutron
-password = Welcome123
-service_metadata_proxy = true
-metadata_proxy_shared_secret = Welcome123
+crudini --set /etc/neutron/metadata_agent.ini DEFAULT nova_metadata_host controller
+crudini --set /etc/neutron/metadata_agent.ini DEFAULT metadata_proxy_shared_secret Welcome123
 ```
 B10 : Thiết lập database :
 ```
