@@ -408,32 +408,20 @@ B5 : Sao lưu file cấu hình Glance :
 ```
 B6 : Cấu hình Glance :
 ```
-[DEFAULT]
-use_keystone_quotas = True
-
-[database]
-connection = mysql+pymysql://glance:Welcome123@controller/glance
-
-[keystone_authtoken]
-www_authenticate_uri = http://controller:5000
-auth_url = http://controller:5000
-memcached_servers = controller:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = glance
-password = Welcome123
-
-[paste_deploy]
-flavor = keystone
-
-[glance_store]
-stores = file,http
-default_store = file
-filesystem_store_datadir = /var/lib/glance/images/
-
-
+# crudini --set /etc/glance/glance-api.conf database connection mysql+pymysql://glance:Welcome123@controller/glance
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken www_authenticate_uri http://controller:5000
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken auth_url http://controller:5000
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken memcached_servers controller:11211
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken auth_type password
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken project_domain_name default
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken user_domain_name default
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken project_name service
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken username glance
+# crudini --set /etc/glance/glance-api.conf keystone_authtoken password Welcome123
+# crudini --set /etc/glance/glance-api.conf paste_deploy flavor keystone
+# crudini --set /etc/glance/glance-api.conf glance_store stores file,http
+# crudini --set /etc/glance/glance-api.conf glance_store default_store file
+# crudini --set /etc/glance/glance-api.conf glance_store filesystem_store_datadir /var/lib/glance/images/
 ```
 B7 : Đồng bộ để sync database cho Glance :
 ```
@@ -494,21 +482,16 @@ B5 : Sao lưu file cấu hình của placement :
 ```
 B6 : Cấu hình placement :
 ```
-[placement_database]
-connection = mysql+pymysql://placement:Welcome123@controller/placement
-
-[api]
-auth_strategy = keystone
-
-[keystone_authtoken]
-auth_url = http://controller:5000/v3
-memcached_servers = controller:11211
-auth_type = password
-project_domain_name = Default
-user_domain_name = Default
-project_name = service
-username = placement
-password = Welcome123
+# crudini --set /etc/placement/placement.conf placement_database connection mysql+pymysql://placement:Welcome123@controller/placement
+# crudini --set /etc/placement/placement.conf api auth_strategy keystone
+# crudini --set /etc/placement/placement.conf keystone_authtoken auth_url http://controller:5000/v3
+# crudini --set /etc/placement/placement.conf keystone_authtoken memcached_servers controller:11211
+# crudini --set /etc/placement/placement.conf keystone_authtoken auth_type password
+# crudini --set /etc/placement/placement.conf keystone_authtoken project_domain_name default
+# crudini --set /etc/placement/placement.conf keystone_authtoken user_domain_name default
+# crudini --set /etc/placement/placement.conf keystone_authtoken project_name service
+# crudini --set /etc/placement/placement.conf keystone_authtoken username placement
+# crudini --set /etc/placement/placement.conf keystone_authtoken password Welcome123
 ```
 B8 : Tạo các bảng, đồng bộ dữ liệu cho placement :
 ```
