@@ -575,7 +575,8 @@ connection = mysql+pymysql://nova:Welcome123@controller/nova
 auth_strategy = keystone
 
 [keystone_authtoken]
-auth_url http://controller:5000/
+www_authenticate_uri = http://controller:5000/
+auth_url = http://controller:5000/
 memcached_servers = controller:11211
 auth_type = password
 project_domain_name = default
@@ -585,9 +586,9 @@ username = nova
 password = Welcome123
 
 [vnc]
-enabled = true
-server_listen = \$my_ip
-server_proxyclient_address = \$my_ip
+enabled = true 
+server_listen = $my_ip
+server_proxyclient_address = $my_ip
 
 [glance]
 api_servers = http://controller:9292
