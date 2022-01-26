@@ -7,18 +7,18 @@
     ```
 - **B2 :** setup ip :
     ```
-network:
-  ethernets:
-    eth1:
-      addresses:
-        - 10.10.10.41/24
-    eth0:
-      addresses:
-        - 172.16.6.71/24
-      gateway4: 172.16.6.1
-      nameservers:
-        addresses: [ 172.16.6.0, 8.8.8.8 ]
-  version: 2
+    network:
+      ethernets:
+        eth1:
+          addresses:
+            - 10.10.10.41/24
+        eth0:
+          addresses:
+            - 172.16.6.71/24
+          gateway4: 172.16.6.1
+          nameservers:
+            addresses: [ 172.16.6.0, 8.8.8.8 ]
+      version: 2
     ```
 - **B3 :** Khai báo file `/etc/hosts` :
     ```
