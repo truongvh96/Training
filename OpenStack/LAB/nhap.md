@@ -22,8 +22,8 @@
     ```
 - **B3 :** Khai báo file `/etc/hosts` :
     ```
-    # 10.10.10.41 controller
-    # 10.10.10.40 compute
+    10.10.10.41 controller
+    10.10.10.40 compute
     ```
 - **B4 :** Thiết lập phân hoạch IP cho node `controller`
 - **B5 :** Disable firewalld và SELinux :
