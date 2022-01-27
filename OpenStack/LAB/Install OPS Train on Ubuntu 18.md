@@ -897,6 +897,7 @@ B10 : Khởi động lại dịch vụ openstack-nova-compute :
 ```
 # service nova-compute restart
 ```
+**Tham khảo thêm cài đặt neutron tại ``` https://docs.openstack.org/neutron/queens/install/controller-install-ubuntu.html ``` **
 #### 2.12) Cài đặt và cấu hình Horizon trên node controller
 B1 : Cài đặt openstack-dashboard :
 ```
@@ -929,7 +930,6 @@ OPENSTACK_NEUTRON_NETWORK = {
     'enable_fip_topology_check': False,
     'enable_ha_router': False,
     'enable_quotas': False,
-    'enable_router': False,
     ...
 }
 
@@ -945,20 +945,10 @@ OPENSTACK_API_VERSIONS = {
     "image": 2,
     "volume": 3,
 }
-
 ```
-B4 : Chỉnh sửa file /etc/apache2/conf-available/openstack-dashboard.conf :
-```
-# nano /etc/apache2/conf-available/openstack-dashboard.conf
-```
-Thêm vào cuối file dòng sau :
-```
-WSGIApplicationGroup %{GLOBAL}
-```
-B5 : Khởi động lại dịch vụ :
+B4 : Khởi động lại dịch vụ :
 ```
 # systemctl reload apache2.service
 ```
-B6 : Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản admin/ Welcome123 vừa tạo ở trên:
-
+B5 : Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản admin/ Welcome123 vừa tạo ở trên:
 http://IP_CONTROLLER/horizon
