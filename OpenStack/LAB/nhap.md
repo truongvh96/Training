@@ -1,6 +1,6 @@
 # Cài đặt OpenStack Train trên Ubuntu 18.04
 ## **Các bước cài đặt**
-### **1) Cài đặt ban đầu trên cả 3 node**
+### **1) Cài đặt ban đầu trên cả 2 node**
 - **B1 :** Update các gói phần mềm và các package cơ bản:
     ```
     # apt update -y
@@ -38,7 +38,7 @@
     ```
     # apt-get install -y software-properties-common
     # add-apt-repository cloud-archive:train
-    # apt -y upgrade -y
+    # apt -y upgrade
     # apt -y install crudini
     # apt -y install python-openstackclient python3-openstackclient
     ```
@@ -62,7 +62,6 @@
     server 3.asia.pool.ntp.org iburst
     server 0.asia.pool.ntp.org iburst
     ```
-    > Node `controller` sẽ cập nhật thời gian từ internet hoặc máy chủ NTP. Các máy compute còn lại sẽ đồng bộ thời gian từ `controller`. Trong bài lab này sẽ sử dụng địa chỉ NTP của **NIST** là `128.138.140.44` (có thể thay thế bằng IP của NTP Server trong mạng).
 - **B5 :** Để cho phép các node `compute` kết nối với `chrony` trên node `controller`, ta sẽ sửa file cấu hình allow subnet chung của các node :
     ```
     # allow 10.10.10.41/24
@@ -102,6 +101,7 @@
     server 3.vn.pool.ntp.org iburst
     server 3.asia.pool.ntp.org iburst
     server 0.asia.pool.ntp.org iburst
+    server controller iburst
     ```
     > 2 node `compute` sẽ đồng bộ thời gian về từ `controller`
 - **B6 :** Khởi động lại chrony sau khi sửa file cấu hình :
@@ -130,7 +130,7 @@
     ```
     # cp /etc/sysconfig/memcached /etc/sysconfig/memcached.bak
     ```
-- **B3 :** Cấu hình dịch vụ để sử dụng địa chỉ IP quản lý của node `controller`. Điều này là để cho phép truy cập từ các node khác thông qua dải VLAN `MGNT` (dải management). Chỉnh sửa file cấu hình `memcached` như sau :
+- **B3 :** Cấu hình dịch vụ để sử dụng địa chỉ IP quản lý của node `controller`. Điều này là để cho phép truy cập từ các node khác thông qua dải VLAN `MGNT` (dải management). Chỉnh sửa file cấu hình `memcached` như sau : ``` nano /etc/memcached.conf ```
     ```
     -l 10.10.10.41
     ```
@@ -142,7 +142,6 @@
     ```
     # service memcached status
     ```
-    <img src=https://i.imgur.com/PenIOOl.png>
 
 ### **2.4) Cài đặt và cấu hình `MariaDB` trên node `controller`**
 - Hầu hết các dịch vụ của **OpenStack** sử dụng cơ sở dữ liệu **SQL** để lưu thông tin. DB thường sẽ chạy trên node `controller`. Các dịch vụ **OpenStack** cũng hỗ trợ các cơ sở dữ liệu SQL khác bao gồm **PostgreSQL**.
@@ -161,7 +160,6 @@
         ```
         [mysqld]
         bind-address = 10.10.10.41
-
         default-storage-engine = innodb
         innodb_file_per_table = on
         max_connections = 4096
@@ -321,22 +319,20 @@
 
 - **B13 :** Tạo file biến môi trường cho **`Keystone`** :
     ```
-    # vi /root/admin-openrc
+    cat <<EOT >> admin-openrc
+    export OS_PROJECT_DOMAIN_NAME=Default
+    export OS_USER_DOMAIN_NAME=Default
+    export OS_PROJECT_NAME=admin
+    export OS_USERNAME=admin
+    export OS_PASSWORD=Welcome123
+    export OS_AUTH_URL=http://controller:5000/v3
+    export OS_IDENTITY_API_VERSION=3
+    export OS_IMAGE_API_VERSION=2
+    EOT
     ```
-    - Thêm vào đoạn sau :
-        ```
-        export OS_USERNAME=admin
-        export OS_PASSWORD=Welcome123
-        export OS_PROJECT_NAME=admin
-        export OS_USER_DOMAIN_NAME=default
-        export OS_PROJECT_DOMAIN_NAME=default
-        export OS_AUTH_URL=http://controller:5000/v3
-        export OS_IDENTITY_API_VERSION=3
-        export OS_IMAGE_API_VERSION=2
-        ```
 - **B14 :** Thực thi biến môi trường để sử dụng được CLI của OpenStack:
     ```
-    # source /root/admin-openrc
+    # source admin-openrc
     ```
 - **B15 :** Kiểm tra lại hoạt động của **`Keystone`** :
     ```
@@ -364,7 +360,7 @@
     ```
 - **B2 :** Thực thi biến môi trường :
     ```
-    # source /root/admin-openrc
+    # source admin-openrc
     ```
 - **B3 :** Tạo user, project cho **`glance`** :
     ```
@@ -410,8 +406,8 @@
     ```
 - **B9 :** Tải image và import vào **`glance`** :
     ```
-    # wget http://download.cirros-cloud.net/0.5.1/cirros-0.5.1-x86_64-disk.img
-    # openstack image create "cirros" --file cirros-0.5.1-x86_64-disk.img --disk-format qcow2 --container-format bare --public
+    # wget http://download.cirros-cloud.net/0.5.2/cirros-0.5.2-x86_64-disk.img
+    # openstack image create "cirros" --file cirros-0.5.2-x86_64-disk.img --disk-format qcow2 --container-format bare --public
     ```
     > Đây là một test image của **OpenStack**. Download các image khác tại [đây](https://docs.openstack.org/image-guide/obtain-images.html)
 - **B10 :** Kiểm tra lại xem image đã được up hay chưa :
@@ -431,7 +427,7 @@
     ```
 - **B2 :** Thực thi biến môi trường để sử dụng được CLI của OpenStack:
     ```
-    # source /root/admin-openrc
+    # source admin-openrc
     ```
 - **B3 :** Tạo service, gán quyền, endpoint cho `placement` :
     ```
@@ -490,7 +486,7 @@
     ```
 - **B2 :** Thực thi biến môi trường để sử dụng được CLI của **OpenStack** :
     ```
-    # source /root/admin-openrc
+    # source admin-openrc
     ```
 - **B3 :** Tạo endpoint cho `nova` :
     ```
@@ -584,7 +580,7 @@
     ```
     # cp /etc/nova/nova.conf /etc/nova/nova.conf.bak
     ```
-- **B3 :** Cấu hình `nova` (trên `compute1`. Làm tương tự với `compute2` ):
+- **B3 :** Cấu hình `nova` :
     ```
     # crudini --set /etc/nova/nova.conf DEFAULT enabled_apis osapi_compute,metadata
     # crudini --set /etc/nova/nova.conf DEFAULT transport_url rabbit://openstack:Welcome123@controller
@@ -626,7 +622,7 @@
 #### **2.10.3) Thêm các node `compute` vào hệ thống (trên node `controller`)**
 - **B1 :** Kiểm tra các node `compute` đã up hay chưa :
     ```
-    # source /root/admin-openrc
+    # source admin-openrc
     # openstack compute service list --service nova-compute
     ```
 - **B2 :** Add các note `compute` vào `cell` :
@@ -733,7 +729,6 @@
     ```
     # openstack network agent list
     ```
-    <img src=https://i.imgur.com/yMQePN0.png>
 
 #### **2.11.2) Cài đặt `Neutron` trên các node `compute`**
 - **B1 :** Khai báo bổ sung cho **`Nova`** :
@@ -812,6 +807,7 @@
     ```
     # service nova-compute restart
     ```
+    **Tham khảo thêm cài đặt neutron tại ``` https://docs.openstack.org/neutron/queens/install/controller-install-ubuntu.html ``` **
 ### **2.12) Cài đặt và cấu hình `Horizon` trên node `controller`**
 - **B1 :** Cài đặt `openstack-dashboard` :
     ```
@@ -847,7 +843,6 @@
             'enable_fip_topology_check': False,
             'enable_ha_router': False,
             'enable_quotas': False,
-            'enable_router': False,
             ...
         }
         ```
@@ -866,19 +861,11 @@
         }
         WEBROOT = "/dashboard/"
         ```
-- **B4 :** Chỉnh sửa file `/etc/httpd/conf.d/openstack-dashboard.conf` :
-    ```
-    # vi /etc/httpd/conf.d/openstack-dashboard.conf
-    ```
-    - Thêm vào cuối file dòng sau :
-        ```py
-        WSGIApplicationGroup %{GLOBAL}
-        ```
-- **B5 :** Khởi động lại dịch vụ :
+- **B4 :** Khởi động lại dịch vụ :
     ```
     # service httpd memcached restart
     ```
-- **B6 :** Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản `admin`/ `Welcome123` vừa tạo ở trên:
+- **B5 :** Truy cập đường dẫn sau trên trình duyệt để vào dashboard. Đăng nhập bằng tài khoản `admin`/ `Welcome123` vừa tạo ở trên:
     ```
     http://IP_CONTROLLER/dashboard
     ```
