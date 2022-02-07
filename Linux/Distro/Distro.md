@@ -1,8 +1,8 @@
-#### 1. 
+#### 1. Linux Kernel
 Linux Kernel là phần core của hệ điều hành, cho phép quản lý, điều khiển, giao tiếp với các phần cứng của máy tính. Kernel có chứa phần mềm cho phép người dùng sử dụng được ổ cứng, mạng, RAM hay các phần cứng khác. Hệ thống Linux dựa theo UNIX, gọi là GNU/Linux. Nhân Linux hiện nay được phát triển bởi cộng đồng nguồn mở dựa trên nhân Linux mới được phát triển bởi Linus Torvalds.
 
-#### 2.
-Distro Linux là gì ?Các bản phân phối Linux hay còn gọi là Distro Là tập hợp các ứng dụng, package, trình quản lý gói và các tính năng chạy trên Linux Kernel. Linux Kernel dùng chung cho tất cả các Distro. Đôi khi với các bản phân phối nhất định Linux Kernel sẽ được customize lại theo mục đích riêng.
+#### 2.Distro Linux là gì ?
+Các bản phân phối Linux hay còn gọi là Distro Là tập hợp các ứng dụng, package, trình quản lý gói và các tính năng chạy trên Linux Kernel. Linux Kernel dùng chung cho tất cả các Distro. Đôi khi với các bản phân phối nhất định Linux Kernel sẽ được customize lại theo mục đích riêng.
 
 #### 3. Chọn bản phân phối Linux
 Sử dụng Linux bạn có thể nghe thấy rất nhiều bản phân phối Linux khác nhau như Ubuntu, Debian, Fedora, Red Hat … (Xem danh sách hàng trăm Distro phổ biến nhất gần đây tại distrowatch) Điều này làm cho việc mới tiếp cận Linux có vẻ lúng túng không biết chọn bản phân phối nào. Mỗi bản phân phối có những đặc tính khác nhau, có thể phân chia để lựa chọn theo ba tiêu chí:
