@@ -154,7 +154,7 @@
     ```
 - **B2 :** Tạo và chỉnh sửa file cấu hình của **OpenStack** :
     ```
-    # vi /etc/my.cnf.d/openstack.cnf
+    # vi /etc/mysql/mariadb.conf.d/openstack.cnf
     ```
     - Thêm vào đoạn sau:
         ```
