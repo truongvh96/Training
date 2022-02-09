@@ -25,13 +25,20 @@ thư mục home của người dùng chứa các file cá nhân của người d
 Chứa các file cần thiết cho /bin/ và /sbin/
 #### 8. /media
 Các thiết bị gắn có thể được gỡ bỏ: CD-ROM, CD
-#### 9. /mnt - temp cho việc mount filesystem
-#### 10. /opt - option cho các phần mềm khác, add on
-#### 11. /sbin - Các file binary cần thiết cho hệ thống
+#### 9. /mnt 
+- temp cho việc mount filesystem
+#### 10. /opt 
+- option cho các phần mềm khác, add on
+#### 11. /sbin 
+- Các file binary cần thiết cho hệ thống
 Các lệnh chạy với quyền administrator hoặc truy cập sâu vào hệ thống: iptables, reboot, fdisk, ifconfig.
-#### 12. /srv - cung cấp dữ liệu cho các dịch vụ khác
-#### 13. /tmp - các file tạm
-#### 14. /usr - chương trình của người dùng
+#### 12. /srv 
+- cung cấp dữ liệu cho các dịch vụ khác
+#### 13. /tmp 
+- các file tạm
+#### 14. /usr 
+- chương trình của người dùng
 VD: /usr/local/apache2
 
-#### 15. /proc - thông tin về các tiến trình trên hệ thống
+#### 15. /proc 
+- thông tin về các tiến trình trên hệ thống
