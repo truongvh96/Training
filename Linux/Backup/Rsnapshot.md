@@ -68,3 +68,6 @@ drwxr-xr-x 3 root root 4096 Thg 1 15 10:24 hourly.4/
 drwxr-xr-x 3 root root 4096 Thg 1 15 10:24 hourly.5/
 ```
 Các bản snapshot được lưu từ từ hourly.0 -hourly.6 sau khi bị xoá và quay vòng lại tương ứng với tham số interval hourly 6 trong file cấu hình
+
+### Tài liệu tham khảo thêm 
+https://ostechnix.com/setup-backup-server-using-rsnapshot-linux/
