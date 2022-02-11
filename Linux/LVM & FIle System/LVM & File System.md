@@ -7,7 +7,8 @@
 Ngoài ra còn có các định dạng khác như reiserfs, VFAT (một extention của FAT32), btrfs.
 
 ### 2. LVM (Logical Volume Manager)
-#### 2.1 LVM là công cụ quản lý các phân vùng Logic được tạo và phân bổ từ các ổ đĩa. LVM có thể linh hoạt trong việc resize, xoá phân vùng đã tạo. Mục đích sử dụng :
+#### 2.1 LVM
+Là công cụ quản lý các phân vùng Logic được tạo và phân bổ từ các ổ đĩa. LVM có thể linh hoạt trong việc resize, xoá phân vùng đã tạo. Mục đích sử dụng :
 
 - Tạo 1 hoặc nhiều phần vùng logic hoặc phân vùng với toàn bộ đĩa cứng cho phép thay đổi kích thước volume.
 - Quản lý (Large hard Disk Farms) bằng cách cho phép thêm và thay thế đĩa mà không bị ngừng hoạt động hoặc gián đoạn dịch vụ, kết hợp với trao đổi nóng (hot swapping).
