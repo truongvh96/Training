@@ -14,11 +14,17 @@
 Sytax: rsync options source destination Option:
 
 ``` -v ``` hiển thị trạng thái ra màn hình
+
 ``` -r: ``` copy dữ liệu recursively, nhưng không đảm bảo thông số của file và thư mục
+
 ``` -a: ``` cho phép copy dữ liệu recursively, đồng thời giữ nguyên được tất cả các thông số của thư mục và file
+
 ``` -z: ``` nén dữ liệu khi transfer, tiết kiệm băng thông tuy nhiên tốn thêm một chút thời gian
+
 ``` -h: ``` human-readable, output kết quả dễ đọc
+
 ``` --delete: ``` xóa dữ liệu ở destination nếu source không tồn tại dữ liệu đó.
+
 ``` --exclude: ``` loại trừ ra những dữ liệu không muốn truyền đi, nếu bạn cần loại ra nhiều file hoặc folder ở nhiều đường dẫn khác nhau thì mỗi cái bạn phải thêm --exclude tương ứng.
 
 ### 4. Ví dụ
