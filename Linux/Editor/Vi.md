@@ -1,4 +1,4 @@
-## **1) `vi` ( vim )**
+## **1) `vi`**
 - `vi` là trình soạn thảo có mặt trên các hệ điều hành Unix/Linux .
 - `vi` thường được dùng trong việc chỉnh sửa các file cấu hình trong Linux .
 ### **1.1) Các chế độ làm việc của `vi`**
