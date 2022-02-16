@@ -43,4 +43,5 @@ Stop & Delete Raid:
 ```
 # mdadm --stop /dev/md0` & `mdadm --remove /dev/md0
 ```
-### Tăng dung lượng partition không cần tắt máy https://manhpt.com/2020/12/12/tang-dung-luong-phan-vung-o-cung-tren-linux/
+
+Tăng dung lượng partition không cần tắt máy https://manhpt.com/2020/12/12/tang-dung-luong-phan-vung-o-cung-tren-linux/
