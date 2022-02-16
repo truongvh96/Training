@@ -29,7 +29,7 @@ Có nhiều phiên bản để dùng với lệnh ls như sau:
 - ls -a liệt kê những file ẩn
 - ls -al liệt kê tất cả file và thư mục với thông tin chi tiết như phân quyền, kích thước, chủ sở hữu, vân vân.
 ##### 4. Command cat
-cat là một trong các lệnh cơ bản trong Linux được sử dụng thường xuyên nhất trong Linux. Nó được dùng để xem nội dung file trên output tiêu chuẩn (sdout). Để chạy lệnh này, gõ cat theo sau là tên file và phần mở rộng. Ví dụ: cat file.txt.
+cat là một trong các lệnh cơ bản trong Linux được sử dụng thường xuyên nhất trong Linux. Nó được dùng để xem nội dung file trên output tiêu chuẩn (stdout). Để chạy lệnh này, gõ cat theo sau là tên file và phần mở rộng. Ví dụ: cat file.txt.
 
 Có nhiều cách để sử dụng cat command linux:
 
