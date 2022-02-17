@@ -13,7 +13,7 @@ Một số lệnh thường dùng:
 #### 3. Cách cài đặt Crontab
 Sử dụng lệnh:
 ```
-yum install cronie
+apt install cronie
 ```
 Start crontab và tự động chạy mỗi khi reboot:
 ```
