@@ -808,18 +808,21 @@ B8 : Khai báo sysctl :
 ```
 Sửa file cấu hình /etc/neutron/l3_agent.ini :
 ```
-# crudini --set /etc/neutron/l3_agent.ini DEFAULT interface_driver linuxbridge
+# [DEFAULT]
+interface_driver = linuxbridge
 ```
 Sửa file cấu hình /etc/neutron/dhcp_agent.ini :
 ```
-crudini --set /etc/neutron/metadata_agent.ini DEFAULT interface_driver linuxbridge
-crudini --set /etc/neutron/metadata_agent.ini DEFAULT dhcp_driver neutron.agent.linux.dhcp.Dnsmasq
-crudini --set /etc/neutron/metadata_agent.ini DEFAULT enable_isolated_metadata true
+[DEFAULT]
+interface_driver = linuxbridge
+dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+enable_isolated_metadata = true
 ```
-Sửa file cấu hình /etc/neutron/metadata_agent.ini :
+Sửa file cấu hình ``` vi /etc/neutron/metadata_agent.ini ``` :
 ```
-crudini --set /etc/neutron/metadata_agent.ini DEFAULT nova_metadata_host controller
-crudini --set /etc/neutron/metadata_agent.ini DEFAULT metadata_proxy_shared_secret Welcome123
+[DEFAULT]
+nova_metadata_host = controller
+metadata_proxy_shared_secret = Welcome123
 ```
 B10 : Thiết lập database :
 ```
@@ -850,16 +853,17 @@ B12 : Kiểm tra lại trạng thái dịch vụ :
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
 ```
 #### 2.11.2) Cài đặt Neutron trên các node compute
-B1 : Khai báo bổ sung cho Nova :
+B1 : Khai báo bổ sung cho Nova : ``` vi /etc/nova/nova.conf ```
 ```
-# crudini --set /etc/nova/nova.conf neutron url http://controller:9696
-# crudini --set /etc/nova/nova.conf neutron auth_url http://controller:5000
-# crudini --set /etc/nova/nova.conf neutron auth_type password
-# crudini --set /etc/nova/nova.conf neutron project_domain_name default
-# crudini --set /etc/nova/nova.conf neutron user_domain_name default
-# crudini --set /etc/nova/nova.conf neutron project_name service
-# crudini --set /etc/nova/nova.conf neutron username neutron
-# crudini --set /etc/nova/nova.conf neutron password Welcome123
+# [neutron]
+url = http://controller:9696
+auth_url = http://controller:5000
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = neutron
+password = Welcome123
 ```
 B2 : Cài đặt Neutron :
 ```
@@ -875,21 +879,24 @@ B3 : Sao lưu các file cấu hình của Neutron :
 ```
 B4 : Sửa file cấu hình /etc/neutron/neutron.conf :
 ```
-# crudini --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone
-# crudini --set /etc/neutron/neutron.conf DEFAULT core_plugin ml2
-# crudini --set /etc/neutron/neutron.conf DEFAULT transport_url rabbit://openstack:Welcome123@controller
-# crudini --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_status_changes true
-# crudini --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_data_changes true
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken www_authenticate_uri http://controller:5000
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken auth_url http://controller:5000
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken memcached_servers controller:11211
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken auth_type password
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken project_domain_name default
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken user_domain_name default
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken project_name service
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken username neutron
-# crudini --set /etc/neutron/neutron.conf keystone_authtoken password Welcome123
-# crudini --set /etc/neutron/neutron.conf oslo_concurrency lock_path /var/lib/neutron/tmp
+# [DEFAULT]
+auth_strategy = keystone
+core_plugin = ml2
+transport_url = rabbit://openstack:Welcome123@controller
+notify_nova_on_port_status_changes = true
+notify_nova_on_port_data_changes = true
+# [keystone_authtoken]
+www_authenticate_uri = http://controller:5000
+auth_url = http://controller:5000
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = neutron
+password = Welcome123
+# [oslo_concurrency]
+lock_path = /var/lib/neutron/tmp
 ```
 B5 : Khai báo sysctl :
 ```
@@ -909,15 +916,17 @@ B6 : Sửa file cấu hình /etc/neutron/plugins/ml2/linuxbridge_agent.ini :
 ```
 B7 : Khai báo trong file /etc/neutron/metadata_agent.ini
 ```
-# crudini --set /etc/neutron/metadata_agent.ini DEFAULT nova_metadata_host 10.10.10.41
-# crudini --set /etc/neutron/metadata_agent.ini DEFAULT metadata_proxy_shared_secret Welcome123
+[DEFAULT]
+nova_metadata_host = 10.10.10.41
+metadata_proxy_shared_secret = Welcome123
 ```
 B8 : Khai báo cho file /etc/neutron/dhcp_agent.ini :
 ```
-# crudini --set /etc/neutron/dhcp_agent.ini DEFAULT interface_driver neutron.agent.linux.interface.BridgeInterfaceDriver
-# crudini --set /etc/neutron/dhcp_agent.ini DEFAULT enable_isolated_metadata True
-# crudini --set /etc/neutron/dhcp_agent.ini DEFAULT dhcp_driver neutron.agent.linux.dhcp.Dnsmasq
-# crudini --set /etc/neutron/dhcp_agent.ini DEFAULT force_metadata True
+# [DEFAULT]
+interface_driver = neutron.agent.linux.interface.BridgeInterfaceDriver
+enable_isolated_metadata = True
+dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+force_metadata = True
 ```
 B9 : Khởi động Neutron :
 ```
