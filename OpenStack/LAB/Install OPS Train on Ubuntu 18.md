@@ -650,37 +650,46 @@ B2 : Sao lưu file cấu hình của Nova :
 ```
 B3 : Cấu hình nova :
 ```
-# DEFAULT enabled_apis osapi_compute,metadata
-# DEFAULT transport_url rabbit://openstack:Welcome123@controller
-# DEFAULT my_ip 10.10.10.40
-# DEFAULT use_neutron true
-# DEFAULT firewall_driver nova.virt.firewall.NoopFirewallDriver
-# api_database connection mysql+pymysql://nova:Welcome123@controller/nova_api
-# database connection mysql+pymysql://nova:Welcome123@controller/nova
-# api auth_strategy keystone
-# keystone_authtoken www_authenticate_uri http://controller:5000/
-# keystone_authtoken auth_url http://controller:5000/
-# keystone_authtoken memcached_servers controller:11211
-# keystone_authtoken auth_type password
-# keystone_authtoken project_domain_name default
-# keystone_authtoken user_domain_name default
-# keystone_authtoken project_name service
-# keystone_authtoken username nova
-# keystone_authtoken password Welcome123
-# vnc enabled true
-# vnc server_listen 0.0.0.0
-# vnc server_proxyclient_address \$my_ip
-# vnc novncproxy_base_url http://controller:6080/vnc_auto.html
-# glance api_servers http://controller:9292
-# oslo_concurrency lock_path /var/lib/nova/tmp
-# placement region_name RegionOne
-# placement project_domain_name default
-# placement project_name service
-# placement auth_type password
-# placement user_domain_name default
-# placement auth_url http://controller:5000/v3
-# placement username placement
-# placement password Welcome123
+# [DEFAULT]
+enabled_apis = osapi_compute,metadata
+transport_url = rabbit://openstack:Welcome123@controller
+my_ip = 10.10.10.40
+use_neutron = true
+firewall_driver = nova.virt.firewall.NoopFirewallDriver
+# [api_database] 
+connection = mysql+pymysql://nova:Welcome123@controller/nova_api
+# [database] 
+connection = mysql+pymysql://nova:Welcome123@controller/nova
+# [api] 
+auth_strategy = keystone
+# [keystone_authtoken]
+www_authenticate_uri = http://controller:5000/
+auth_url = http://controller:5000/
+memcached_servers = controller:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = nova
+password = Welcome123
+# [vnc]
+enabled = true
+server_listen = 0.0.0.0
+server_proxyclient_address = $my_ip
+novncproxy_base_url = http://controller:6080/vnc_auto.html
+# [glance] 
+api_servers = http://controller:9292
+# [oslo_concurrency]
+lock_path = /var/lib/nova/tmp
+# [placement]
+region_name = RegionOne
+project_domain_name = default
+project_name = service
+auth_type = password
+user_domain_name = default
+auth_url = http://controller:5000/v3
+username = placement
+password = Welcome123
 ```
 vi /etc/nova/nova-compute.conf
 ```
