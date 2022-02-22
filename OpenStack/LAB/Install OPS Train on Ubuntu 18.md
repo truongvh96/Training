@@ -578,7 +578,8 @@ server_proxyclient_address = $my_ip
 api_servers = http://controller:9292
 # [oslo_concurrency]
 lock_path = /var/lib/nova/tmp
-# [placement] region_name RegionOne
+# [placement]
+region_name = RegionOne
 project_domain_name = default
 project_name = service
 auth_type = password
@@ -803,10 +804,12 @@ B7 : Sửa file cấu hình /etc/neutron/plugins/ml2/linuxbridge_agent.ini :
 ```
 # [linux_bridge]
 physical_interface_mappings = provider:eth0
-# [vxlan]enable_vxlan True
-# vxlan local_ip $(ip addr show dev eth1 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
-# securitygroup enable_security_group True
-# securitygroup firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+# [vxlan]
+enable_vxlan = True
+local_ip = $(ip addr show dev eth1 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
+# [securitygroup]
+enable_security_group = True
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
 B8 : Khai báo sysctl :
 ```
@@ -916,12 +919,15 @@ B5 : Khai báo sysctl :
 ```
 B6 : Sửa file cấu hình /etc/neutron/plugins/ml2/linuxbridge_agent.ini :
 ```
-# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini linux_bridge physical_interface_mappings provider:eth0
-# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan enable_vxlan True
-# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan local_ip $(ip addr show dev eth1 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
-# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan l2_population True
-# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini securitygroup enable_security_group True
-# crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+#[linux_bridge]
+physical_interface_mappings = provider:eth0
+#[vxlan]
+enable_vxlan = True
+local_ip = $(ip addr show dev eth1 scope global | grep "inet " | sed -e 's#.*inet ##g' -e 's#/.*##g')
+l2_population = True
+#[securitygroup]
+enable_security_group = True
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
 B7 : Khai báo trong file /etc/neutron/metadata_agent.ini
 ```
