@@ -1,0 +1,6 @@
+- name: "Add route Ubuntu 18"
+  lineinfile:
+    path: /etc/netplan/00-installer-config.yaml
+    line: "      routes:\n        - to: {{ to_net }} \n          via: {{ via_gw }}"
+    insertafter: "{{ interface_u18 }} && {{ dhcp }} && {{ ip }}"
+  
