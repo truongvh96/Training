@@ -8,4 +8,7 @@ Cái này cũng khá nhiều nhưng về cơ bản thì có các phần sau:
 - **Tasks** - Là những công việc nhỏ trong cuốn sổ Playbooks trên
 - **Inventory** - Khai báo địa chỉ server cần được setup
 - **Modules** - Những chức năng hỗ trợ cho việc thực thi tasks dễ và đang dạng
-v.v…
+- **Role** : Một tập hợp các Playbook, các template và các file khác, được tổ chức theo cách được xác định trước để tạo điều kiện tái sử dụng và chia sẻ.
+- **Vars**: 
+  - Host vars: đặt các biến riêng cho từng host
+  - group_vars: đặt các biến chung cho cùng 1 nhóm, ví dụ [webservers] có biến listen_port: 80
