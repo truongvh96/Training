@@ -1,0 +1,11 @@
+### Variable for Centos
+interface_cent: eth0
+list_route_cent: 
+  - "122.16.254.0/24 via 172.16.29.1"
+  - "172.16.1.0/24 via 172.16.6.1"
+### Variable for Ubuntu 18
+interface_u18: eth0
+dhcp: dhcp4 
+ip: addresses 
+to_net: "172.16.2.0/24"
+via_gw: "172.16.6.1" 
