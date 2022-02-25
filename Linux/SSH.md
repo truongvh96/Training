@@ -38,6 +38,7 @@ truong@dell:~/.ssh$ ssh-add ~/.ssh/id_rsa
 Enter passphrase for /home/truong/.ssh/id_rsa: 
 Identity added: /home/truong/.ssh/id_rsa (/home/truong/.ssh/id_rsa)
 ##### 3. SSH Agent Forwarding
+
 Được sử dụng để forward key SSH thông qua 1 server trung gian (SSH Agent Server)
 
 VD: Có 01 Web Server có thể truy cập từ Internet và 02 Database Server - Miền Internal chỉ có IP Private thông tới Web Server .
@@ -53,9 +54,13 @@ Khi có request SSH từ Web Server tới những Database Server này sẽ hỏ
 Cấu hình trên máy Client
 
 Sửa file ~/.ssh/config thêm dòng sau
+
 Host 192.168.254.240 #IP Web Server
+
   ForwardAgent yes
-Hoặc có thể chạy trực tiếp lệnh : ssh -A user@192.168.254.240
+  
+Hoặc có thể chạy trực tiếp lệnh : ``` ssh -A user@192.168.254.240 ```
+
 Từ đây Web Server có thể SSH tới các Database Server (với điều kiện trên Database Server cần phải có Public Key kh Client).
 ##### 4. SCP
 Sử dụng secure copy để truyền file trong network được mã hoá VD:
