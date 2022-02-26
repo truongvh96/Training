@@ -1,5 +1,2 @@
 [ubuntu]
 ubuntu-18 ansible_host=172.16.6.70 ansible_ssh_user=root
-ubuntu-18 ansible_host=172.16.6.69 ansible_ssh_user=root
-[centos]
-centos-7 ansible_host=172.16.6.68 ansible_ssh_user=root
