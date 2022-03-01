@@ -13,13 +13,13 @@ Ví dụ:
 ```
 ansible-vault create vault.yml
 ```
-Bạn sẽ được yêu cầu nhập và xác nhận password.
+Sẽ được yêu cầu nhập và xác nhận password.
 
 Để kiểm tra chức năng mã hóa, hãy nhập một số văn bản kiểm tra:
 
 Secret information 
 
-Ansible sẽ mã hóa nội dung khi bạn đóng file . Nếu bạn kiểm tra file , thay vì nhìn thấy các từ bạn đã nhập, bạn sẽ thấy một khối được mã hóa:
+Ansible sẽ mã hóa nội dung khi đóng file . Nếu kiểm tra file , thay vì nhìn thấy các từ đã nhập, sẽ thấy một khối được mã hóa:
 
 cat vault.yml
 ```
@@ -42,7 +42,7 @@ cat encrypt_me.txt
 Output
 $ANSIBLE_VAULT;1.1;AES256 66633936653834616130346436353865303665396430383430353366616263323161393639393136 3737316539353434666438373035653132383434303338640a396635313062386464306132313834 34313336313338623537333332356231386438666565616537616538653465333431306638643961 3636663633363562320a613661313966376361396336383864656632376134353039663662666437 39393639343966363565636161316339643033393132626639303332373339376664
 ```
-Như bạn thấy , Ansible mã hóa nội dung hiện có giống như cách nó mã hóa các file mới.
+Ansible mã hóa nội dung hiện có giống như cách nó mã hóa các file mới.
 
 Xem file được mã hóa:
 ```
@@ -83,7 +83,7 @@ ansible-vault rekey encrypt_me.txt
 
 #### Chạy Ansible với các file được mã hóa Vault
 
-Cách đơn giản nhất để giải mã nội dung trong thời gian chạy là Ansible nhắc bạn về thông tin đăng nhập thích hợp. Bạn có thể thực hiện việc này bằng cách thêm --ask-vault-pass vào bất kỳ ansible hoặc ansible-playbook . Ansible sẽ nhắc bạn nhập password mà nó sẽ sử dụng để cố gắng giải mã mọi nội dung được bảo vệ bởi vault mà nó tìm thấy.
+Cách đơn giản nhất để giải mã nội dung trong thời gian chạy là Ansible nhắc về thông tin đăng nhập thích hợp. có thể thực hiện việc này bằng cách thêm --ask-vault-pass vào bất kỳ ansible hoặc ansible-playbook . Ansible sẽ nhắc nhập password mà nó sẽ sử dụng để cố gắng giải mã mọi nội dung được bảo vệ bởi vault mà nó tìm thấy.
 
 Ví dụ:
 ```
@@ -113,7 +113,7 @@ Sẽ không được yêu cầu nhập password Vault lần này.
 ```
 export ANSIBLE_VAULT_PASSWORD_FILE=./.vault_pass
 ```
-Đến đây bạn có thể thực thi lệnh mà không có --vault-password-file cho phiên hiện tại:
+Đến đây có thể thực thi lệnh mà không có --vault-password-file cho phiên hiện tại:
 ```
 ansible -bK -m copy -a 'src=secret_key dest=/tmp/secret_key mode=0600 owner=root group=root' localhost 
 ```
@@ -146,7 +146,7 @@ export VAULT_PASSWORD=my_vault_password
 
 #### Sử dụng các biến được mã hóa bằng Vault với các biến thông thường
 
-Trong khi Ansible Vault được dùng với các file tùy ý, nó thường được sử dụng để bảo vệ các biến nhạy cảm. Ta sẽ làm việc thông qua một ví dụ để chỉ cho bạn cách chuyển đổi file biến thông thường thành một cấu hình cân bằng giữa bảo mật và khả năng sử dụng.
+Trong khi Ansible Vault được dùng với các file tùy ý, nó thường được sử dụng để bảo vệ các biến nhạy cảm. Ta sẽ làm việc thông qua một ví dụ để chỉ cho cách chuyển đổi file biến thông thường thành một cấu hình cân bằng giữa bảo mật và khả năng sử dụng.
 
 Giả sử rằng đang cấu hình một server database . Khi tạo file hosts trước đó, đã đặt mục nhập localhost trong một group có tên là database để chuẩn bị cho bước này.
 
@@ -184,7 +184,7 @@ Với phương pháp này, có thể hiểu tất cả các biến sẽ được
 
 Có thể kiểm tra đảm bảo rằng tất cả các biến mysql_* vẫn được áp dụng chính xác bằng cách sử dụng cùng một phương pháp như lần trước.
 
-Lưu ý: Nếu password Vault của bạn không được tự động áp dụng với file password , hãy thêm cờ --ask-vault-pass vào lệnh bên dưới.
+Lưu ý: Nếu password Vault không được tự động áp dụng với file password , hãy thêm cờ --ask-vault-pass vào lệnh bên dưới.
 
 ansible -m debug -a 'var=hostvars[inventory_hostname]' database 
 
