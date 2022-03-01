@@ -169,59 +169,23 @@ ansible -m debug -a 'var=hostvars[inventory_hostname]' database
 
 Đầu ra xác nhận tất cả các biến ta cài đặt đều được áp dụng cho server . Tuy nhiên, group_vars/database của ta hiện đang chứa tất cả các biến của ta . Điều này nghĩa là ta có thể để nó không được mã hóa, đây là một mối lo ngại về bảo mật do biến password database hoặc ta mã hóa tất cả các biến, điều này tạo ra các vấn đề về khả năng sử dụng và cộng tác.
 
-#### Di chuyển các biến nhạy cảm vào Ansible Vault
-
-Để giải quyết vấn đề này, ta cần phải phân biệt giữa các biến nhạy cảm và không nhạy cảm. Ta sẽ có thể mã hóa các giá trị bí mật và đồng thời dễ dàng chia sẻ các biến vô nghĩa của ta . Để làm như vậy, ta sẽ chia các biến của ta giữa hai file .
-
-Có thể sử dụng thư mục biến thay cho tệp biến Ansible để áp dụng các biến từ nhiều file . Ta có thể tái cấu trúc để tận dụng khả năng đó. Đầu tiên, đổi tên file hiện có từ database thành vars . Đây sẽ là file biến không được mã hóa của ta :
-
-mv group_vars/database group_vars/vars 
-Tiếp theo, tạo một folder có cùng tên với file biến cũ. Di chuyển file vars vào bên trong:
-
-mkdir group_vars/database 
-mv group_vars/vars group_vars/database/ 
-Bây giờ ta có một folder biến cho group database thay vì một file duy nhất và ta có một file biến duy nhất không được mã hóa. Vì ta sẽ mã hóa các biến nhạy cảm của bạn , ta nên xóa chúng khỏi file không được mã hóa của bạn . Chỉnh sửa group_vars/database/vars để xóa dữ liệu bí mật:
-
-nano group_vars/database/vars 
-Trong trường hợp này, ta muốn xóa biến mysql_password . Tệp bây giờ sẽ trông như thế này:
-
+#### Tham chiếu các biến Vault từ các biến không được mã hóa
+```
+vi group_vars/database/vars
+```
+Thêm lại biến mysql_password. Sử dụng Jinja2 templating để tham chiếu đến biến được xác định trong file được bảo vệ bởi vault:
+```
 group_vars / database / vars
---- # nonsensitive data mysql_port: 3306 mysql_host: 10.0.0.3 mysql_user: fred 
-Tiếp theo, tạo một file được mã hóa vault trong folder sẽ nằm cùng với file vars không được mã hóa:
-
-ansible-vault create group_vars/database/vault 
-Trong file này, xác định các biến nhạy cảm đã từng có trong file vars . Sử dụng các tên biến giống nhau, nhưng thêm vào trước chuỗi vault_ để cho biết các biến này được xác định trong file được bảo vệ bởi vault:
-
-group_vars / database / vault
---- vault_mysql_password: supersecretpassword 
-Lưu file khi bạn hoàn tất.
-
-Cấu trúc folder kết quả trông như sau:
-
-. ├── . . . ├── group_vars/ │   └── database/ │       ├── vars │       └── vault └── . . . 
-Đến đây, các biến là riêng biệt và chỉ có dữ liệu bí mật được mã hóa. Điều này là an toàn, nhưng việc triển khai của ta đã ảnh hưởng đến khả năng sử dụng của ta . Mặc dù mục tiêu của ta là bảo vệ các giá trị nhạy cảm, ta cũng đã vô tình làm giảm khả năng hiển thị đối với các tên biến thực tế. Không rõ biến nào được gán mà không tham chiếu đến nhiều file và trong khi bạn có thể cần hạn chế quyền truy cập vào dữ liệu bí mật trong khi cộng tác, bạn vẫn có thể cần chia sẻ tên biến.
-
-Để giải quyết vấn đề này, dự án Ansible thường đề xuất một cách tiếp cận hơi khác.
-
-Tham chiếu các biến Vault từ các biến không được mã hóa
-Khi ta di chuyển dữ liệu nhạy cảm của bạn sang file được bảo vệ bởi vault, ta đã đặt trước tên biến bằng vault_ ( mysql_password trở thành vault_mysql_password ). Ta có thể thêm các tên biến ban đầu ( mysql_password ) trở lại file không được mã hóa. Thay vì đặt chúng thành các giá trị nhạy cảm trực tiếp, ta có thể sử dụng các câu lệnh tạo mẫu Jinja2 để tham chiếu các tên biến được mã hóa từ bên trong file biến không được mã hóa của ta . Bằng cách này, bạn có thể xem tất cả các biến đã xác định bằng cách tham chiếu đến một file duy nhất, nhưng các giá trị bí mật sẽ vẫn còn trong file được mã hóa.
-
-Để chứng minh, hãy mở lại file biến không được mã hóa:
-
-nano group_vars/database/vars 
-Thêm lại biến mysql_password . Lần này, sử dụng Jinja2 templating để tham chiếu đến biến được xác định trong file được bảo vệ bởi vault:
-
-group_vars / database / vars
---- # nonsensitive data mysql_port: 3306 mysql_host: 10.0.0.3 mysql_user: fred  # sensitive data mysql_password: "{{ vault_mysql_password }}" 
+--- # nonsensitive data mysql_port: 3306 mysql_host: 10.0.0.3 mysql_user: fred  # sensitive data mysql_password: "{{ vault_mysql_password }}"
+```
 Biến mysql_password sẽ được đặt thành giá trị của biến vault_mysql_password , được xác định trong file vault.
 
-Với phương pháp này, bạn có thể hiểu tất cả các biến sẽ được áp dụng cho các server trong group database bằng cách xem group_vars/database/vars . Những phần nhạy cảm sẽ bị che khuất bởi Jinja2 templating. group_vars/database/vault chỉ cần được mở khi bản thân các giá trị cần được xem hoặc thay đổi.
+Với phương pháp này, có thể hiểu tất cả các biến sẽ được áp dụng cho các server trong group database bằng cách xem group_vars/database/vars . Những phần nhạy cảm sẽ bị che khuất bởi Jinja2 templating. group_vars/database/vault chỉ cần được mở khi bản thân các giá trị cần được xem hoặc thay đổi.
 
-Bạn có thể kiểm tra đảm bảo rằng tất cả các biến mysql_* vẫn được áp dụng chính xác bằng cách sử dụng cùng một phương pháp như lần trước.
+Có thể kiểm tra đảm bảo rằng tất cả các biến mysql_* vẫn được áp dụng chính xác bằng cách sử dụng cùng một phương pháp như lần trước.
 
 Lưu ý: Nếu password Vault của bạn không được tự động áp dụng với file password , hãy thêm cờ --ask-vault-pass vào lệnh bên dưới.
 
 ansible -m debug -a 'var=hostvars[inventory_hostname]' database 
-Output
-localhost | SUCCESS => {     "hostvars[inventory_hostname]": {         "ansible_check_mode": false,          "ansible_version": {             "full": "2.2.0.0",              "major": 2,              "minor": 2,              "revision": 0,              "string": "2.2.0.0"         },          "group_names": [             "database"         ],          "groups": {             "all": [                 "localhost"             ],              "database": [                 "localhost"             ],              "ungrouped": []         },          "inventory_dir": "/home/sammy/vault",          "inventory_file": "./hosts",          "inventory_hostname": "localhost",          "inventory_hostname_short": "localhost",          "mysql_host": "10.0.0.3",         "mysql_password": "supersecretpassword",         "mysql_port": 3306,         "mysql_user": "fred",         "omit": "__omit_place_holder__6dd15dda7eddafe98b6226226c7298934f666fc8",          "playbook_dir": ".",          "vault_mysql_password": "supersecretpassword"     } } 
-Cả vault_mysql_password và mysql_password đều có thể truy cập được. Việc sao chép này là vô hại và sẽ không ảnh hưởng đến việc bạn sử dụng hệ thống này.
+
+Cả vault_mysql_password và mysql_password đều có thể truy cập được. Việc sao chép này là vô hại và sẽ không ảnh hưởng đến việc sử dụng hệ thống này.
