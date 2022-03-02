@@ -1,0 +1,32 @@
+---
+- name: Install MySQL repo
+  yum:
+         name: http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+         state: present
+- name: Install Mysql
+  become: true
+  yum:
+          name: "{{ item }}"
+          state: present
+          update_cache: yes
+  with_items:
+          - MySQL-python
+          - mysql-server
+  notify: start mysqld
+
+- name: Output new root  password
+  debug:
+          msg: "{{ mysql_root_pass }}"
+
+- name: Remove anonymous users
+  mysql_user:
+          name: ''
+          host_all: yes
+          state: absent
+
+- name: Remove the test database
+  mysql_db:
+          name: test
+          state: absent
+  notify:
+          - restart mysqld
