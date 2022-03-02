@@ -1,0 +1,5 @@
+[mysql]
+mysql1 ansible_ssh_host=172.16.6.70
+mysql2 ansible_ssh_host=172.16.6.71
+[centos7]
+mysql3 ansible_ssh_host=172.16.6.25
