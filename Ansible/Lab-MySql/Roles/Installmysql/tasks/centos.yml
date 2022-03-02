@@ -1,5 +1,5 @@
 ---
-- name: Install MySQL repo
+- name: Install MySQL
   yum:
          name: http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
          state: present
