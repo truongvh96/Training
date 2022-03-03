@@ -39,4 +39,4 @@
     <img src=https://i.imgur.com/wMXLKUq.jpg>
 
 ## 3) **So sánh Mô hình OSI - TCP/IP**
-![image](https://user-images.githubusercontent.com/97424062/156519399-4414ba57-1c12-4154-88c7-e1b96d6954d9.png)
+![image](https://user-images.githubusercontent.com/97424062/156519876-594296de-0fde-4c51-83c0-b6b9f1ba5f6c.png)
