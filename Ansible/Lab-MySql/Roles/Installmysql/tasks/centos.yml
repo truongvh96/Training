@@ -1,33 +1,35 @@
 ---
-- name: Install MySQL
+- name: Install MySQL repo
   yum:
-         name: http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+         name: http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
          state: present
-- name: Install Mysql
-  become: true
+- name: Import GPG
+  shell: rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+
+- name: Install MySql DB
   yum:
           name: "{{ item }}"
           state: present
-          update_cache: yes
   with_items:
-          - MySQL-python
           - mysql-server
+          - MySQL-python
+  notify: start mysqld
+
 - name: update Mysql root pass for all root acc
   mysql_user:
+          login_host: 'localhost'
+          login_user: 'root'
+          login_password: 'P@ssword001'
           name: root
-          host: "{{ item }}"
           password: "{{ mysql_root_pass }}"
           state: present
-  with_items:
-          - "{{ ansible_hostname }}"
-          - 172.0.0.1
-          - ::1
-          - localhost
+
 - name: Copy the root credentials as my.cnf file
   template:
           src: root.cnf.j2
           dest: ~/.my.cnf
           mode: 0600
+
 - name: Ensure anonymous user are not in the database
   mysql_user:
           name: ''
@@ -36,9 +38,10 @@
   with_items:
           - localhost
           - "{{ ansible_hostname }}"
+
 - name: Remove the test database
   mysql_db:
           name: test
           state: absent
   notify:
-          - restart mysql
+          - restart mysqld
