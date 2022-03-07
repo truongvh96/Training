@@ -1,6 +1,6 @@
 - Starup Script Linux là Quá trình khởi động Linux sẽ có sự khác nhau giữa các Distro.
 - Ở trong giai đoạn khởi động, user có thể đặt các script autostart hoặc program có thể là 1 command hoặc 1 chuỗi command hoặc một shell script (.sh) Các phiên bản Linux mới sẽ boot vào systemd, với các phiên bản cũ là System V Init.
-- Cả 2 phương thức trên đều sẽ chạy cron và rc.local trước khi GNOME hoặc KDE được load.
+- Cả 2 phương thức trên đều sẽ chạy **cron** và **rc.local** trước khi GNOME hoặc KDE được load.
 
  #### 1. Startup Program với Systemd
  
