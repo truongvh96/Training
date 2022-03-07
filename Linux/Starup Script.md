@@ -121,7 +121,7 @@ Nếu rc-local.service được chạy thì trạng thái sẽ báo như b�
 Nov 04 13:29:54 nixcraft-wks01 systemd[1]: Starting /etc/rc.local Compatibility
 Nov 04 13:29:54 nixcraft-wks01 systemd[1]: Started /etc/rc.local Compatibility.
 ```
-### Hiển thị các cài đặt của dịch vụ
+##### Hiển thị các cài đặt của dịch vụ
 
 Để xem các cài đặt của dịch vụ, bạn có thể sử dụng systemctl như sau:
 ```
