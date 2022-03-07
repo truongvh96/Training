@@ -1,6 +1,5 @@
 # Cấu trúc File System trên Linux
 <img src=https://i.imgur.com/atXWYl3.png>
-<p align=center><i>Hệ thống File System trên CentOS 7</i></p>
 
 <p align=center><img src=https://i.imgur.com/vn9yU7K.png></p>
 
@@ -83,11 +82,7 @@
 - Thư mục này có vai trò như đích đến của quá trình ***mount point*** . Khi gắn 1 thiết bị lưu trữ bên ngoài , để sử dụng cần ***mount*** thiết bị này vào 1 thư mục trong `/media` , từ đó , các thư mục , tập tin sẽ được chuyển vào đây ( lúc này `/media` có thể coi như ảnh chiếu của các thiết bị ) .
 ## **16) `/mnt` - mount inside device**
 - Đây là thư mục tạm để mount các file hệ thống . <br>**VD :** `# mount /dev/sda2 /mnt`
-## **17) `/srv` - system services's data**
-
-## **18) `/run` -**
-
-## **19) `/sys` - system files**
+## **17) `/sys` - system files**
 - Lưu các tập tin của hệ thống .
 > ## **Đường dẫn tuyệt đối và đường dẫn tương đối**
 - ***Đường dẫn tuyệt đối*** là đường dẫn chỉ ra vị trí chính xác của file và thư mục . Đường dẫn tuyệt đối sẽ được khai báo bắt đầu bởi ký tự `/` rồi đến thư mục con ...<br>   **VD :** `#cd /etc/sysconfig`
