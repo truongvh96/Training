@@ -81,6 +81,7 @@
 ## **15) `/media` - mount outside devices**
 - Thư mục này có vai trò như đích đến của quá trình ***mount point*** . Khi gắn 1 thiết bị lưu trữ bên ngoài , để sử dụng cần ***mount*** thiết bị này vào 1 thư mục trong `/media` , từ đó , các thư mục , tập tin sẽ được chuyển vào đây ( lúc này `/media` có thể coi như ảnh chiếu của các thiết bị ) .
 ## **16) `/mnt` - mount inside device**
+- Gắn kết các thư mục hệ thống tạm thời (thư mục Temporary) nơi Sysadmins có thể gắn kết các file hệ thống.
 - Đây là thư mục tạm để mount các file hệ thống . <br>**VD :** `# mount /dev/sda2 /mnt`
 ## **17) `/sys` - system files**
 - Lưu các tập tin của hệ thống .
