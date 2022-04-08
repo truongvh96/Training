@@ -20,4 +20,6 @@
 
 # 2. Cài đặt
 
-<a href="https://icinga.com/docs/icinga-2/latest/doc/02-installation/02-Ubuntu/">Xem tại đây!</a>
+<a href="https://www.howtoforge.com/how-to-install-icinga-2-monitoring-on-ubuntu-20-04/">Xem tại đây!</a>
+
+Lưu ý: mở port 5665
