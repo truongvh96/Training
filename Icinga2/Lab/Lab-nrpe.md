@@ -17,7 +17,7 @@
 
 - Chạy `wizard node`
 ```sh
-root@quynv:~# icinga2 node wizard
+root@master:~# icinga2 node wizard
 Welcome to the Icinga 2 Setup Wizard!
 
 We will guide you through all required configuration details.
@@ -26,10 +26,10 @@ Please specify if this is an agent/satellite setup ('n' installs a master setup)
 
 Starting the Master setup routine...
 
-Please specify the common name (CN) [quynv]:
+Please specify the common name (CN) [master]:
 Reconfiguring Icinga...
-Checking for existing certificates for common name 'quynv'...
-Certificate '/var/lib/icinga2/certs//quynv.crt' for CN 'quynv' already existing.                                                                                                              Skipping certificate generation.
+Checking for existing certificates for common name 'master'...
+Certificate '/var/lib/icinga2/certs//master.crt' for CN 'master' already existing.                                                                                                              Skipping certificate generation.
 Generating master configuration for Icinga 2.
 'api' feature already enabled.
 
@@ -52,8 +52,8 @@ Now restart your Icinga 2 daemon to finish the installation!
 
 - Khởi động lại icinga2 và tạo ticket client cho node satellite
 ```sh
-root@quynv:~# systemctl restart icinga2.service
-root@quynv:~# icinga2 pki ticket --cn "satellite"
+root@master:~# systemctl restart icinga2.service
+root@master:~# icinga2 pki ticket --cn "satellite"
 7a6dabea07cd37514ab142ed55030c11a242af9d
 ```
 
@@ -75,7 +75,7 @@ Starting the Agent/Satellite setup routine...
 Please specify the common name (CN) [satellite]:
 
 Please specify the parent endpoint(s) (master or satellite) where this node should connect to:
-Master/Satellite Common Name (CN from your master/satellite node): quynv
+Master/Satellite Common Name (CN from your master/satellite node): master
 
 Do you want to establish a connection to the parent node from this node? [Y/n]: y
 Please specify the master/satellite connection information:
@@ -86,14 +86,14 @@ Add more master/satellite endpoints? [y/N]: n
 Parent certificate information:
 
  Version:             3
- Subject:             CN = quynv
+ Subject:             CN = master
  Issuer:              CN = Icinga CA
  Valid From:          Feb 17 07:57:36 2022 GMT
  Valid Until:         Feb 13 07:57:36 2037 GMT
  Serial:              cb:ad:a4:bf:0e:df:d0:6f:86:f2:16:0e:19:f9:30:d6:9b:03:34:71
 
  Signature Algorithm: sha256WithRSAEncryption
- Subject Alt Names:   quynv
+ Subject Alt Names:   master
  Fingerprint:         CF 6C E6 50 CA C2 FD 81 90 B5 C5 02 2D 42 31 FD 58 80 BC E1 E3 E1 A0 AE 18 E7 8E 84 06 FE 25 12
 
 Is this information correct? [y/N]: y
@@ -160,7 +160,7 @@ root@client:~# systemctl restart nagios-nrpe-server.service
 ## 4. Cấu hình giám sát node agent trên node master
 - Cấu hình CheckCommand cho `nrpe`
 ```sh
-root@quynv:/etc/icinga2/zones.d/satellite# vim /usr/share/icinga2/include/command-plugins.conf
+root@master:/etc/icinga2/zones.d/satellite# vim /usr/share/icinga2/include/command-plugins.conf
 
 object CheckCommand "nrpe" {
         import "ipv4-or-ipv6"
@@ -246,7 +246,7 @@ object CheckCommand "nrpe" {
 - Thêm cấu hình của zone `agent`
 
 ```sh
-root@quynv:/etc/icinga2/zones.d/satellite# vim agent.conf
+root@master:/etc/icinga2/zones.d/satellite# vim agent.conf
 
 object Zone "agent" {
   endpoints = [ "agent" ]
@@ -260,7 +260,7 @@ object Endpoint "agent" {
 ```
 - Thêm cấu hình host `agent`
 ```sh
-root@quynv:/etc/icinga2/zones.d/satellite# vim hosts.conf
+root@master:/etc/icinga2/zones.d/satellite# vim hosts.conf
 
 object Host "agent" {
   check_command = "hostalive"
@@ -270,7 +270,7 @@ object Host "agent" {
 ```
 - Thêm cấu hình dịch vụ cho zone `satellite`
 ```sh
-root@quynv:/etc/icinga2/zones.d/satellite# vim service.conf
+root@master:/etc/icinga2/zones.d/satellite# vim service.conf
 
 apply Service "nrpe-load" {
   check_command = "nrpe"
@@ -287,11 +287,11 @@ apply Service "Memory" {
 ```
 - Kiểm tra cấu hình và khởi động lại icinga2
 ```sh
-root@quynv:/etc/icinga2/zones.d/satellite# icinga2 daemon -C
+root@master:/etc/icinga2/zones.d/satellite# icinga2 daemon -C
 [2022-02-24 10:21:38 +0000] information/cli: Icinga application loader (version: r2.13.2-1)
 [2022-02-24 10:21:38 +0000] information/cli: Loading configuration file(s).
 [2022-02-24 10:21:38 +0000] information/ConfigItem: Committing config item(s).
-[2022-02-24 10:21:38 +0000] information/ApiListener: My API identity: quynv
+[2022-02-24 10:21:38 +0000] information/ApiListener: My API identity: master
 [2022-02-24 10:21:38 +0000] information/ConfigItem: Instantiated 1 IcingaApplication.
 [2022-02-24 10:21:38 +0000] information/ConfigItem: Instantiated 1 Host.
 [2022-02-24 10:21:38 +0000] information/ConfigItem: Instantiated 1 FileLogger.
@@ -306,7 +306,7 @@ root@quynv:/etc/icinga2/zones.d/satellite# icinga2 daemon -C
 [2022-02-24 10:21:38 +0000] information/ConfigItem: Instantiated 1 Service.
 [2022-02-24 10:21:38 +0000] information/ScriptGlobal: Dumping variables to file '/var/cache/icinga2/icinga2.vars'
 [2022-02-24 10:21:38 +0000] information/cli: Finished validating the configuration file(s).
-root@quynv:/etc/icinga2/zones.d/satellite# systemctl restart icinga2.service
+root@master:/etc/icinga2/zones.d/satellite# systemctl restart icinga2.service
 ```
 
 - Kiểm tra trên Dashboard
