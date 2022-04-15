@@ -417,7 +417,6 @@ root@master:/etc/icinga2/zones.d/satellite# systemctl restart icinga2
 
 
 <img src="https://github.com/lean15998/Monitoring_openstack/blob/main/image/002.png">
-<img src="https://github.com/lean15998/Monitoring_openstack/blob/main/image/003.png">
 
 
 
