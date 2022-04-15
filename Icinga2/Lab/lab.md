@@ -548,8 +548,6 @@ root@master:/etc/icinga2/zones.d/satellite# systemctl restart icinga2.service
 
 <img src = "https://github.com/lean15998/Monitoring_openstack/blob/main/image/006.png">
 
-<img src = "https://github.com/lean15998/Monitoring_openstack/blob/main/image/007.png">
-
 
 # Triển khai TIG stack
 
