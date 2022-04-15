@@ -109,7 +109,7 @@ Parent certificate information:
  Serial:              cb:ad:a4:bf:0e:df:d0:6f:86:f2:16:0e:19:f9:30:d6:9b:03:34:71
 
  Signature Algorithm: sha256WithRSAEncryption
- Subject Alt Names:   quynv
+ Subject Alt Names:   master
  Fingerprint:         CF 6C E6 50 CA C2 FD 81 90 B5 C5 02 2D 42 31 FD 58 80 BC E1 E3 E1 A0 AE 18 E7 8E 84 06 FE 25 12
 
 Is this information correct? [y/N]: y
@@ -434,7 +434,7 @@ Enabled features: api checker ido-mysql mainlog notification
 - Cài đặt mailutils và sSMTP (Trình gửi mail)
 
 ```sh
-root@quynv:~# apt install -y mailutils ssmtp
+root@master:~# apt install -y mailutils ssmtp
 ```
 
 - Cấu hình ssmtp
@@ -560,35 +560,35 @@ root@master:/etc/icinga2/zones.d/satellite# systemctl restart icinga2.service
 - Add repo influxdata
 
 ```sh
-root@quynv:~# wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add -
+root@master:~# wget -qO- https://repos.influxdata.com/influxdb.key | apt-key add -
 OK
-root@quynv:~# source /etc/lsb-release
-root@quynv:~# echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | tee /etc/apt/sources.list.d/influxdb.list
+root@master:~# source /etc/lsb-release
+root@master:~# echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | tee /etc/apt/sources.list.d/influxdb.list
 deb https://repos.influxdata.com/ubuntu focal stable
-root@quynv:~# apt update 
+root@master:~# apt update 
 ```
 
 - Cài đặt influxdb
 
 ```sh
-root@quynv:~# apt install influxdb -y
+root@master:~# apt install influxdb -y
 ```
 
 - Khởi động dịch vụ và cấu hình khởi động cùng hệ thống:
 
 
 ```sh
-root@quynv:~# systemctl start influxdb
-root@quynv:~# systemctl enable influxdb
+root@master:~# systemctl start influxdb
+root@master:~# systemctl enable influxdb
 ```
 
 - Mở port cho influxdb
 
 ```sh
-root@quynv:~# ufw allow 8086
+root@master:~# ufw allow 8086
 Rules updated
 Rules updated (v6)
-root@quynv:~# ufw allow 8088
+root@master:~# ufw allow 8088
 Rules updated
 Rules updated (v6)
 ```
@@ -596,7 +596,7 @@ Rules updated (v6)
 - Cấu hình influxdb
 
 ```sh
-root@quynv:~# vi /etc/influxdb/influxdb.conf
+root@master:~# vi /etc/influxdb/influxdb.conf
 
 [http]
 # Determines whether HTTP endpoint is enabled.
@@ -615,7 +615,7 @@ log-enabled = true
 - Tạo user chứng thực
 
 ```sh
-root@quynv:~# influx
+root@master:~# influx
 Connected to http://localhost:8086 version 1.8.10
 InfluxDB shell version: 1.8.10
 > create database telegraf
@@ -681,23 +681,23 @@ password = "lean15998"
 - Add repo và cài đặt grafana
 
 ```sh
-root@quynv:~# wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
+root@master:~# wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
 OK
-root@quynv:~# add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
-root@quynv:~# apt-get install -y grafana
+root@master:~# add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+root@master:~# apt-get install -y grafana
 ```
   
 - Khởi động dịch vụ và cấu hình khởi động cùng hệ thống  
   
 ```sh
-root@quynv:~# systemctl start grafana-server
-root@quynv:~# systemctl enable grafana-server
+root@master:~# systemctl start grafana-server
+root@master:~# systemctl enable grafana-server
 ```
   
 - Mở port cho grafana
 
 ```sh
-root@quynv:~# ufw allow 3000
+root@master:~# ufw allow 3000
 Rules updated
 Rules updated (v6)
 ```
