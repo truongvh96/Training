@@ -49,7 +49,7 @@ Certificate '/var/lib/icinga2/certs//master.crt' for CN 'master' already existin
 Generating master configuration for Icinga 2.
 'api' feature already enabled.
 
-Master zone name [master]:
+Master zone name [master]: master
 
 Default global zones: global-templates director-global
 Do you want to specify additional global zones? [y/N]: n
