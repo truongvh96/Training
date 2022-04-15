@@ -28,7 +28,7 @@
                 +-----------+-----------+    +-----------------------+    +-----------------------+     +-----------------------+
                        
 # Triển khai icinga2
-
+Cafi ddajt Icinga2 : https://www.howtoforge.com/how-to-install-icinga-2-monitoring-on-ubuntu-20-04/
 ## 1. Thiết lập trên node master 
 
 - Chạy `wizard node`
