@@ -184,7 +184,7 @@ root@controller:~# systemctl restart nagios-nrpe-server.service
 ## 4. Cấu hình giám sát node controller và compute trên node master
 
 - Cài đặt nrpe plugin
-
+Lưu ý: Cài trên cả Satellite
 ```sh
 root@master:~# apt install nagios-nrpe-plugin
 ```
@@ -387,6 +387,7 @@ apply Service "Disk" {
   assign where host.zone == "satellite" && host.address
 }
 ```
+Lưu ý: Coppy cả 2 file comman và template từ conf.d sang zones.d/satellite
 
 - Kiểm tra cấu hình và khởi động lại icinga2
 ```sh
