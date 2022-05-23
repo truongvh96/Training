@@ -1,1 +1,14 @@
-
+---
+- name: Install Nginx Centos7
+  become: true
+  
+  - name: Add epel-release repo
+    yum:
+      name: epel-release
+      state: present
+      
+   - name: Install nginx centos 7
+     yum:
+       name: nginx
+       state: present
+   - notify: restart nginx
