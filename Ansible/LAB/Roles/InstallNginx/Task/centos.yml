@@ -11,4 +11,4 @@
      yum:
        name: nginx
        state: present
-   - notify: restart nginx
+   - notify: Restart Nginx
