@@ -22,8 +22,8 @@
     # yum install -y git         ( CentOS )
 - **B2 :** Cài đặt thông tin user **Git** :
     ```
-    $ git config --global user.name "QuocCuong97"
-    $ git config --global user.email "cuongnq24101997@gmail.com"
+    $ git config --global user.name "truongvh"
+    $ git config --global user.email "truongvh@vccloud.vn"
     ```
 - **B3 :** Kiểm tra lại thông tin :
     ```
