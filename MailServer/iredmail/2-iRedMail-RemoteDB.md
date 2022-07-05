@@ -104,8 +104,4 @@ USE_EXISTING_MYSQL='YES' \
 
 - Test gửi, nhận external to gmail :
 
-<img src = https://github.com/tulha161/tule/blob/main/iredmail/pic/14.png>
-
-<img src = https://github.com/tulha161/tule/blob/main/iredmail/pic/15.png>
-
 
