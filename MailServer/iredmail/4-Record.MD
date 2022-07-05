@@ -7,16 +7,16 @@
 - Ví dụ về  A và PTR Record : 
 ```
 A Record : 
-tutrangcubeoxam.online A 123.31.11.183
+truongvh.com A 123.31.11.183
 PTR Record : 
-183.11.31.123.in-addr.arpa IN PTR tutrangcubeoxam.online
+183.11.31.123 PTR truongvh.com
 ```
 - Một domain có đủ cấu hình A và PTR Record sẽ có khả năng phân giải tên miền thuận - nghịch . 
 
 - MX - Mail Exchange Record : bản ghi có tác dụng xác định mail server của domain dưới dạng FQDN. Bản ghi này có thông số priority, càng thấp thì mức dộ ưu tiên càng cao, sử dụng trong trường hợp một domain có nhiều mail server.
 - Ví dụ : 
 ```
-mail    MX    10    mail.tutrangcubeoxam.online
+mail    MX    10    mail.truongvh.com
 ```
 
 # 2. Record SPF, DKIM, DMARC
@@ -30,19 +30,20 @@ mail    MX    10    mail.tutrangcubeoxam.online
     ```
     _spf TXT v=spf1 ip4:123.31.11.183/32 ~all 
     ```
-    - Thêm cấu hình spf cho subdomain **mail.tutrangcubeoxam.online** : 
+    - Thêm cấu hình spf cho subdomain **mail.truongvh.com** : 
     ```
-    mail TXT v=spf1 include:_spf.tutrangcubeoxam.online ~all
+    mail TXT v=spf1 include:_spf.truongvh.com ~all
     ```
 - Có nhiều cách cấu hình SPF record, tham khảo thêm SPF record syntax tại : http://www.open-spf.org/SPF_Record_Syntax/
 
 ## DKIM Record 
+
 - DKIM Record - DomainKeys Identified Mail : là một phương pháp xác thực email bằng chữ ký số của tên miền nguồn, trong đó, public key thường được public trên DNS bằng một TXT record. Việc cấu hình DKIM cho domain mail Server giúp thư out không bị đánh giá là spam.
 - Khi cài đặt iRedmail với component **amavisd-new**, nó sẽ gen sẵn cho người dùng một cặp key, từ đó ta có thê sử dụng cặp này để cấu hình DKIM
 ```
 root@mail:/etc/amavis# amavisd-new showkeys
-; key#1 2048 bits, i=dkim, d=tutrangcubeoxam.online, /var/lib/dkim/tutrangcubeoxam.online.pem
-dkim._domainkey.tutrangcubeoxam.online. 3600 TXT (
+; key#1 2048 bits, i=dkim, d=tutrangcubeoxam.online, /var/lib/dkim/truongvh.com.pem
+dkim._domainkey.truongvh.com. 3600 TXT (
   "v=DKIM1; p="
   "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvqQDqcxtfuS4e8yGK7Y8"
   "Kq7uHq3SZ7mfLKXYZgDFz95EAd8czbLqKMvQeHptptj1gXyRvRpQ5jXmvYbM/RYo"
@@ -62,15 +63,15 @@ dkim._domainkey.tutrangcubeoxam.online. 3600 TXT (
 - Test bản ghi DKIM : 
 ```
 root@mail:/etc/amavis# amavisd-new testkeys
-TESTING#1 tutrangcubeoxam.online: dkim._domainkey.tutrangcubeoxam.online => pass
+TESTING#1 truongvh.com: dkim._domainkey.truongvh.com => pass
 ```
 - Kiểm tra ba bản ghi TXT đã cấu hình bằng **dig** : 
 ```
-root@tule:~# dig mail.tutrangcubeoxam.online +short  TXT
-"v=spf1 include:_spf.tutrangcubeoxam.online ~all"
-root@tule:~# dig _spf.tutrangcubeoxam.online +short  TXT
+root@tule:~# dig mail.truongvh.com +short  TXT
+"v=spf1 include:_spf.truongvh.com ~all"
+root@tule:~# dig _spf.truongvh.com +short  TXT
 "v=spf1 ip4:123.31.11.183/32 ~all"
-root@tule:~# dig dkim._domainkey.tutrangcubeoxam.online +short  TXT
+root@tule:~# dig dkim._domainkey.truongvh.com +short  TXT
 "v=DKIM1; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvqQDqcxtfuS4e8yGK7Y8Kq7uHq3SZ7mfLKXYZgDFz95EAd8czbLqKMvQeHptptj1gXyRvRpQ5jXmvYbM/RYomD2q7FbgMSdzMpIpW2ZQWRHYfgWYIShku6HAVvykcjZzXBAmC1PwYGsFag111axrlNAnU4RUFcUVW+gYwI34AyToTv11pc9QlYTaSPmUue926XVHvK/H" "V1eEd0xa5Z8Yb+NXxA3vUk+Vt2/bwF6iefghq+ZFabS95mxeUzQaO3ub4GbGcZfqYOzU7UuqqyE51jGj1SghothjVS8MAx2karpINVmwCI4PJlhV0LTc3xufiH1QWgJcsTmBAQF24bTiqwIDAQAB;"
 ```
 - Thử gửi mail tới gmail, xem nội dung thư gốc :
@@ -99,8 +100,8 @@ root@tule:~# dig dkim._domainkey.tutrangcubeoxam.online +short  TXT
     - Address : v=DMARC1; p=quarantine; adkim=s; aspf=s;   rua=mailto:fail@tutrangcubeoxam.online;  ruf=mailto:fail@tutrangcubeoxam.online;
 - Kiểm tra lại với dig : 
 ```
-tulha@tulha-Aspire-A715-71G:/etc$ dig _dmarc.tutrangcubeoxam.online TXT +short
-"v=DMARC1; p=quarantine; adkim=s; aspf=s;  rua=mailto:fail@tutrangcubeoxam.online; ruf=mailto:fail@tutrangcubeoxam.online "
+tulha@tulha-Aspire-A715-71G:/etc$ dig _dmarc.truongvh.com TXT +short
+"v=DMARC1; p=quarantine; adkim=s; aspf=s;  rua=mailto:fail@truongvh.com; ruf=mailto:fail@truongvh.com "
 ```
 - Gửi thử mail test hoạt động : 
 
