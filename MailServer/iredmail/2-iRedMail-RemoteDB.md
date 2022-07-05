@@ -48,14 +48,14 @@ FLUSH HOSTS;
 
 ## tại node Mail server: 
 - Update && Upgrade 
-- set hostname to `mail.tutrangcubeoxam.online`
+- set hostname to `mail.truongvh.com`
 ```
-hostnamectl set-hostname mail.tutrangcubeoxam.online
+hostnamectl set-hostname mail.truongvh.com
 hostname -f #to verify config
 ```
-- update `/etc/hosts` : 
+- update `vi /etc/hosts` : 
 ```
-127.0.0.1       mail.tutrangcubeoxam.online localhost
+127.0.0.1       mail.truongvh.com localhost
 ```
 
 - Install Mariadb-client & Test connection ( tới SQL server ):
@@ -80,7 +80,7 @@ USE_EXISTING_MYSQL='YES' \
     MYSQL_SERVER_ADDRESS='10.5.90.118' \
     MYSQL_SERVER_PORT='3306' \
     MYSQL_ROOT_USER='root' \
-    MYSQL_ROOT_PASSWD='password' \
+    MYSQL_ROOT_PASSWD='Truongvh7896@' \
     MYSQL_GRANT_HOST='10.5.90.134'\
     bash iRedMail.sh 
 ```
@@ -90,9 +90,9 @@ USE_EXISTING_MYSQL='YES' \
 <img src = https://github.com/tulha161/tule/blob/main/iredmail/pic/7.png>
 
 - Tại đây, ta đã có thể truy cập vào các site  :  
-    - Admin : https://tutrangcubeoxam.online/iredadmin
-    - Email : https://tutrangcubeoxam.online/mail/
-    - Email ( SOGo interface) : https://tutrangcubeoxam.online/SOGo/
+    - Admin : https://truongvh.com/iredadmin
+    - Email : https://truongvh.com/mail/
+    - Email ( SOGo interface) : https://truongvh.com/SOGo/
 
 - Tạo 2 user mail tại site admin : 
 
