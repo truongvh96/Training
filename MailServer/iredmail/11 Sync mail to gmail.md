@@ -80,7 +80,7 @@ Sau đó điền tên tuỳ ý và nhấn **Generate**:
 
 #### Bước 2 – Enable IMAP trên tài khoản mail Google
 Login vào tài khoản Gmail. Click vào biểu tượng **bánh răng** ở góc phải màn hình và chọn **See All Settings**:
-![image](https://user-images.githubusercontent.com/97424062/177249889-970c5dfd-6045-4a99-8d3d-b17bc10e2641.png)
+
 ![image](https://user-images.githubusercontent.com/97424062/177249932-0db7a3d7-8a32-4505-a8a2-ef8f1abfa8ff.png)
 
 Chọn tab Forwarding and POP/IMAP sau đó chọn Enable IMAP và nhấn Save Changes để lưu lại cài đặt:
