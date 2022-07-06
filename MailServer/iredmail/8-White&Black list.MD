@@ -45,7 +45,7 @@ root@mail:/opt/iredapd/tools# python3 wblist_admin.py --outbound  --account truo
     - Log chặn tại mail server :
 
 ```
-Dec 28 11:45:37 mail postfix/submission/smtpd[3676640]: NOQUEUE: reject: RCPT from mail.truongvh.com[127.0.0.1]: 554 5.7.1 <truongvh@vccloud.vn>: Recipient address rejected: Blacklisted; from=<tulha@tulha.fun> to=<truongvh@vccloud.vn> proto=ESMTP helo=<mail.truongvh.com>
+Dec 28 11:45:37 mail postfix/submission/smtpd[3676640]: NOQUEUE: reject: RCPT from mail.truongvh.com[127.0.0.1]: 554 5.7.1 <truongvh@vccloud.vn>: Recipient address rejected: Blacklisted; from=<truongvh1@truongvh.com> to=<truongvh@vccloud.vn> proto=ESMTP helo=<mail.truongvh.com>
 ```
 
 ## Demo Whitelist in&outbound 
@@ -56,7 +56,7 @@ python3 wblist_admin.py --outbound  --account truongvh1@truongvh.com --add --whi
 python3 wblist_admin.py --account truongvh1@truongvh.com --add --whitelist truongvh@vccloud.vn
 ```
 - Giờ thử gửi/nhận tới `truongvh@vccloud.vn` => OK
-
+![image](https://user-images.githubusercontent.com/97424062/177460621-0a8d42d9-4ace-4436-801c-f89cb0871b89.png)
 
 - Thử gửi tới một email khác thuộc domain @vccloud.vn => FAIL
     - Trace log thấy bị chặn trên svr do outbound blacklisted
