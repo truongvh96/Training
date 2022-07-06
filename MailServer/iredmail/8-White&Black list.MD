@@ -32,7 +32,7 @@ Dec 28 11:24:59 mail postfix/smtpd[3599537]: disconnect from capt-se165.bizflycl
 ```
 
 ## Demo Blacklist outbound 
-- Add blacklist outbound cho user `tulha@tulha.fun` block thử gửi tới `@vccloud.vn` : 
+- Add blacklist outbound cho user `truongvh1@truongvh.com` block thử gửi tới `@vccloud.vn` : 
 ```
 root@mail:/opt/iredapd/tools# python3 wblist_admin.py --outbound  --account truongvh1@truongvh.com --add --blacklist @vccloud.vn
 * Establishing SQL connection.
