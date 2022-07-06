@@ -6,38 +6,71 @@
 
 
 ## 1. Check log gửi mail thành công : 
-- Toàn bộ log tại `maillog` trong quá trình gửi một email từ `tulha@tulha.fun` -> `tulha@vccloud.vn` : 
+- Toàn bộ log tại `maillog` trong quá trình gửi một email từ `truongvh1@truongvh.com` -> `truongvh@vccloud.vn` : 
 ```
-Dec 28 15:16:27 mail postfix/submission/smtpd[322086]: connect from mail.tutrangcubeoxam.online[127.0.0.1]
-Dec 28 15:16:27 mail postfix/submission/smtpd[322086]: Anonymous TLS connection established from mail.tutrangcubeoxam.online[127.0.0.1]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-Dec 28 15:16:27 mail postfix/submission/smtpd[322086]: 4JNS6g6J65z9p1j: client=mail.tutrangcubeoxam.online[127.0.0.1], sasl_method=LOGIN, sasl_username=tulha@tulha.fun
-Dec 28 15:16:27 mail postfix/cleanup[322102]: 4JNS6g6J65z9p1j: message-id=<d2c8e458b9005fe1e75b5fc94367325d@tulha.fun>
-Dec 28 15:16:27 mail postfix/qmgr[2688]: 4JNS6g6J65z9p1j: from=<tulha@tulha.fun>, size=557, nrcpt=1 (queue active)
-Dec 28 15:16:27 mail roundcube: <k0cigoea> User tulha@tulha.fun [123.30.170.251]; Message <d2c8e458b9005fe1e75b5fc94367325d@tulha.fun> for tulha@vccloud.vn; 250: 2.0.0 Ok: queued as 4JNS6g6J65z9p1j
-Dec 28 15:16:27 mail postfix/submission/smtpd[322086]: disconnect from mail.tutrangcubeoxam.online[127.0.0.1] ehlo=2 starttls=1 auth=1 mail=1 rcpt=1 data=1 quit=1 commands=8
-Dec 28 15:16:28 mail postfix/10025/smtpd[322109]: connect from mail.tutrangcubeoxam.online[127.0.0.1]
-Dec 28 15:16:28 mail postfix/10025/smtpd[322109]: 4JNS6h47X1z9p1k: client=mail.tutrangcubeoxam.online[127.0.0.1]
-Dec 28 15:16:28 mail postfix/cleanup[322102]: 4JNS6h47X1z9p1k: message-id=<d2c8e458b9005fe1e75b5fc94367325d@tulha.fun>
-Dec 28 15:16:28 mail postfix/10025/smtpd[322109]: disconnect from mail.tutrangcubeoxam.online[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
-Dec 28 15:16:28 mail postfix/qmgr[2688]: 4JNS6h47X1z9p1k: from=<tulha@tulha.fun>, size=1911, nrcpt=1 (queue active)
-Dec 28 15:16:28 mail amavis[2718260]: (2718260-03) Passed CLEAN {RelayedInternal}, ORIGINATING/MYNETS LOCAL [127.0.0.1]:39084 ESMTP/ESMTP <tulha@tulha.fun> -> <tulha@vccloud.vn>, (), Queue-ID: 4JNS6g6J65z9p1j, Message-ID: <d2c8e458b9005fe1e75b5fc94367325d@tulha.fun>, mail_id: OaOSMxXnfknq, b: es0WVIFtO, Hits: 0.997, size: 557, queued_as: 4JNS6h47X1z9p1k, Subject: "test logging", From: <tulha@tulha.fun>, User-Agent: Roundcube_Webmail, helo=localhost, Tests: [ALL_TRUSTED=-1,FROM_FMBLA_NEWDOM=1.498,FROM_SUSPICIOUS_NTLD=0.498,FROM_SUSPICIOUS_NTLD_FP=0.001], autolearn=no autolearn_force=no, autolearnscore=1.997, dkim_new=dkim:tutrangcubeoxam.online, 651 ms
-Dec 28 15:16:28 mail postfix/amavis/smtp[322103]: 4JNS6g6J65z9p1j: to=<tulha@vccloud.vn>, relay=127.0.0.1[127.0.0.1]:10026, delay=0.89, delays=0.17/0.04/0.01/0.66, dsn=2.0.0, status=sent (250 2.0.0 from MTA(smtp:[127.0.0.1]:10025): 250 2.0.0 Ok: queued as 4JNS6h47X1z9p1k)
-Dec 28 15:16:28 mail postfix/qmgr[2688]: 4JNS6g6J65z9p1j: removed
-Dec 28 15:16:28 mail postfix/smtp[322145]: Anonymous TLS connection established to captmx-re30.bizflycloud.vn[103.69.195.135]:25: TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits)
-Dec 28 15:16:33 mail postfix/smtp[322145]: 4JNS6h47X1z9p1k: to=<tulha@vccloud.vn>, relay=captmx-re30.bizflycloud.vn[103.69.195.135]:25, delay=5.4, delays=0.01/0.03/0.28/5, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 95FA2DB2C9)
+Jul  5 17:57:08 mail postfix/smtps/smtpd[128410]: lost connection after CONNECT from unknown[185.220.101.49]
+Jul  5 17:57:08 mail postfix/smtps/smtpd[128410]: disconnect from unknown[185.220.101.49] commands=0/0
+Jul  5 17:57:14 mail postfix/smtps/smtpd[128410]: connect from tor-exit-45.for-privacy.net[185.220.101.45]
+Jul  5 17:57:46 mail postfix/smtps/smtpd[128410]: SSL_accept error from tor-exit-45.for-privacy.net[185.220.101.45]: -1
+Jul  5 17:57:46 mail postfix/smtps/smtpd[128410]: warning: TLS library problem: error:1408F10B:SSL routines:ssl3_get_record:wrong version number:../ssl/record/ssl3_record.c:331:
+Jul  5 17:57:46 mail postfix/smtps/smtpd[128410]: lost connection after CONNECT from tor-exit-45.for-privacy.net[185.220.101.45]
+Jul  5 17:57:46 mail postfix/smtps/smtpd[128410]: disconnect from tor-exit-45.for-privacy.net[185.220.101.45] commands=0/0
+Jul  5 17:57:52 mail postfix/smtps/smtpd[128410]: connect from tor-exit-at-the.quesadilla.party[103.251.167.21]
+Jul  5 17:58:20 mail postfix/smtps/smtpd[128410]: SSL_accept error from tor-exit-at-the.quesadilla.party[103.251.167.21]: -1
+Jul  5 17:58:20 mail postfix/smtps/smtpd[128410]: warning: TLS library problem: error:1408F10B:SSL routines:ssl3_get_record:wrong version number:../ssl/record/ssl3_record.c:331:
+Jul  5 17:58:20 mail postfix/smtps/smtpd[128410]: lost connection after CONNECT from tor-exit-at-the.quesadilla.party[103.251.167.21]
+Jul  5 17:58:20 mail postfix/smtps/smtpd[128410]: disconnect from tor-exit-at-the.quesadilla.party[103.251.167.21] commands=0/0
+Jul  5 17:58:21 mail postfix/smtps/smtpd[128410]: connect from tor-exit-16.zbau.f3netze.de[185.220.100.243]
+Jul  5 17:58:54 mail postfix/smtps/smtpd[128410]: SSL_accept error from tor-exit-16.zbau.f3netze.de[185.220.100.243]: -1
+Jul  5 17:58:54 mail postfix/smtps/smtpd[128410]: warning: TLS library problem: error:1408F10B:SSL routines:ssl3_get_record:wrong version number:../ssl/record/ssl3_record.c:331:
+Jul  5 17:58:54 mail postfix/smtps/smtpd[128410]: lost connection after CONNECT from tor-exit-16.zbau.f3netze.de[185.220.100.243]
+Jul  5 17:58:54 mail postfix/smtps/smtpd[128410]: disconnect from tor-exit-16.zbau.f3netze.de[185.220.100.243] commands=0/0
+Jul  5 17:59:00 mail postfix/smtps/smtpd[128410]: warning: hostname 185-220-102-7.torservers.net does not resolve to address 185.220.102.7: Name or service not known
+Jul  5 17:59:00 mail postfix/smtps/smtpd[128410]: connect from unknown[185.220.102.7]
+Jul  5 17:59:04 mail postfix/smtps/smtpd[128410]: SSL_accept error from unknown[185.220.102.7]: -1
+Jul  5 17:59:04 mail postfix/smtps/smtpd[128410]: warning: TLS library problem: error:1408F10B:SSL routines:ssl3_get_record:wrong version number:../ssl/record/ssl3_record.c:331:
+Jul  5 17:59:04 mail postfix/smtps/smtpd[128410]: lost connection after CONNECT from unknown[185.220.102.7]
+Jul  5 17:59:04 mail postfix/smtps/smtpd[128410]: disconnect from unknown[185.220.102.7] commands=0/0
+Jul  5 17:59:16 mail postfix/smtps/smtpd[128410]: connect from tor-exit-35.for-privacy.net[185.220.101.35]
+Jul  5 17:59:52 mail postfix/smtps/smtpd[128410]: SSL_accept error from tor-exit-35.for-privacy.net[185.220.101.35]: lost connection
+Jul  5 17:59:52 mail postfix/smtps/smtpd[128410]: lost connection after CONNECT from tor-exit-35.for-privacy.net[185.220.101.35]
+Jul  5 17:59:52 mail postfix/smtps/smtpd[128410]: disconnect from tor-exit-35.for-privacy.net[185.220.101.35] commands=0/0
+Jul  5 17:59:55 mail postfix/smtps/smtpd[128487]: connect from tor-exit-46.for-privacy.net[185.220.101.46]
+Jul  5 18:00:29 mail postfix/smtps/smtpd[128487]: SSL_accept error from tor-exit-46.for-privacy.net[185.220.101.46]: lost connection
+Jul  5 18:00:29 mail postfix/smtps/smtpd[128487]: lost connection after CONNECT from tor-exit-46.for-privacy.net[185.220.101.46]
+Jul  5 18:00:29 mail postfix/smtps/smtpd[128487]: disconnect from tor-exit-46.for-privacy.net[185.220.101.46] commands=0/0
+Jul  5 20:52:45 mail postfix/submission/smtpd[133565]: connect from unknown[185.167.96.146]
+Jul  5 20:52:45 mail postfix/submission/smtpd[133565]: lost connection after UNKNOWN from unknown[185.167.96.146]
+Jul  5 20:52:45 mail postfix/submission/smtpd[133565]: disconnect from unknown[185.167.96.146] unknown=0/1 commands=0/1
+Jul  5 20:56:05 mail postfix/anvil[133568]: statistics: max connection rate 1/60s for (submission:185.167.96.146) at Jul  5 20:52:45
+Jul  5 20:56:05 mail postfix/anvil[133568]: statistics: max connection count 1 for (submission:185.167.96.146) at Jul  5 20:52:45
+Jul  5 20:56:05 mail postfix/anvil[133568]: statistics: max cache size 1 at Jul  5 20:52:45
+Jul  5 22:23:45 mail postfix/smtps/smtpd[136765]: warning: hostname 207.246.113.16.vultrusercontent.com does not resolve to address 207.246.113.16
+Jul  5 22:23:45 mail postfix/smtps/smtpd[136765]: connect from unknown[207.246.113.16]
+Jul  5 22:23:45 mail postfix/smtps/smtpd[136765]: Anonymous TLS connection established from unknown[207.246.113.16]: TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits)
+Jul  5 22:23:45 mail postfix/smtps/smtpd[136765]: lost connection after CONNECT from unknown[207.246.113.16]
+Jul  5 22:23:45 mail postfix/smtps/smtpd[136765]: disconnect from unknown[207.246.113.16] commands=0/0
+Jul  5 22:27:06 mail postfix/anvil[136768]: statistics: max connection rate 1/60s for (465:207.246.113.16) at Jul  5 22:23:45
+Jul  5 22:27:06 mail postfix/anvil[136768]: statistics: max connection count 1 for (465:207.246.113.16) at Jul  5 22:23:45
+Jul  5 22:27:06 mail postfix/anvil[136768]: statistics: max cache size 1 at Jul  5 22:23:45
+Jul  6 03:01:05 mail postfix/submission/smtpd[144817]: connect from mail.truongvh.com[127.0.0.1]
+Jul  6 03:01:05 mail postfix/submission/smtpd[144817]: Anonymous TLS connection established from mail.truongvh.com[127.0.0.1]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+Jul  6 03:01:05 mail postfix/submission/smtpd[144817]: NOQUEUE: reject: RCPT from mail.truongvh.com[127.0.0.1]: 554 5.7.1 <truongvh@vccloud.vn>: Recipient address rejected: Blacklisted; from=<truongvh1@truongvh.com> to=<truongvh@vccloud.vn> proto=ESMTP helo=<mail.truongvh.com>
+Jul  6 03:01:05 mail postfix/submission/smtpd[144817]: lost connection after RCPT from mail.truongvh.com[127.0.0.1]
+A2DB2C9)
 Dec 28 15:16:33 mail postfix/qmgr[2688]: 4JNS6h47X1z9p1k: removed
 ```
 
 - Đoạn log này mô tả quá trình xử lý email gửi đi tại SMTP server **postfix**, có thể nhận biết mail đã được gửi thành công đến SMTP server của bên nhận **captmx-re30.bizflycloud.vn** , đoạn kết nôi và send mail tới bên nhận như sau : 
 ```
 Dec 28 15:16:28 mail postfix/smtp[322145]: Anonymous TLS connection established to captmx-re30.bizflycloud.vn[103.69.195.135]:25: TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits)
-Dec 28 15:16:33 mail postfix/smtp[322145]: 4JNS6h47X1z9p1k: to=<tulha@vccloud.vn>, relay=captmx-re30.bizflycloud.vn[103.69.195.135]:25, delay=5.4, delays=0.01/0.03/0.28/5, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 95FA2DB2C9)
+Dec 28 15:16:33 mail postfix/smtp[322145]: 4JNS6h47X1z9p1k: to=<truongvh@vccloud.vn>, relay=captmx-re30.bizflycloud.vn[103.69.195.135]:25, delay=5.4, delays=0.01/0.03/0.28/5, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 95FA2DB2C9)
 ```
 - Status = sent => email đã được gửi thành công
 
 ## 2. Check log quá trình nhận thư thành công : 
 
-- gửi một email test từ `tulha@vccloud.vn` -> `tulha@tulha.fun`, bắt được log tại `maillog` :
+- gửi một email test từ `truongvh@vccloud.vn` -> `truongvh1@truongvh.com`, bắt được log tại `maillog` :
 ```
 Dec 29 11:34:13 mail postfix/smtpd[4180261]: connect from capt-se145.bizflycloud.vn[103.69.195.52]
 Dec 29 11:34:13 mail postfix/smtpd[4180261]: Anonymous TLS connection established from capt-se145.bizflycloud.vn[103.69.195.52]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
