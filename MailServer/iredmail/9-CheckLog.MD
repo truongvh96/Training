@@ -105,13 +105,14 @@ Dec 29 11:34:14 mail dovecot: lda(tulha@tulha.fun)<4180344><m2D+E0bly2F4yT8ATA1p
 
 
 ## 3. Check log quá trình nhận/gửi thất bại do blacklist :
-- Mình đã set blacklist cho account `tulha@tulha.fun` 2 chiều đến đến mail domain `@vccloud.vn`
-- Thử gửi test mail từ `tulha@tulha.fun` -> `quanlh@vccloud.vn`
+- Mình đã set blacklist cho account `truongvh1@truongvh.com` 2 chiều đến đến mail domain `@vccloud.vn`
+- Thử gửi test mail từ `truongvh1@truongvh.com` -> `truongvh@vccloud.vn`
 - Do đã cấu hình blacklist, iRedAPD chặn thư gửi ra, log `iredadp.log` như sau : 
 
 ```
-Dec 29 14:30:37 mail iredapd Blacklisted: outbound_wblist=(5, 2, 'B')
-Dec 29 14:30:37 mail iredapd [127.0.0.1] RCPT, tulha@tulha.fun => quanlh@vccloud.vn, REJECT Blacklisted [sasl_username=tulha@tulha.fun, sender=tulha@tulha.fun, client_name=mail.tutrangcubeoxam.online, reverse_client_name=mail.tutrangcubeoxam.online, helo=localhost, encryption_protocol=TLSv1.3, encryption_cipher=TLS_AES_256_GCM_SHA384, server_port=587, process_time=0.0374s]
+Jul  6 04:17:00 mail iredapd [103.69.195.21] RCPT, truongvh@vccloud.vn -> truongvh2@truongvh.com, REJECT Blacklisted [sasl_username=, sender=truongvh@vccloud.vn, client_name=capt-se165.bizflycloud.vn, reverse_client_name=capt-se165.bizflycloud.vn, helo=capt-se165.bizflycloud.vn, encryption_protocol=TLSv1.2, encryption_cipher=ECDHE-RSA-AES256-GCM-SHA384, server_port=25, process_time=0.1379s]
+Jul  6 04:19:36 mail iredapd [103.69.195.21] Bypass greylisting due to SPF match (vccloud.vn)
+Jul  6 04:19:36 mail iredapd Whitelisted: wblist=(2, 3, 'W')
 ```
 
 - Tương tự là log ở `maillog`, verify tại iRedAPD bị `REJECT` , đoạn dưới là trả về HTTP và SMTP error trên roundcube ( giao diện ng dùng) :
