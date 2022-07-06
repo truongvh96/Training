@@ -125,27 +125,27 @@ Dec 29 14:30:37 mail roundcube: <v5k60u4i> SMTP Error: Failed to add recipient '
 Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: disconnect from mail.tutrangcubeoxam.online[127.0.0.1] ehlo=2 starttls=1 auth=1 mail=1 rcpt=0/1 rset=1 quit=1 commands=7/8
 ```
 
-- Thử gửi test mail từ `quanlh@vccloud.vn` -> `tulha@tulha.fun` : 
+- Thử gửi test mail từ `quanlh@vccloud.vn` -> `truongvh1@truongvh.com` : 
 - Log chặn mail do blacklist tại `iredadp.log` : 
 ```
 Dec 29 14:37:04 mail iredapd [103.69.195.21] Bypass greylisting due to SPF match (vccloud.vn)
 Dec 29 14:37:04 mail iredapd Blacklisted: wblist=(2, 5, 'B')
-Dec 29 14:37:04 mail iredapd [103.69.195.21] RCPT, quanlh@vccloud.vn -> tulha@tulha.fun, REJECT Blacklisted [sasl_username=, sender=quanlh@vccloud.vn, client_name=capt-se165.bizflycloud.vn, reverse_client_name=capt-se165.bizflycloud.vn, helo=capt-se165.bizflycloud.vn, encryption_protocol=TLSv1.2, encryption_cipher=ECDHE-RSA-AES256-GCM-SHA384, server_port=25, process_time=0.0884s]
+Dec 29 14:37:04 mail iredapd [103.69.195.21] RCPT, quanlh@vccloud.vn -> truongvh1@truongvh.com, REJECT Blacklisted [sasl_username=, sender=quanlh@vccloud.vn, client_name=capt-se165.bizflycloud.vn, reverse_client_name=capt-se165.bizflycloud.vn, helo=capt-se165.bizflycloud.vn, encryption_protocol=TLSv1.2, encryption_cipher=ECDHE-RSA-AES256-GCM-SHA384, server_port=25, process_time=0.0884s]
 ```
 - Log tại `mail.log` : 
 ```
 Dec 29 14:37:04 mail postfix/smtpd[639025]: connect from capt-se165.bizflycloud.vn[103.69.195.21]
 Dec 29 14:37:04 mail postfix/smtpd[639025]: Anonymous TLS connection established from capt-se165.bizflycloud.vn[103.69.195.21]: TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
-Dec 29 14:37:04 mail postfix/smtpd[639025]: NOQUEUE: reject: RCPT from capt-se165.bizflycloud.vn[103.69.195.21]: 554 5.7.1 <tulha@tulha.fun>: Recipient address rejected: Blacklisted; from=<quanlh@vccloud.vn> to=<tulha@tulha.fun> proto=ESMTP helo=<capt-se165.bizflycloud.vn>
+Dec 29 14:37:04 mail postfix/smtpd[639025]: NOQUEUE: reject: RCPT from capt-se165.bizflycloud.vn[103.69.195.21]: 554 5.7.1 <truongvh1@truongvh.com>: Recipient address rejected: Blacklisted; from=<quanlh@vccloud.vn> to=<tulha@tulha.fun> proto=ESMTP helo=<capt-se165.bizflycloud.vn>
 Dec 29 14:37:04 mail postfix/smtpd[639025]: disconnect from capt-se165.bizflycloud.vn[103.69.195.21] ehlo=2 starttls=1 mail=1 rcpt=0/1 data=0/1 rset=1 quit=1 commands=6/8
 ```
 
 ## 4. Check log quá trình gửi thất bại do FAIL DMARC : 
 - Sửa  rule `DMARC = reject` , sửa các bản ghi `spf` và `dkim` để chúng fail 
-- Test gửi mail từ `postmaster@tutrangcubeoxam.online` -> `tulha161@gmail.com`
+- Test gửi mail từ `postmaster@truongvh.com` -> `truongvh@gmail.com`
 - Check log thấy thư đã đi ra được ngoài SMTP server, tuy nhiên bị trả về  do fail DMARC, `status = bounced`
 ```
-Dec 29 15:01:07 mail postfix/smtp[732306]: 4JP3kS4kV1z9p1l: to=<tulha161@gmail.com>, relay=gmail-smtp-in.l.google.com[142.251.8.26]:25, delay=2.5, delays=0.07/0.04/1.8/0.58, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[142.251.8.26] said: 550-5.7.26 Unauthenticated email from tutrangcubeoxam.online is not accepted due 550-5.7.26 to domain's DMARC policy. Please contact the administrator of 550-5.7.26 tutrangcubeoxam.online domain if this was a legitimate mail. Please 550-5.7.26 visit 550-5.7.26  https://support.google.com/mail/answer/2451690 to learn about the 550 5.7.26 DMARC initiative. j24si18976658pll.90 - gsmtp (in reply to end of DATA command))
-Dec 29 15:01:07 mail postfix/cleanup[732236]: 4JP3kW1FHCz9p1r: message-id=<4JP3kW1FHCz9p1r@mail.tutrangcubeoxam.online>
+Dec 29 15:01:07 mail postfix/smtp[732306]: 4JP3kS4kV1z9p1l: to=<truongvh@gmail.com>, relay=gmail-smtp-in.l.google.com[142.251.8.26]:25, delay=2.5, delays=0.07/0.04/1.8/0.58, dsn=5.7.26, status=bounced (host gmail-smtp-in.l.google.com[142.251.8.26] said: 550-5.7.26 Unauthenticated email from truongvh.com is not accepted due 550-5.7.26 to domain's DMARC policy. Please contact the administrator of 550-5.7.26 truongvh.com domain if this was a legitimate mail. Please 550-5.7.26 visit 550-5.7.26  https://support.google.com/mail/answer/2451690 to learn about the 550 5.7.26 DMARC initiative. j24si18976658pll.90 - gsmtp (in reply to end of DATA command))
+Dec 29 15:01:07 mail postfix/cleanup[732236]: 4JP3kW1FHCz9p1r: message-id=<4JP3kW1FHCz9p1r@mail.truongvh.com>
 Dec 29 15:01:07 mail postfix/bounce[732495]: 4JP3kS4kV1z9p1l: sender non-delivery notification: 4JP3kW1FHCz9p1r
 ```
