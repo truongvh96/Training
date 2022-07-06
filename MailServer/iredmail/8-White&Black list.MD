@@ -22,7 +22,7 @@ root@mail:/opt/iredapd/tools# python3 wblist_admin.py --account truongvh1@truong
     - Sent email : 
 
     - Mail server @Vccloud trả mail cho truongvh1@truongvh.com do bị chặn :
-
+![image](https://user-images.githubusercontent.com/97424062/177467334-3a08a944-3e17-4955-ba2d-d43da72a51ef.png)
     - Log chặn của Mail server bên nhận : 
 ```
 Dec 28 11:24:59 mail postfix/smtpd[3599537]: connect from capt-se165.bizflycloud.vn[103.69.195.21]
