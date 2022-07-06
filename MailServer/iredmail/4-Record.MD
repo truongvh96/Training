@@ -42,7 +42,7 @@ mail    MX    10    mail.truongvh.com
 - Khi cài đặt iRedmail với component **amavisd-new**, nó sẽ gen sẵn cho người dùng một cặp key, từ đó ta có thê sử dụng cặp này để cấu hình DKIM
 ```
 root@mail:/etc/amavis# amavisd-new showkeys
-; key#1 2048 bits, i=dkim, d=tutrangcubeoxam.online, /var/lib/dkim/truongvh.com.pem
+; key#1 2048 bits, i=dkim, d=truongvh.com, /var/lib/dkim/truongvh.com.pem
 dkim._domainkey.truongvh.com. 3600 TXT (
   "v=DKIM1; p="
   "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvqQDqcxtfuS4e8yGK7Y8"
@@ -97,10 +97,10 @@ root@tule:~# dig dkim._domainkey.truongvh.com +short  TXT
   - Cấu hình bản ghi DMARC : 
     - Host : _dmarc
     - Type : TXT
-    - Address : v=DMARC1; p=quarantine; adkim=s; aspf=s;   rua=mailto:fail@tutrangcubeoxam.online;  ruf=mailto:fail@tutrangcubeoxam.online;
+    - Address : v=DMARC1; p=quarantine; adkim=s; aspf=s;   rua=mailto:fail@truongvh.com;  ruf=mailto:fail@truongvh.com;
 - Kiểm tra lại với dig : 
 ```
-tulha@tulha-Aspire-A715-71G:/etc$ dig _dmarc.truongvh.com TXT +short
+tuongvh@truongvh-Aspire-A715-71G:/etc$ dig _dmarc.truongvh.com TXT +short
 "v=DMARC1; p=quarantine; adkim=s; aspf=s;  rua=mailto:fail@truongvh.com; ruf=mailto:fail@truongvh.com "
 ```
 - Gửi thử mail test hoạt động : 
