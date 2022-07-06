@@ -6,7 +6,7 @@
 - Show manual : `python3 /opt/iredapd/tools/wblist_admin.py`
 
 ## Demo blacklist Inbound : 
-- Add blacklist inbound cho user `tulha@tulha.fun` block thư từ `@vccloud.vn` 
+- Add blacklist inbound cho user `truongvh1@truongvh.com` block thư từ `@vccloud.vn` 
 ```
 root@mail:/opt/iredapd/tools# python3 wblist_admin.py --account truongvh1@truongvh.com --add --blacklist @vccloud.vn
 * Establishing SQL connection.
