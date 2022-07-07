@@ -95,8 +95,9 @@ Jul  7 09:06:19 mail postfix/smtp[866378]: 4Ldr9z5ktdz3yFh: to=<truongvh@vccloud
 - Từ log trên, ta có thể thấy SMTP bên gửi connect tới SMTP bên nhận để gửi mail. SMTP nhận mail, thông qua amavis để kiểm tra sercurity OK => gửi đến dovecot IMAP server 
 - Check thêm log `iredapd.log` :
 ```
-Dec 29 11:34:13 mail iredapd [103.69.195.52] RCPT, tulha@vccloud.vn -> tulha@tulha.fun, OK [sasl_username=, sender=tulha@vccloud.vn, client_name=capt-se145.bizflycloud.vn, reverse_client_name=capt-se145.bizflycloud.vn, helo=capt-se145.bizflycloud.vn, encryption_protocol=TLSv1.3, encryption_cipher=TLS_AES_256_GCM_SHA384, server_port=25, process_time=0.1267s]
-Dec 29 11:34:13 mail iredapd [103.69.195.52] END-OF-MESSAGE, tulha@vccloud.vn -> tulha@tulha.fun, DUNNO [recipient_count=1, size=669, process_time=0.0348s]
+Jul  6 08:46:20 mail iredapd [103.69.195.21] RCPT, truongvh@vccloud.vn -> truongvh1@truongvh.com, OK [sasl_username=, sender=truongvh@vccloud.vn, client_name=capt-se165.bizflycloud.vn, reverse_client_name=capt-se165.bizflycloud.vn, helo=capt-se165.bizflycloud.vn, encryption_protocol=TLSv1.2, encryption_cipher=ECDHE-RSA-AES256-GCM-SHA384, server_port=25, process_time=0.0429s]
+Jul  6 08:46:20 mail iredapd [103.69.195.21] END-OF-MESSAGE, truongvh@vccloud.vn -> truongvh1@truongvh.com, DUNNO [recipient_count=1, size=699, process_time=0.0113s]
+
 ``` 
 - Log này thể  hiện viện thông qua `iredapd` để check blacklist/whitelist => OK
 
