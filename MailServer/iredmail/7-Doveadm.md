@@ -29,22 +29,19 @@ user       MESSAGE     3      -                                                 
 ```
 root@mail:~# doveadm -f tab search -A  TO 'truongvh@gmail.com'
 Username        mailbox-guid    uid
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        7
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        8
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        9
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        10
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        11
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        12
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        13
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        14
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        15
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        16
-truongvh1@truongvh.com       20ea4b04c01cb8619c8202004c0d6952        18
-postmaster@truongvh.com         900bfc172dbfba61e57e00004c0d6952        1
-postmaster@truongvh.com         900bfc172dbfba61e57e00004c0d6952        2
-postmaster@truongvh.com         900bfc172dbfba61e57e00004c0d6952        3
-postmaster@truongvh.com         900bfc172dbfba61e57e00004c0d6952        4
-postmaster@truongvh.com         900bfc172dbfba61e57e00004c0d6952        5
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        1
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        2
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        95
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        96
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        97
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        98
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        99
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        100
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        101
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        102
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        103
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        104
+truongvh1@truongvh.com  d16b4d2d8856c262a6230800479bf6ba        105
 
 ```
     - Search ALL mail FROM 'truongvh@gmail.com' : 
