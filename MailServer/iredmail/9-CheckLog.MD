@@ -99,7 +99,7 @@ Dec 29 11:34:13 mail iredapd [103.69.195.52] END-OF-MESSAGE, tulha@vccloud.vn ->
 
 - Check log `lda.log` :
 ```
-Dec 29 11:34:14 mail dovecot: lda(tulha@tulha.fun)<4180344><m2D+E0bly2F4yT8ATA1pUg>: sieve: from=tulha@vccloud.vn, envelope_sender=tulha@vccloud.vn, subject=test log, msgid=<3af455a9-7e74-fbe5-1e75-2e49ddc690af@vccloud.vn>, size=1466, delivery_time=110ms, stored mail into mailbox 'INBOX'
+Jul  7 06:25:06 mail dovecot: lda(postmaster@truongvh.com)<716791><I7TYIEJ8xmL37woAR5v2ug>: sieve: from=root@mail.truongvh.com, envelope_sender=root@mail.truongvh.com, subject=Logwatch for mail.truongvh.com (Linux), msgid=<4Ldmc043H7z3xgh@mail.truongvh.com>, size=7319, delivery_time=91ms, stored mail into mailbox 'INBOX'
 ```
 - Log này thể hiện viện phân phối thư của MDA ( Dovecot ) qua lda, thư thư được lưu về  `INBOX` của `tulha@tulha.fun`
 
