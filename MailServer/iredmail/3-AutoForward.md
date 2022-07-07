@@ -23,7 +23,7 @@ INSERT INTO forwardings (address,
                          1,
                          1);
 ```
-- Trường hợp này, Mình muốn forward thư nhận từ email   `tulha-support@tulha.fun` -- > `tulha@tulha.fun`, thực hiện như sau :
+- Trường hợp này, Mình muốn forward thư nhận từ email   `truongvh3@truongvh.com` -- > `truongvh1@truongvh.com`, thực hiện như sau :
 ```
 MariaDB [vmail]> USE vmail;
 Database changed
@@ -33,17 +33,17 @@ MariaDB [vmail]> INSERT INTO forwardings (address,
     ->                          dest_domain,
     ->                          is_forwarding,
     ->                          active)
-    ->                  VALUES ('tulha-support@tulha.fun',
-    ->                          'tulha@tulha.fun',
-    ->                          'tulha.fun',
-    ->                          'tulha.fun',
+    ->                  VALUES ('truongvh3@truongvh.com',
+    ->                          'truongvh1@truongvh.com',
+    ->                          'truongvh.com',
+    ->                          'truongvh.com',
     ->                          1,
     ->                          1);
 Query OK, 1 row affected (0.023 sec)
 
 ```
 
-- Thử gửi 1 email tới `tulha-support@tulha.fun` để test .
+- Thử gửi 1 email tới `truongvh3@truongvh.com` để test .
 
 - Ta có thể đồng thời cấu hình một email forward đến nhiều email khác, hoặc nhiều email forward vào một mail .
 
