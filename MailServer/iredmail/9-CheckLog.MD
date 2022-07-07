@@ -121,12 +121,12 @@ Jul  6 04:19:36 mail iredapd Whitelisted: wblist=(2, 3, 'W')
 
 - Tương tự là log ở `maillog`, verify tại iRedAPD bị `REJECT` , đoạn dưới là trả về HTTP và SMTP error trên roundcube ( giao diện ng dùng) :
 ```
-Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: connect from mail.tutrangcubeoxam.online[127.0.0.1]
-Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: Anonymous TLS connection established from mail.tutrangcubeoxam.online[127.0.0.1]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: NOQUEUE: reject: RCPT from mail.tutrangcubeoxam.online[127.0.0.1]: 554 5.7.1 <quanlh@vccloud.vn>: Recipient address rejected: Blacklisted; from=<tulha@tulha.fun> to=<quanlh@vccloud.vn> proto=ESMTP helo=<localhost>
+Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: connect from mail.truongvh.com[127.0.0.1]
+Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: Anonymous TLS connection established from mail.truongvh.com[127.0.0.1]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: NOQUEUE: reject: RCPT from mail.truongvh.com[127.0.0.1]: 554 5.7.1 <quanlh@vccloud.vn>: Recipient address rejected: Blacklisted; from=<truongvh1@truongvh.com> to=<quanlh@vccloud.vn> proto=ESMTP helo=<localhost>
 Dec 29 14:30:37 mail roundcube: <v5k60u4i> PHP Error: Invalid response code received from server (POST /mail/?_task=mail&_unlock=loading1640763037540&_framed=1&_lang=en&_action=send)
 Dec 29 14:30:37 mail roundcube: <v5k60u4i> SMTP Error: Failed to add recipient 'quanlh@vccloud.vn'. 5.7.1 <quanlh@vccloud.vn>: Recipient address rejected: Blacklisted (Code: 554) in /opt/www/roundcubemail-1.4.11/program/lib/Roundcube/rcube.php on line 1702 (POST /mail/?_task=mail&_unlock=loading1640763037540&_framed=1&_lang=en&_action=send)
-Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: disconnect from mail.tutrangcubeoxam.online[127.0.0.1] ehlo=2 starttls=1 auth=1 mail=1 rcpt=0/1 rset=1 quit=1 commands=7/8
+Dec 29 14:30:37 mail postfix/submission/smtpd[613348]: disconnect from mail.tuongvh.com[127.0.0.1] ehlo=2 starttls=1 auth=1 mail=1 rcpt=0/1 rset=1 quit=1 commands=7/8
 ```
 
 - Thử gửi test mail từ `quanlh@vccloud.vn` -> `truongvh1@truongvh.com` : 
