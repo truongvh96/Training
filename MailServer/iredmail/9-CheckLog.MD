@@ -72,22 +72,25 @@ Dec 28 15:16:33 mail postfix/smtp[322145]: 4JNS6h47X1z9p1k: to=<truongvh@vccloud
 
 - gửi một email test từ `truongvh@vccloud.vn` -> `truongvh1@truongvh.com`, bắt được log tại `maillog` :
 ```
-Dec 29 11:34:13 mail postfix/smtpd[4180261]: connect from capt-se145.bizflycloud.vn[103.69.195.52]
-Dec 29 11:34:13 mail postfix/smtpd[4180261]: Anonymous TLS connection established from capt-se145.bizflycloud.vn[103.69.195.52]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-Dec 29 11:34:13 mail postfix/smtpd[4180261]: 4JNz7n5KTJz9p1j: client=capt-se145.bizflycloud.vn[103.69.195.52]
-Dec 29 11:34:13 mail postfix/cleanup[4180286]: 4JNz7n5KTJz9p1j: message-id=<3af455a9-7e74-fbe5-1e75-2e49ddc690af@vccloud.vn>
-Dec 29 11:34:13 mail postfix/qmgr[2688]: 4JNz7n5KTJz9p1j: from=<tulha@vccloud.vn>, size=892, nrcpt=1 (queue active)
-Dec 29 11:34:13 mail postfix/smtpd[4180261]: disconnect from capt-se145.bizflycloud.vn[103.69.195.52] ehlo=2 starttls=1 mail=1 rcpt=1 data=1 quit=1 commands=7
-Dec 29 11:34:14 mail postfix/10025/smtpd[4180342]: connect from mail.tutrangcubeoxam.online[127.0.0.1]
-Dec 29 11:34:14 mail postfix/10025/smtpd[4180342]: 4JNz7p1Qvzz9p1l: client=mail.tutrangcubeoxam.online[127.0.0.1]
-Dec 29 11:34:14 mail postfix/cleanup[4180286]: 4JNz7p1Qvzz9p1l: message-id=<3af455a9-7e74-fbe5-1e75-2e49ddc690af@vccloud.vn>
-Dec 29 11:34:14 mail postfix/10025/smtpd[4180342]: disconnect from mail.tutrangcubeoxam.online[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
-Dec 29 11:34:14 mail postfix/qmgr[2688]: 4JNz7p1Qvzz9p1l: from=<tulha@vccloud.vn>, size=1433, nrcpt=1 (queue active)
-Dec 29 11:34:14 mail amavis[3191641]: (3191641-01) Passed CLEAN {RelayedInbound}, [103.69.195.52]:46946 [123.30.170.251] ESMTP/ESMTP <tulha@vccloud.vn> -> <tulha@tulha.fun>, (ESMTPS://[103.69.195.52]:46946 < ESMTPSA://123.30.170.251), Queue-ID: 4JNz7n5KTJz9p1j, Message-ID: <3af455a9-7e74-fbe5-1e75-2e49ddc690af@vccloud.vn>, mail_id: Xg02CCqq9f5K, b: F2Qxm2dqp, Hits: -, size: 892, queued_as: 4JNz7p1Qvzz9p1l, Subject: "test log", From: <tulha@vccloud.vn>, User-Agent: Mozilla/5.0_(X11;_Linux_x86_64;_rv:78.0)_Gecko/20100101_Thunderbird/78.14.0, helo=capt-se145.bizflycloud.vn, 403 ms
-Dec 29 11:34:14 mail postfix/amavis/smtp[4180287]: 4JNz7n5KTJz9p1j: to=<tulha@tulha.fun>, relay=127.0.0.1[127.0.0.1]:10024, delay=0.8, delays=0.32/0.03/0.04/0.41, dsn=2.0.0, status=sent (250 2.0.0 from MTA(smtp:[127.0.0.1]:10025): 250 2.0.0 Ok: queued as 4JNz7p1Qvzz9p1l)
-Dec 29 11:34:14 mail postfix/qmgr[2688]: 4JNz7n5KTJz9p1j: removed
-Dec 29 11:34:14 mail postfix/pipe[4180343]: 4JNz7p1Qvzz9p1l: to=<tulha@tulha.fun>, relay=dovecot, delay=0.24, delays=0.03/0.03/0/0.18, dsn=2.0.0, status=sent (delivered via dovecot service)
-Dec 29 11:34:14 mail postfix/qmgr[2688]: 4JNz7p1Qvzz9p1l: removed
+Jul  7 09:06:14 mail postfix/submission/smtpd[866353]: connect from mail.truongvh.com[127.0.0.1]
+Jul  7 09:06:14 mail postfix/submission/smtpd[866353]: Anonymous TLS connection established from mail.truongvh.com[127.0.0.1]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+Jul  7 09:06:14 mail postfix/submission/smtpd[866353]: 4Ldr9y6wlvz3xgh: client=mail.truongvh.com[127.0.0.1], sasl_method=PLAIN, sasl_username=truongvh1@truongvh.com
+Jul  7 09:06:14 mail postfix/cleanup[866357]: 4Ldr9y6wlvz3xgh: message-id=<4c6-62c6a200-d-7d2cc500@266041271>
+Jul  7 09:06:15 mail postfix/submission/smtpd[866353]: disconnect from mail.truongvh.com[127.0.0.1] ehlo=2 starttls=1 auth=1 mail=1 rcpt=1 data=1 quit=1 commands=8
+Jul  7 09:06:15 mail postfix/qmgr[2502]: 4Ldr9y6wlvz3xgh: from=<truongvh1@truongvh.com>, size=1052, nrcpt=1 (queue active)
+Jul  7 09:06:15 mail postfix/10025/smtpd[866377]: connect from mail.truongvh.com[127.0.0.1]
+Jul  7 09:06:15 mail postfix/10025/smtpd[866377]: 4Ldr9z5ktdz3yFh: client=mail.truongvh.com[127.0.0.1]
+Jul  7 09:06:15 mail postfix/cleanup[866357]: 4Ldr9z5ktdz3yFh: message-id=<4c6-62c6a200-d-7d2cc500@266041271>
+Jul  7 09:06:15 mail postfix/10025/smtpd[866377]: disconnect from mail.truongvh.com[127.0.0.1] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5
+Jul  7 09:06:15 mail postfix/qmgr[2502]: 4Ldr9z5ktdz3yFh: from=<truongvh1@truongvh.com>, size=2283, nrcpt=1 (queue active)
+Jul  7 09:06:15 mail amavis[764113]: (764113-01) Passed CLEAN {RelayedInternal}, ORIGINATING/MYNETS LOCAL [127.0.0.1]:46972 ESMTP/ESMTP <truongvh1@truongvh.com> -> <truongvh@vccloud.vn>, (), Queue-ID: 4Ldr9y6wlvz3xgh, Message-ID: <4c6-62c6a200-d-7d2cc500@266041271>, mail_id: EPPMYA29kEZZ, b: thirEvkIt, Hits: -1.009, size: 1052, queued_as: 4Ldr9z5ktdz3yFh, Subject: "tets", From: <truongvh1@truongvh.com>, User-Agent: SOGoMail_5.7.0, helo=mail.truongvh.com, Tests: [ALL_TRUSTED=-1,HTML_MESSAGE=0.001,T_SCC_BODY_TEXT_LINE=-0.01], autolearn=ham autolearn_force=no, autolearnscore=-0.009, dkim_new=dkim:truongvh.com, 818 ms
+Jul  7 09:06:15 mail postfix/amavis/smtp[866358]: 4Ldr9y6wlvz3xgh: to=<truongvh@vccloud.vn>, relay=127.0.0.1[127.0.0.1]:10026, delay=0.96, delays=0.1/0.01/0.03/0.82, dsn=2.0.0, status=sent (250 2.0.0 from MTA(smtp:[127.0.0.1]:10025): 250 2.0.0 Ok: queued as 4Ldr9z5ktdz3yFh)
+Jul  7 09:06:15 mail postfix/qmgr[2502]: 4Ldr9y6wlvz3xgh: removed
+Jul  7 09:06:17 mail postfix/postscreen[866405]: CONNECT from [123.31.11.244]:51426 to [103.69.194.241]:25
+Jul  7 09:06:17 mail postfix/postscreen[866405]: HANGUP after 0 from [123.31.11.244]:51426 in tests before SMTP handshake
+Jul  7 09:06:17 mail postfix/postscreen[866405]: DISCONNECT [123.31.11.244]:51426
+Jul  7 09:06:19 mail postfix/smtp[866378]: 4Ldr9z5ktdz3yFh: to=<truongvh@vccloud.vn>, relay=captmx-re40.bizflycloud.vn[123.31.11.244]:25, delay=3.2, delays=0.04/0.03/0.26/2.9, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 0812D17DA34)
+
 ```
 - Từ log trên, ta có thể thấy SMTP bên gửi connect tới SMTP bên nhận để gửi mail. SMTP nhận mail, thông qua amavis để kiểm tra sercurity OK => gửi đến dovecot IMAP server 
 - Check thêm log `iredapd.log` :
