@@ -58,7 +58,7 @@ dkim._domainkey.truongvh.com. 3600 TXT (
 
 ## Demo về cấu hình A,MX,SPF và DKIM : 
 - Trỏ domain, câu hình các bản ghi TXT trên site quản lý 
-<img src = https://github.com/tulha161/tule/blob/main/iredmail/pic/demo1.png>
+![image](https://user-images.githubusercontent.com/97424062/177903589-e8766590-2d5d-49ab-b61c-532780402566.png)
 
 - Test bản ghi DKIM : 
 ```
