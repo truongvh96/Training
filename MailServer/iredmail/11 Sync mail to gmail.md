@@ -103,3 +103,45 @@ Trong đó:
 
 host1, user1, password1: lần lượt là domain/địa chỉ IP của mail server nguồn (trong tình huống này là imap.gmail.com), tài khoản email và app password đã khởi tạo ở Bước 1.
 host2, user2, password2: lần lượt là domain/địa chỉ IP của mail server đích, tài khoản email và password trên mail server đích cần chuyển email đến.
+
+#### Lưu ý
+Dùng trực tiếp password sẽ làm lộ pass, thay vào đó hay cho pass vào 1 file và gọi tới chúng.
+````
+echo 'AppPassword' > passfile1
+echo 'p@ssw0rd' > passfile2
+````
+````
+imapsync --host1 imap.gmail.com   \
+         --user1 user@domain.com 	  \
+	 --passfile1 /path/to/passfile1	  \
+	 --ssl1			          \
+	 --host2 webmail.vhost.email     \
+	 --user2 user@domain.com 	  \
+	 --passfile2 /path/to/passfile2   \
+	 --ssl2
+````
+#### Nâng cao
+Bạn có thể kết hợp 2 tham số –delete1 và –noexpungeaftereach để thực hiện xoá email trên mail server nguồn để tiện kiểm tra mail đã sync đầy đủ hay chưa và có bị sót email nào hay không:
+```
+imapsync --host1 imap.gmail.com   \
+         --user1 user@domain.com 	  \
+	 --passfile1 /path/to/passfile1	  \
+	 --ssl1			          \
+	 --host2 webmail.vhost.email     \
+	 --user2 user@domain.com 	  \
+	 --passfile2 /path/to/passfile2   \
+         --ssl2                           \
+         --delete1 --noexpungeaftereach
+```
+Ngoài ra, để có thể chạy nhiều tiến trình Imapsync cùng một lúc bạn cần thêm vào tham số sau trên câu lệnh:
+```
+imapsync --host1 imap.gmail.com   \
+         --user1 user@domain.com 	  \
+	 --passfile1 /path/to/passfile1	  \
+	 --ssl1			          \
+	 --host2 webmail.vhost.email     \
+	 --user2 user@domain.com 	  \
+	 --passfile2 /path/to/passfile2   \
+         --ssl2                           \
+         --pidfile ""
+	 ```
