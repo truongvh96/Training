@@ -99,9 +99,8 @@ USE_EXISTING_MYSQL='YES' \
 ![image](https://user-images.githubusercontent.com/97424062/177251363-f10b28e5-c1a6-4d79-aa4d-1981e6e06c92.png)
 
 - Test gửi, nhận internal : 
+![image](https://user-images.githubusercontent.com/97424062/177973954-3bfbd889-36c7-46ec-9c3a-ad85792e1909.png)
 
-<img src = https://github.com/tulha161/tule/blob/main/iredmail/pic/13.png>
 
 - Test gửi, nhận external to gmail :
-
-
+![image](https://user-images.githubusercontent.com/97424062/177973776-10d4f4b9-67e4-40da-8ef7-0e2b60427441.png)
