@@ -102,13 +102,9 @@ root@tule:~# dig dkim._domainkey.truongvh.com +short  TXT
 tuongvh@truongvh-Aspire-A715-71G:/etc$ dig _dmarc.truongvh.com TXT +short
 "v=DMARC1; p=quarantine; adkim=s; aspf=s;  rua=mailto:fail@truongvh.com; ruf=mailto:fail@truongvh.com "
 ```
-- Gửi thử mail test hoạt động : 
+- Gửi thử mail test hoạt động
 
-<img src = https://github.com/tulha161/tule/blob/main/iredmail/pic/testdmarc.png>
-
-- Mail report từ Receiver ( google gmail ) khi nhận được mail có bản ghi DMARC = FAIL : 
-
-<img src = https://github.com/tulha161/tule/blob/main/iredmail/pic/fail-report.png>
+- Mail report từ Receiver ( google gmail ) khi nhận được mail có bản ghi DMARC = FAIL 
 
 
 Source : https://docs.iredmail.org/setup.dns.html
