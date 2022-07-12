@@ -74,8 +74,7 @@ root@tule:~# dig _spf.truongvh.com +short  TXT
 root@tule:~# dig dkim._domainkey.truongvh.com +short  TXT
 "v=DKIM1; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvqQDqcxtfuS4e8yGK7Y8Kq7uHq3SZ7mfLKXYZgDFz95EAd8czbLqKMvQeHptptj1gXyRvRpQ5jXmvYbM/RYomD2q7FbgMSdzMpIpW2ZQWRHYfgWYIShku6HAVvykcjZzXBAmC1PwYGsFag111axrlNAnU4RUFcUVW+gYwI34AyToTv11pc9QlYTaSPmUue926XVHvK/H" "V1eEd0xa5Z8Yb+NXxA3vUk+Vt2/bwF6iefghq+ZFabS95mxeUzQaO3ub4GbGcZfqYOzU7UuqqyE51jGj1SghothjVS8MAx2karpINVmwCI4PJlhV0LTc3xufiH1QWgJcsTmBAQF24bTiqwIDAQAB;"
 ```
-- Thử gửi mail tới gmail, xem nội dung thư gốc :
-<img src = https://github.com/tulha161/tule/blob/main/iredmail/pic/demo2.png> 
+- Thử gửi mail tới gmail, xem nội dung thư gốc
 
 ## DMARC Record 
 - DMARC ( Domain-based Message Authentication, Reporting, and Conformance ) - là phương thức cho phép thiết lập một policy để  xác thực ( authentication ), Reporting ( báo cáo) và đánh giá phù hợp ( Conformance) cho email. 
