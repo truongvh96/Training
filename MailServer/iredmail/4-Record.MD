@@ -9,7 +9,7 @@
 A Record : 
 truongvh.com A 123.31.11.183
 PTR Record : 
-183.11.31.123 PTR truongvh.com
+123.31.11.183 PTR truongvh.com
 ```
 - Một domain có đủ cấu hình A và PTR Record sẽ có khả năng phân giải tên miền thuận - nghịch . 
 
